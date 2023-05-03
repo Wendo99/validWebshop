@@ -8,7 +8,7 @@
 	let sizes: string[] = [' S ', ' M ', ' L ', ' XL '];
 </script>
 
-<div id="box" class=" box-border overflow-auto w-1/5 p-4 rounded-lg bg-slate-300 ">
+<div id="box" class=" box-border overflow-auto w-1/5 p-4 rounded-lg bg-secBrown ">
 	<div id="content">
 		<div id="prodImage"><img class="rounded-lg mb-4" {src} alt="jacket grey" /></div>
 		<div id="productInfo" class="grid grid-row-3 gap-3">
