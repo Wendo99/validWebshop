@@ -2,6 +2,7 @@
 	import '../app.css';
 	let logoSrc = './corpLogo.png';
 	let corpBrandSrc = './corpBrand.png';
+	let mainPageImage ;
 </script>
 
 <body class=" w-5/6 h-screen m-auto bg-gray-200">
@@ -25,7 +26,11 @@
 			</div>
 		</div>
 	</header>
-	<br />
+	<nav>
+		<div id="prodSpec" />
+		<div id="prodCart" />
+		<img src="" alt="">
+	</nav>
 	<main>
 		<slot />
 	</main>
