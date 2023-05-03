@@ -1,1 +1,12 @@
-<div class=" left-12 top-12 absolute animate-spin">😎 spinning</div>
+<script lang="ts">
+	import ProductPreviewBox from './productPreviewBox.svelte';
+</script>
+
+<main>
+
+    <ProductPreviewBox>
+
+    </ProductPreviewBox>
+    
+</main>
+
