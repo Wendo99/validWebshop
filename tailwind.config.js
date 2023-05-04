@@ -3,11 +3,14 @@ export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
     colors:{
-      'baseWight':'#F2F2F2',
+      'baseWhite':'#F2F2F2',
       'baseblack':'#0D0D0D',
-      'secBrown':'#A67E6F',
-      'acOrange':'#D95D30',
-      'acBrown':'#400101',
+      'secLightBrown':'#D9BBA0',
+      'acBrown':'#8C5245',
+      'acRedBrown':'#8C2B34',
+      /* Color Theme Swatches in Hex */
+
+
     },
     extend: {},
   },
