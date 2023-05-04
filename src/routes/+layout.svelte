@@ -17,11 +17,11 @@
 	let compHeader = 'Donkey';
 </script>
 
-<body class="box-border p-0 m-0 break-words bg-baseWhite font-serif">
-	<div id="overAll" class="grid grid-flow-row">
+<body class="box-border p-0 m-0 break-words bg-baseWhite font-serif ">
+	<div id="overAll" class="grid grid-flow-row ">
 		<header class=" p-2 grid-flow-row ">
 			<div class="grid grid-flow-col gap-3">
-				<div class="bg-acRedBrownborder grid grid-flow-col justify-start content-center gap-3">
+				<div class="  grid grid-flow-col justify-start content-center gap-3">
 					<div class=" grid justify-center content-center">
 						<img src={logoSrc} width="96" height="96" alt="corporation logo" />
 					</div>
@@ -55,7 +55,7 @@
 		</main>
 
 		<footer
-			class="bottom-0 bg-baseblack  grid-cols-none justify-start w-full p-2 mb-1 rounded-lg"
+			class="bg-baseblack  grid-cols-none justify-start w-full p-2 rounded-lg "
 		>
 			<div id="imprintLink" class="text-baseWhite inline-block mr-5">
 				<a href={linkImprint}>{imprint}</a>
