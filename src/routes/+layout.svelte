@@ -6,52 +6,56 @@
 	let accountBtn = 'Account';
 	let imprint = 'Imprint';
 	let contact = 'Contact';
+	let cartBtn = 'Cart';
 
 	// PageLink String
 	let linkImprint = './imprint.svelte';
 	let linkContact = './contact.svelte';
 
 	// Image src
-	let logoSrc = './corpLogo.png';
-	let corpBrandSrc = './corpBrand.png';
+	let logoSrc = './logo_872x872.png';
+	let compHeader = 'Donkey';
 </script>
 
-<div class="box-border grid grid-flow-col mt-1">
-	<nav id="nav" class="border left-0 absolute">
-		<ul>
-			<li>Home</li>
-			<li>Run</li>
-			<li>in</li>
-			<li>Michigan</li>
-		</ul>
-	</nav>
-
-	<body class="w-11/12 m-auto bg-baseWight relative grid grid-flow-row">
-		<header class="p-1 grid items-center border">
-			<div id="headEle" class="grid grid-cols-3">
-				<div id="compEle" class="grid grid-cols-4">
-					<img src={logoSrc} alt="corporation logo" class="w-1/3 self-center" />
-					<img src={corpBrandSrc} alt="brand logo" class="w-1/3 self-center col-span-3" />
+<body class="box-border p-0 m-0 break-words bg-baseWhite font-serif">
+	<div id="overAll" class="grid grid-flow-row">
+		<header class=" p-2 grid-flow-row ">
+			<div class="grid grid-flow-col gap-3">
+				<div class="bg-acRedBrownborder grid grid-flow-col justify-start content-center gap-3">
+					<div class=" grid justify-center content-center">
+						<img src={logoSrc} width="96" height="96" alt="corporation logo" />
+					</div>
+					<div class=" grid justify-center content-center">
+						<h2 id="compHeader" class="text-5xl">{compHeader}</h2>
+					</div>
 				</div>
-				<input
-					id="searchBar"
-					type="text"
-					class="border rounded-xl w-2/3 justify-self-center justify-around self-center"
-				/>
-
-				<div id="accountEle" class="grid grid-cols-4 justify-items-end content-center gap-1">
-					<button class=" bg-acBrown text-baseWight rounded-xl w-fit col-start-3 p-1" id="login"
-						>{loginBtn}</button
-					>
-					<button class=" bg-acBrown text-baseWight rounded-xl w-fit p-1" id="account"
-						>{accountBtn}</button
-					>
+				<div class=" grid grid-cols-7 gap-3 justify-center content-center">
+					<input id="searchBar" type="text" class=" rounded-xl col-start-2 col-end-6" />
+				</div>
+				<div class=" grid grid-cols-7 gap-3 content-center">
+					<button class="rounded-full border p-2 col-start-2" id="login">{loginBtn}</button>
+					<button class="rounded-full border p-2 col-start-3" id="account">{accountBtn}</button>
+					<button class="rounded-full border p-2 col-start-6" id="cart">{cartBtn}</button>
 				</div>
 			</div>
+			<div class="grid grid-cols-12 ">
+				<nav class="grid col-start-3 ">
+					<ul class=" grid justify-end grid-flow-col">
+						<li><a href="/">Home</a></li>
+					
+					</ul>
+				</nav>
+			</div>
 		</header>
-		<slot />
+
+		<main id="content" class="grid grid-flow-col">
+			<div>
+				<slot />
+			</div>
+		</main>
+
 		<footer
-			class="absolute clear-both bottom-0 bg-baseblack border grid-cols-none justify-start w-full p-1 mb-1 rounded-lg"
+			class="bottom-0 bg-baseblack  grid-cols-none justify-start w-full p-2 mb-1 rounded-lg"
 		>
 			<div id="imprintLink" class="text-baseWhite inline-block mr-5">
 				<a href={linkImprint}>{imprint}</a>
@@ -60,5 +64,5 @@
 				<a href={linkContact}>{contact}</a>
 			</div>
 		</footer>
-	</body>
-</div>
+	</div>
+</body>

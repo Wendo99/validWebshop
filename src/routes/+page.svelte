@@ -6,16 +6,16 @@
 	let imageSrc = './mainImg_1920x724.jpg';
 </script>
 
-<main class=" box-border pt-1 grid grid-flow-row gap-y-1">
-	<div id="imageCont" class="border grid">
+<div class=" ">
+	<div id="imageCont" class="p-2">
 		<img
 			src={imageSrc}
 			alt="woman young blonde fashion"
-			class="justify-self-center rounded-lg w-2/3"
+			class="justify-self-center rounded-lg"
 		/>
 	</div>
 
-	<div id="productpreviewArea" class="grid grid-cols-3 justify-items-center border ">
+	<div id="productpreviewArea" class="grid grid-cols-4 justify-items-center  p-2">
 		
 
 		{#each data.products as p}
@@ -26,4 +26,4 @@
            
 		{/each}
 	</div>
-</main>
+</div>
