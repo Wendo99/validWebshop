@@ -23,7 +23,7 @@
 			<div class="grid grid-flow-col gap-3">
 				<div class="  grid grid-flow-col justify-start content-center gap-3">
 					<div class=" grid justify-center content-center">
-						<img src={logoSrc} width="96" height="96" alt="corporation logo" />
+						<a href="/"><img src={logoSrc} width="96" height="96" alt="corporation logo" /></a>
 					</div>
 					<div class=" grid justify-center content-center">
 						<h2 id="compHeader" class="text-5xl">{compHeader}</h2>
@@ -39,7 +39,7 @@
 				</div>
 			</div>
 			<div class="grid grid-cols-12 ">
-				<nav class="grid col-start-3 ">
+				<nav class="grid col-start-2 ">
 					<ul class=" grid justify-end grid-flow-col">
 						<li><a href="/">Home</a></li>
 					
