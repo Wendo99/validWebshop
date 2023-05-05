@@ -1,36 +1,37 @@
 <script lang="ts">
-	import { Link, Router, Route } from 'svelte-routing';
-	import ProductPreviewBox from './productPreviewBox.svelte';
+	import ProductPreviewBox from '../lib/productPreviewBox.svelte';
 	export let data;
 
 	// Image Src String
 	let imageSrc = './mainImg_1920x724.jpg';
 </script>
 
-<main>
-	<div id="imageCont" class="relative">
-		<div class="">
-			<img
-				src={imageSrc}
-				alt="woman young blonde fashion"
-				class="p-2 rounded-3xl absolute top-0 left-0"
-			/>
-		</div>
-		<div
-			id="productpreviewArea"
-			class="relative grid grid-cols-4 justify-items-center p-2 top-96 gap-3"
-		>
-			{#each data.products as p}
-				<ProductPreviewBox
-					src={p.image}
-					id={p.id}
-					category={p.category}
-					description={p.description}
-					price={p.price}
-					title={p.title}
-					rating={p.rating}
-				/>
-			{/each}
-		</div>
+<svelte:head><title>Donkey Fashion</title></svelte:head>
+
+<div class="relative">
+
+	<div class="absolute">
+		<img
+			src={imageSrc}
+			alt="woman young blonde fashion"
+			class=""
+		/>
 	</div>
-</main>
+	<div class="h-96"></div>
+	<div
+		id="productpreviewArea"
+		class="grid grid-cols-4 border justify-items-center"
+	>
+		{#each data.products as p}
+			<ProductPreviewBox
+				src={p.image}
+				id={p.id}
+				category={p.category}
+				description={p.description}
+				price={p.price}
+				title={p.title}
+				rating={p.rating}
+			/>
+		{/each}
+	</div>
+</div>
