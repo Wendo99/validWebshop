@@ -2,7 +2,7 @@
 	let loginBtn = 'Login';
 	let accountBtn = 'Account';
 	let cartBtn = 'Cart';
-	let logoSrc = './logo_872x872.png';
+
 	let compHeader = 'Donkey';
 </script>
 
@@ -10,7 +10,7 @@
 	<div class="grid grid-flow-col gap-3">
 		<div class="  grid grid-flow-col justify-start content-center gap-3">
 			<div class=" grid justify-center content-center">
-				<a href="/"><img src={logoSrc} width="96" height="96" alt="corporation logo" /></a>
+				<a href="/"><img src="logo_872x872.png" width="96" height="96" /></a>
 			</div>
 			<div class=" grid justify-center content-center">
 				<h2 id="compHeader" class="text-5xl">{compHeader}</h2>

@@ -20,7 +20,7 @@
 	<div class="h-96"></div>
 	<div
 		id="productpreviewArea"
-		class="grid grid-cols-4 border justify-items-center"
+		class="grid grid-cols-4  justify-items-center"
 	>
 		{#each data.products as p}
 			<ProductPreviewBox

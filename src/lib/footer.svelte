@@ -4,8 +4,8 @@
 	let contact = 'Contact';
 
 	// PageLink String
-	let linkImprint = './imprint.svelte';
-	let linkContact = './contact.svelte';
+	let linkImprint = '/imprint';
+	let linkContact = '/contact';
 </script>
 
 <footer class="p-2 rounded-lg bottom-0">
