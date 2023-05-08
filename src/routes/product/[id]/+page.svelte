@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Count from '$lib/count.svelte';
+	import Count from '$lib/userRatingCounter.svelte';
 	import StarRating from '$lib/starRating.svelte';
 	import type { Rating } from './+page.server';
 	export let data;
@@ -16,20 +16,20 @@
 
 <svelte:head><title>Donkey Shopping</title></svelte:head>
 
-<main class="min-h-screen max-w-max ">
+<main class="min-h-screen max-w-max mt-12">
 	<div class="grid grid-rows-2 p-2 gap-y-12">
-		<div class="grid grid-flow-col max-w-5xl gap-12 border justify-end">
-			<div class="grid max-w-max border">
+		<div class="grid grid-flow-col max-w-5xl gap-12  justify-start">
+			<div class="grid max-w-max ">
 				<img
 					src={image}
 					width="250"
 					height="250"
 					alt="product pic "
-					class="grid max-w-md h-auto  border"
+					class="grid max-w-md h-auto  "
 				/>
 			</div>
 
-			<div class="grid max-w-max text-lg border ">
+			<div class="grid max-w-max text-lg  ">
 				<div id="title" class="text-2xl font-medium text-gray-700 max-w-max">{title}</div>
 				<!-- <div id="category" class="">{category}</div> -->
 				<div id="price" class="text-gray-900 font-bold max-w-max">{price} €</div>
@@ -40,6 +40,6 @@
 			</div>
 		</div>
 
-		<div id="description" class="grid max-w-5xl text-lg text-gray-700 border">{description}</div>
+		<div id="description" class="grid max-w-5xl text-lg text-gray-700 ">{description}</div>
 	</div>
 </main>

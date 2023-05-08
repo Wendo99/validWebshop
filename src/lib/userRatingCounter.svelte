@@ -4,7 +4,7 @@
 
 </script>
 
-<div class="grid grid-cols-2 border items-center">
-	<img src="userGroup.svg" class="scale-50" />
+<div class="grid grid-cols-2  items-center">
+	<img src="userGroup.svg" class="scale-50" alt="user rating counter"/>
 	<div id="count" class="text-gray-500">{rating.count}</div>
 </div>

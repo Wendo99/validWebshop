@@ -2,7 +2,7 @@
 import type { Rating } from '../routes/+page.server';
 
 	// import Rating from './rating.svelte';
-	import Count from './count.svelte';
+	import Count from './userRatingCounter.svelte';
 	import StarRating from './starRating.svelte';
 
 	export let src: string;

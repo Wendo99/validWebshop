@@ -4,7 +4,7 @@
 
 </script>
 
-<div class="grid grid-cols-2 border items-center">
-	<img src="star.svg" class="scale-50"/>
+<div class="grid grid-cols-2  items-center">
+	<img src="star.svg" class="scale-50" alt="star rating"/>
 	<div id="rate" class="text-gray-500">{rating.rate}</div>
 </div>
