@@ -1,7 +1,9 @@
 <script lang="ts">
-	import Count from '$lib/userRatingCounter.svelte';
+	import UserRatingCounter from '$lib/userRatingCounter.svelte';
 	import StarRating from '$lib/starRating.svelte';
 	import type { Rating } from './+page.server';
+import AddToCartBtn from '$lib/components/addToCartBtn.svelte';
+
 	export let data;
 	let prop = data.product;
 
@@ -16,8 +18,8 @@
 
 <svelte:head><title>Donkey Shopping</title></svelte:head>
 
-<main class="min-h-screen max-w-max mt-12">
-	<div class="grid grid-rows-2 p-2 gap-y-12">
+<main class="min-h-screen  mt-12  grid justify-items-center ">
+	<div class="grid grid-rows-2 p-2 gap-y-12 max-w-max ">
 		<div class="grid grid-flow-col max-w-5xl gap-12  justify-start">
 			<div class="grid max-w-max ">
 				<img
@@ -30,11 +32,16 @@
 			</div>
 
 			<div class="grid max-w-max text-lg  ">
-				<div id="title" class="text-2xl font-medium text-gray-700 max-w-max">{title}</div>
+				<div id="title" class="text-2xl font-medium text-gray-700 max-w-max ">{title}</div>
 				<!-- <div id="category" class="">{category}</div> -->
-				<div id="price" class="text-gray-900 font-bold max-w-max">{price} €</div>
-				<div class="grid grid-cols-2 max-w-max">
-					<Count {rating} />
+				<div class="grid grid-cols-2 items-center justify-items-end">
+					<div id="price" class=" text-xl text-gray-900 font-bold max-w-max  justify-self-start">{price} €</div>
+			
+						<AddToCartBtn></AddToCartBtn>
+				
+				</div>
+				<div class="grid grid-cols-2 max-w-max ">
+					<UserRatingCounter {rating} />
 					<StarRating {rating} />
 				</div>
 			</div>

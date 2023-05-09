@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { Rating } from '../routes/+page.server';
+	import type { Rating } from '../routes/+page.server';
 
 	// import Rating from './rating.svelte';
 	import Count from './userRatingCounter.svelte';
@@ -34,10 +34,12 @@ import type { Rating } from '../routes/+page.server';
 		<div id="productInfo" class=" grid grid-flow-row gap-3 text-base border-black">
 			<div id="prodTitle" aria-hidden="true" class="font-medium text-gray-700">{title}</div>
 			<div class="grid grid-cols-2 grid-rows-1 items-center">
-				<div id="price" class="text-gray-900 font-bold">{'€ ' + price}</div>
-				<div id="rating" class="grid grid-flow-col justif items-center gap-1">
-					<Count {rating} />
-					<StarRating {rating}/>
+				<div class="grid grid-cols-2">
+					<div id="price" class="text-gray-900 font-bold">{'€ ' + price}</div>
+					<div id="rating" class="grid grid-flow-col justif items-center gap-1">
+						<Count {rating} />
+						<StarRating {rating} />
+					</div>
 				</div>
 			</div>
 		</div>
