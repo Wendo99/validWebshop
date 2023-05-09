@@ -13,10 +13,12 @@ export interface Rating {
 	count: number;
 }
 
-export async function load({ fetch }) {
+export async function load({ fetch,cookies,locals }) {
 	const productresult = await fetch('https://fakestoreapi.com/products').then(
 		(res) => res.json() as unknown as Product[]
 	);
+	
+	console.log(locals.test);
 
 	return { products: productresult };
 }

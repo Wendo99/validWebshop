@@ -2,6 +2,9 @@
 	let loginBtn = 'Login';
 	let accountBtn = 'Account';
 	let cartBtn = 'Cart';
+	
+
+	let linkLogin = '/signIn';
 
 	let compHeader = 'Donkey';
 </script>
@@ -20,7 +23,7 @@
 			<input id="searchBar" type="text" class=" rounded-xl col-start-2 col-end-6" />
 		</div>
 		<div class=" grid grid-cols-7 gap-3 content-center">
-			<button class="rounded-full border p-2 col-start-2" id="login">{loginBtn}</button>
+			<a href={linkLogin}> <button class="rounded-full border p-2 col-start-2" id="login">{loginBtn}</button></a>
 			<button class="rounded-full border p-2 col-start-3" id="account">{accountBtn}</button>
 			<button class="rounded-full border p-2 col-start-6" id="cart">{cartBtn}</button>
 		</div>
