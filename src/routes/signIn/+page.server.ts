@@ -4,7 +4,7 @@ import { getUserByEmail } from '../userStore/db.js';
 export const actions = {
 	default: async ({ request, cookies }) => {
 		const form = await request.formData();
-		const email  = form.get('email');
+		const email = form.get('email');
 		const password = form.get('password');
 
 		const value = await getUserByEmail(email);
@@ -17,7 +17,7 @@ export const actions = {
 			return fail(400, { message: 'Login failed' });
 		}
 
-		cookies.set('sessionId', email.toString());
+		cookies.set('userEmail', email.toString());
 		throw redirect(303, '/');
 	}
 	// logout:async ({request,cookies}) => {

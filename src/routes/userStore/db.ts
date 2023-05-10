@@ -1,4 +1,4 @@
-import { v4 as uuid4 } from 'uuid';
+
 import { create, find } from '.';
 
 export const getUserByEmail = async (email:FormDataEntryValue|null) => {

@@ -1,13 +1,11 @@
 <script lang="ts">
-	import { each } from 'svelte/internal';
-
 	let loginBtn = 'Login';
 	let accountBtn = 'Account';
 	let cartBtn = 'Cart';
 	let linkLogin = '/signIn';
 	let compHeader = 'Donkey';
-	export let test = '';
-	export let data;
+	export let userMail: string | undefined;
+	
 </script>
 
 <header class=" p-2 grid-flow-row">
@@ -26,15 +24,17 @@
 			<input id="searchBar" type="text" class=" rounded-xl col-start-2 col-end-6" />
 			<div id="userName" />
 		</div>
-		<div class=" grid grid-cols-6 gap-3 content-center text-2xl font-semibold">
-			<a href={linkLogin} class="p-2 col-start-2 grid justify-items-center-center items-center">
-				<button class="rounded-full border p-2" id="login">{loginBtn}</button></a
+		<div class=" grid grid-cols-3 items-center text-1xl font-semibold justify-items-center">
+			<a href={linkLogin} class="p-2">
+				<button class="rounded-full border p-2 w-40 h-14" id="login">{loginBtn}</button></a
 			>
-			<button class="rounded-full border p-1 col-start-4 w-40" id="account">{accountBtn}</button>
-			<a href="/cart">
+			<a href="" class="p-2">
+				<button class="rounded-full border p-2 w-40 h-14" id="account">{accountBtn}</button>
+			</a>
+			<a href="/cart" class="p-2">
 				<button
-					class="rounded-full border p-1 col-start-6 grid grid-rows-2 items-center justify-center text-2xl font-semibold w-40"
-					id="cart">{cartBtn} <img class="scale-75 max-h-fit" src="cart.svg" alt="" /></button
+					class="rounded-full border p-2 w-40 h-14 grid grid-rows-2 justify-items-center items-center"
+					id="cart">{cartBtn} <img class="max-h-7 row-start-2" src="cart.svg" alt="" /></button
 				>
 			</a>
 		</div>
@@ -46,7 +46,7 @@
 			</ul>
 		</nav>
 		<div class="grid borer col-span-4 col-start-9 justify-self-center" id="userNamePerm">
-			{test}
+			{userMail}
 		</div>
 	</div>
 </header>

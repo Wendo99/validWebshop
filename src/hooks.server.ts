@@ -1,7 +1,7 @@
 import { getUserByEmail } from './routes/userStore/db';
 
 export const handle = async ({ resolve, event }) => {
-	const sID = event.cookies.get('sessionId');
+	const sID = event.cookies.get('userEmail');
 	if (sID) {
 		const userData = await getUserByEmail(sID);
 		if (userData) {
