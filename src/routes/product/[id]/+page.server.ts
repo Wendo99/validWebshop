@@ -15,10 +15,8 @@ export interface Rating {
 
 export async function load({ params, fetch }) {
 	const id = params.id;
-	console.log(id);
 	const url = 'https://fakestoreapi.com/products/';
 	const urlString = url + id;
-	console.log(urlString);
 
 	const	 productResult = await fetch(urlString).then((res) => res.json() as unknown as Product);
 

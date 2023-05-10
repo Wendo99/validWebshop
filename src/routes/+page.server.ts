@@ -13,7 +13,7 @@ export interface Rating {
 	count: number;
 }
 
-export async function load({ fetch,cookies,locals }) {
+export async function load({ fetch}) {
 	const productresult = await fetch('https://fakestoreapi.com/products').then(
 		(res) => res.json() as unknown as Product[]
 	);

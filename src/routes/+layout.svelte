@@ -8,7 +8,7 @@
 </script>
 
 <div class="p-2 font-sans-auto bg-slate-100 min-h-full min-w-full border">
-	<Header bind:test={data.username} />
+	<Header bind:test={data.username} data={data}/>
 
 	<slot />
 
