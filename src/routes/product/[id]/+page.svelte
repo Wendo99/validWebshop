@@ -1,8 +1,10 @@
 <script lang="ts">
-	import UserRatingCounter from '$lib/userRatingCounter.svelte';
-	import StarRating from '$lib/starRating.svelte';
+	import UserRatingCounter from '$lib/components/userRatingCounter.svelte';
+	import StarRating from '$lib/components/starRating.svelte';
 	import type { Rating } from './+page.server';
-	import AddToCartBtn from '$lib/components/addToCartBtn.svelte';
+	import AddToCartBtn from '../btn_addToCart.svelte';
+	import { enhance } from '$app/forms';
+	
 
 	export let data;
 	let prop = data.product;
@@ -14,7 +16,7 @@
 	const category: string = prop.category;
 	const image: string = prop.image;
 	const rating: Rating = prop.rating;
-	
+
 </script>
 
 <svelte:head><title>Donkey Shopping</title></svelte:head>
@@ -34,7 +36,10 @@
 						{price} €
 					</div>
 
-					<AddToCartBtn {id}/>
+					<form action="/cart?/addToCart" method="post" use:enhance>
+						<input type="hidden" name="prodId" value={id} />
+						<AddToCartBtn />
+					</form>
 				</div>
 				<div class="grid grid-cols-2 max-w-max">
 					<UserRatingCounter {rating} />

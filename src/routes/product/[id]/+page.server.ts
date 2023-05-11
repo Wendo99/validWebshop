@@ -18,7 +18,7 @@ export async function load({ params, fetch }) {
 	const url = 'https://fakestoreapi.com/products/';
 	const urlString = url + id;
 
-	const	 productResult = await fetch(urlString).then((res) => res.json() as unknown as Product);
+	const productResult = await fetch(urlString).then((res) => res.json() as unknown as Product);
 
 	return { product: productResult };
 }

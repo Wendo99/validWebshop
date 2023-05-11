@@ -1,5 +1,5 @@
 <script lang="ts">
-    import SignIn from '$lib/components/signIn.svelte';
+    import SignIn from '../signIn/signIn.svelte';
     let error: any;
 </script>
 <h1 class="text-2xl font-semibold text-center">Sign Up</h1>

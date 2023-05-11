@@ -24,11 +24,11 @@ export async function load({ cookies, fetch }) {
 	return { userCart, productArray: prodArr };
 }
 
+
 export const actions = {
 	addToCart: async ({ request, cookies }) => {
 		const formData = await request.formData();
 		const hasUserCart: boolean = checkUserCart(cookies);
-
 		let userCart: number[];
 		if (hasUserCart) {
 			userCart = getUserCart(cookies);

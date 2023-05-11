@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Input from './input.svelte';
-    import Button from './button.svelte';
+    import Input from '../../lib/components/input.svelte';
+    import Button from '../../lib/components/button.svelte';
     let email = '';
     let password :string = '';
     let confirmPassword :string= '';

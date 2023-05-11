@@ -12,7 +12,7 @@ export const create = (newUser) => {
 	return newUser;
 };
 
-export const remove = (id) => {
+export const remove = (id: number) => {
 	user.update((u) => u.filter((u) => u.id !== id));
 };
 

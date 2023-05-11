@@ -1,5 +1,5 @@
 <script lang="ts">
-	import SignIn from '$lib/components/signIn.svelte';
+	import SignIn from './signIn.svelte';
 	export let form;
 </script>
 <div class="min-h-screen">

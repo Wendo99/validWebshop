@@ -9,7 +9,7 @@ export const getUserByEmail = async (email:FormDataEntryValue|null) => {
 	return Promise.resolve(existingUser);
 };
 
-export const getUserById = async (id) => {
+export const getUserById = async (id: number) => {
 	const existingUser = find({ id: id });
 	if (!existingUser) {
 		return Promise.resolve(null);
