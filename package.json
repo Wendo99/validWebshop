@@ -35,6 +35,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"birthday-select": "^1.0.3",
 		"page": "^1.11.6",
 		"uuid": "^9.0.0"
 	}

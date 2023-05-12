@@ -1,6 +1,6 @@
 <script lang="ts">
-import Input from '../../lib/components/input.svelte';
-    import Button from '../../lib/components/button.svelte';
+import Input from '../../lib/components/input_logging.svelte';
+    import Button from '../../lib/components/btn_Logging.svelte';
 
 
     let email="";

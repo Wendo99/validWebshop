@@ -4,7 +4,6 @@
 	import type { Rating } from './+page.server';
 	import AddToCartBtn from '../btn_addToCart.svelte';
 	import { enhance } from '$app/forms';
-	
 
 	export let data;
 	let prop = data.product;
@@ -16,7 +15,6 @@
 	const category: string = prop.category;
 	const image: string = prop.image;
 	const rating: Rating = prop.rating;
-
 </script>
 
 <svelte:head><title>Donkey Shopping</title></svelte:head>

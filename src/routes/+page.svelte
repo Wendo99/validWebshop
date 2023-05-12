@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ProductPreviewBox from '../lib/productPreviewBox.svelte';
+	import ProductPreviewBox from './productPreviewBox.svelte';
 	export let data;
 
 	// Image Src String

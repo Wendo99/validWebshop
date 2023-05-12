@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { Rating } from '../routes/+page.server';
+	import type { Rating } from './+page.server';
 
 	// import Rating from './rating.svelte';
-	import Count from './components/userRatingCounter.svelte';
-	import StarRating from './components/starRating.svelte';
+	import Count from '../lib/components/userRatingCounter.svelte';
+	import StarRating from '../lib/components/starRating.svelte';
 
 	export let src: string;
 
@@ -22,7 +22,7 @@
 <a href="/product/{id}">
 	<div
 		id="box"
-		class="border-1 border-gray-100 max-h-fit w-64 h-96 box-border p-3 rounded-lg bg-white shadow-2xl drop-shadow-md grid grid-row-2 gap-2 mb-16 opacity-90 hover:ring-2 hover:ring-gray-50"
+		class=" border-6 max-h-fit w-64 h-96 box-border p-2 rounded-xl bg-slate-200 shadow-2xl drop-shadow-md grid grid-row-2 gap-2 mb-16 opacity-90 hover:ring-2 hover:ring-gray-50"
 	>
 		<div id="prodImage" class="grid justify-center content-center">
 			<img

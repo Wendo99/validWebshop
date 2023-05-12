@@ -3,14 +3,11 @@ import type { Product } from '../+page.server';
 
 export async function load({ cookies, fetch }) {
 	const hasUserCart: boolean = checkUserCart(cookies);
-
 	let userCart: number[] = [];
-
 	if (hasUserCart) {
 		userCart = getUserCart(cookies);
 	}
 	const prodArr: Product[] = [];
-
 	for (let indexUserCart = 0, indexProdArr = 0; indexUserCart < userCart.length; indexUserCart++) {
 		const id = indexUserCart;
 		if (userCart[id] != null) {
@@ -24,7 +21,6 @@ export async function load({ cookies, fetch }) {
 	return { userCart, productArray: prodArr };
 }
 
-
 export const actions = {
 	addToCart: async ({ request, cookies }) => {
 		const formData = await request.formData();
@@ -35,19 +31,13 @@ export const actions = {
 		} else {
 			userCart = [];
 		}
-		// cart.set(userEmail, userCart);
-		// const hasUser = cart.has(userEmail);
-
 		const prodId: number = parseInt(formData.get('prodId') as string);
-
 		const indexUserCart = prodId - 1;
-
 		if (userCart[indexUserCart] == null) {
 			userCart[indexUserCart] = 1;
 		} else {
 			userCart[indexUserCart] = userCart[indexUserCart] + 1;
 		}
-
 		cookies.set('cart', JSON.stringify(userCart));
 	}
 };

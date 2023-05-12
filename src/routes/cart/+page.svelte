@@ -1,8 +1,7 @@
 <script lang="ts">
-	import BtnDefault from '$lib/components/btn_default.svelte';
 	import ProductCartBox from './productCartBox.svelte';
 	import type { Product } from '../+page.server';
-	import { enhance } from '$app/forms';
+	import BtnSubmit from '$lib/components/btn_submit.svelte';
 	export let data;
 
 	$: priceSum = getPriceSum();
@@ -41,12 +40,10 @@
 			{/each}
 		</div>
 		<div class="grid col-start-8 col-span-2 items-center">
-			<a href="./payment/">
-				<form method="post" use:enhance />
-				<input type="hidden" name="priceSume" value={priceSum} />
+			<form action="/payment?/paymentProcessing" method="post">
 				<input type="hidden" name="productArr" value={data.productArray} />
-				<BtnDefault text="Proceed to Checkout" />
-			</a>
+				<BtnSubmit text="Proceed to Checkout" />
+			</form>
 		</div>
 	</div>
 	<div
