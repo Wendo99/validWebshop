@@ -8,7 +8,9 @@
 </script>
 
 <div class="p-2 font-sans-auto bg-slate-100 min-h-full min-w-full border">
+
 	<Header userMail={data.userMail} />
+	
 	<slot />
 
 	<Footer />

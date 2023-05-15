@@ -1,22 +1,13 @@
 <script lang="ts">
-	import type { Rating } from './+page.server';
-
-	// import Rating from './rating.svelte';
-	import Count from '../lib/components/userRatingCounter.svelte';
-	import StarRating from '../lib/components/starRating.svelte';
+	import Prod_Count from '../lib/components/prod_Count.svelte';
+	import Prod_Star from '../lib/components/prod_Rate.svelte';
 
 	export let src: string;
-
-	export let title: string = 'Boss';
-	export let price: number = 12.99;
-	export let rating: Rating;
-
-	// not shown on main
+	export let title: string;
+	export let price: number;
+	export let count: number;
+	export let rate: number;
 	export let id: number;
-	export let description;
-	export let category: string;
-
-	let userSvg = 'userGroup.svg';
 </script>
 
 <a href="/product/{id}">
@@ -36,9 +27,9 @@
 			<div class="grid grid-cols-2 grid-rows-1 items-center">
 				<div class="grid grid-cols-2">
 					<div id="price" class="text-gray-900 font-bold">{'€ ' + price}</div>
-					<div id="rating" class="grid grid-flow-col justif items-center gap-1">
-						<Count {rating} />
-						<StarRating {rating} />
+					<div id="rating" class="grid grid-flow-col auto-cols-max gap-1">
+						<Prod_Count {count} />
+						<Prod_Star {rate} />
 					</div>
 				</div>
 			</div>

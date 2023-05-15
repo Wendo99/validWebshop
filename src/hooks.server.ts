@@ -4,6 +4,8 @@ import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/publi
 import { sequence } from '@sveltejs/kit/hooks';
 import type { Handle } from '@sveltejs/kit';
 
+let client: ReturnType<typeof createClient<any, 'public', any>> | null = null;
+
 export const authentication: Handle = async ({ resolve, event }) => {
 	const sID = event.cookies.get('userEmail');
 	if (sID) {
@@ -15,15 +17,13 @@ export const authentication: Handle = async ({ resolve, event }) => {
 	return await resolve(event);
 };
 
-let client: ReturnType<typeof createClient<any,"public",any>> | null = null
-
-export const supabase: Handle = async ({ resolve, event }) => {	
-	event.locals.supaBase =  () => {
-		if(!client) {
+export const supabase: Handle = async ({ resolve, event }) => {
+	event.locals.supaBase = () => {
+		if (!client) {
 			client = createClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY);
 		}
 		return client;
-	}
+	};
 	return await resolve(event);
 };
 

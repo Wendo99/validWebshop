@@ -1,5 +1,4 @@
 // See https://kit.svelte.dev/docs/types#app
-
 import type { User } from "./routes/userStore";
 import { createClient } from '@supabase/supabase-js';
 

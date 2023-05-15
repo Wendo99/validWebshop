@@ -1,6 +1,7 @@
 import { fail, redirect } from '@sveltejs/kit';
 import { getUserByEmail } from '../userStore/db.js';
 
+
 export const actions = {
 	default: async ({ request, cookies }) => {
 		const form = await request.formData();
