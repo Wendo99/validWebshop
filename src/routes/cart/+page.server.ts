@@ -1,7 +1,9 @@
 import type { Cookies } from '@sveltejs/kit';
 import type { Product } from '../+page.server';
 
-export async function load({ cookies, fetch }) {
+export async function load({ cookies, fetch, locals: {supaBase}}) {
+
+	supaBase()
 	const hasUserCart: boolean = checkUserCart(cookies);
 	let userCart: number[] = [];
 	if (hasUserCart) {
@@ -18,7 +20,11 @@ export async function load({ cookies, fetch }) {
 			indexProdArr++;
 		}
 	}
-	return { userCart, productArray: prodArr };
+
+	const piecesSum = getPiecesSum(userCart);
+	const priceSum = getPriceSum(prodArr, userCart);
+
+	return { userCart, productArray: prodArr, piecesSum, priceSum };
 }
 
 export const actions = {
@@ -53,4 +59,22 @@ function getUserCart(cookies: Cookies): number[] {
 
 function checkUserCart(cookies: Cookies): boolean {
 	return cookies.get('cart') ? true : false;
+}
+
+function getPiecesSum(userCart: number[]): number {
+	let result = 0;
+	const sum = userCart.reduce((accum, current) => accum + current, result);
+	return (result = sum);
+}
+
+// TODO check if reduce() is possible within multiDimensional Arrays
+function getPriceSum(productArray: Product[], userCart: number[]): number {
+	let result = 0;
+	const tempArray: Product[] = productArray;
+	for (let dataProdArrIndex = 0; dataProdArrIndex < tempArray.length; dataProdArrIndex++) {
+		const productPrice = tempArray[dataProdArrIndex].price;
+		const qty = userCart[tempArray[dataProdArrIndex].id - 1];
+		result = result + productPrice * qty;
+	}
+	return result;
 }

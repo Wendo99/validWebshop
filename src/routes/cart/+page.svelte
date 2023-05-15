@@ -1,30 +1,9 @@
 <script lang="ts">
 	import ProductCartBox from './productCartBox.svelte';
-	import type { Product } from '../+page.server';
 	import BtnSubmit from '$lib/components/btn_submit.svelte';
 	export let data;
-
-	$: priceSum = getPriceSum();
-
-	$: piecesSum = getPiecesSum();
-
-	function getPiecesSum(): number {
-		let result: number = 0;
-		let sum = data.userCart.reduce((accum, current) => accum + current, result);
-		return (result = sum);
-	}
-
-	// TODO check if reduce() is possible within multiDimensional Arrays
-	function getPriceSum(): number {
-		let result: number = 0;
-		let tempArray: Product[] = data.productArray;
-		for (let dataProdArrIndex = 0; dataProdArrIndex < tempArray.length; dataProdArrIndex++) {
-			const productPrice = tempArray[dataProdArrIndex].price;
-			const qty = data.userCart[tempArray[dataProdArrIndex].id - 1];
-			result = result + productPrice * qty;
-		}
-		return result;
-	}
+	let priceSum = data.priceSum;
+	let piecesSum = data.piecesSum;
 </script>
 
 <div class="grid auto-rows-min min-h-screen">
