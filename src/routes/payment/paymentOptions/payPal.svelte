@@ -1,1 +1,1 @@
-<div class="">PayPal E-Mail<input type="email" id="email"class="ml-4 w-80 rounded-xl h-8" required/></div>
+<div class="">PayPal E-Mail<input name="payPalEmail" type="email" id="email"class="ml-4 w-80 rounded-xl h-8" required/></div>
