@@ -1,30 +1,35 @@
-import { fail, redirect } from '@sveltejs/kit';
-import { getUserByEmail } from '../userStore/db.js';
-
+import { fail } from '@sveltejs/kit';
+import { z } from 'zod';
+import { zfd } from 'zod-form-data';
 
 export const actions = {
-	default: async ({ request, cookies }) => {
-		const form = await request.formData();
-		const email = form.get('email');
-		const password = form.get('password');
+	login: async ({ request, locals }) => {
+		const form_Data = await request.formData();
 
-		const value = await getUserByEmail(email);
+		const emailSchema = z.coerce.string().email({ message: 'Invalid email adress' });
+		const stringSchema = z.coerce.string();
 
-		if (value == null) {
-			return fail(400, { message: 'Login failed' });
+		const login_DataModel = zfd.formData({
+			email: emailSchema,
+			password: stringSchema
+		});
+
+		const valid_FormData = await login_DataModel.safeParseAsync(form_Data);
+
+		if (!valid_FormData.success) {
+			// war wohl nix :(
+			return fail(400, { error: valid_FormData.error.flatten() });
 		}
 
-		if (value.password != password) {
-			return fail(400, { message: 'Login failed' });
-		}
+		const { data, error } = await locals.supaBase().auth.signInWithPassword({
+			email: valid_FormData.data.email,
+			password: valid_FormData.data.password
+		});
 
-		cookies.set('userEmail', email.toString());
-		throw redirect(303, '/');
+		locals.user_email = valid_FormData.data.email;
+		return valid_FormData.data;
 	}
 	// logout:async ({request,cookies}) => {
-	//     // TODO
+	//
 	// },
-	// register: async ({request, cookies}) => {
-	//     // TODO
-	// }
 };

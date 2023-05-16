@@ -1,4 +1,4 @@
-import { fail, type Cookies, error } from '@sveltejs/kit';
+import { fail, type Cookies} from '@sveltejs/kit';
 import type { Product } from '../+page.server';
 import { zfd } from 'zod-form-data';
 import { z } from 'zod';
@@ -36,7 +36,6 @@ export const actions = {
 		const minAge = 18;
 		const actualDate = new Date();
 		const minYear: number = actualDate.getFullYear() - minAge;
-		console.log(minYear);
 
 		const paymentEnum = z.enum(['creditcard', 'payPal', 'bankPayment']);
 		type paymentEnum = z.infer<typeof paymentEnum>;
@@ -46,34 +45,31 @@ export const actions = {
 
 		const x = z.coerce.date();
 
-		const validationCheckoutModel = zfd.formData({
-			firstName: zfd.text(),
-			lastName: zfd.text(),
-			street: zfd.text(),
-			houseNumber: z.preprocess(
+		const validation_CheckoutModel = zfd.formData({
+			user_firstName: zfd.text(),
+			user_lastName: zfd.text(),
+			user_street: zfd.text(),
+			user_houseNumber: z.preprocess(
 				(a) => parseInt(z.string().parse(a), 10),
 				z.number().positive('The housenumber needs to be postitive')
 			),
-			city: zfd.text(),
-			postcode: z.preprocess(
+			user_city: zfd.text(),
+			user_postcode: z.preprocess(
 				(a) => parseInt(z.string().parse(a), 10),
 				z.number().positive('The postcode needs to be postitive')
 			),
-			birthday: z.preprocess(
+			user_birthday: z.preprocess(
 				(d) => x.parse(d),
 				z.date().max(new Date(minYear, actualDate.getMonth(), actualDate.getDate()), {
 					message: 'Minimum age is 18'
 				})
 			),
-			payMent: paymentEnum,
-			delivMeth: deliveryEnum
-
-
+			user_pref_payment: paymentEnum,
+			user_pref_delivery: deliveryEnum
 		});
 
-		const result = await validationCheckoutModel.safeParseAsync(form_Data);
+		const result = await validation_CheckoutModel.safeParseAsync(form_Data);
 
-		console.log(result);
 
 		if (!result.success) {
 			// war wohl nix :(
@@ -81,6 +77,7 @@ export const actions = {
 		}
 
 		const {error}= await locals.supaBase().from('userDatabase').update(result.data).eq('id',1);
+
 		return result.data;
 	}
 };

@@ -4,8 +4,8 @@
 	let cartBtn = 'Cart';
 	let linkLogin = '/signIn';
 	let compHeader = 'Donkey';
-	
-	export let userMail: string | undefined;
+
+	export let user_eMail: string | undefined;
 </script>
 
 <header class="p-2 mb-10">
@@ -28,14 +28,21 @@
 				<div id="userName" />
 			</div>
 			<div class="grid grid-flow-row-dense auto-rows-min relative top-3">
-				<a href={linkLogin} class="p-2">
-					<button class="rounded-full border p-2 w-40 h-14" id="login">{loginBtn}</button>
-				</a>
+				{#if user_eMail != undefined}
+					<form action="/signUp?/logout" method="post">
+						<button class="rounded-full border p-2 w-40 h-14" type="submit">LogOut</button>
+					</form>
+				{:else if user_eMail == undefined}
+					<a href={linkLogin} class="p-2">
+						<button class="rounded-full border p-2 w-40 h-14" id="login">{loginBtn}</button>
+					</a>
+				{/if}
+
 				<div class="grid items-center justify-items-center">
-					{#if userMail == undefined}
+					{#if user_eMail == undefined}
 						{''}
 					{:else}
-						{userMail}
+						{user_eMail}
 					{/if}
 				</div>
 			</div>

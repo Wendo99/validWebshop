@@ -1,7 +1,6 @@
 <script lang="ts">
 	import BoxDiv from '$lib/components/box_div.svelte';
 	import BtnSubmit from '$lib/components/btn_submit.svelte';
-	import { error } from '@sveltejs/kit';
 	import DhlBox from './deliveryOptions/dhlBox.svelte';
 	import BankPayment from './paymentOptions/bankPayment.svelte';
 	import CreditCard from './paymentOptions/creditCard.svelte';
@@ -10,24 +9,19 @@
 	export let data;
 	export let form;
 
-	const paymentMethods = [
-		{ value: 'creditcard', text: 'CreditCard' },
+	//TODO store payment- and deliveryOptions anywhere more safe
+	const paymentOptions = [
+		{ value: 'creditCard', text: 'CreditCard' },
 		{ value: 'payPal', text: 'PayPal' },
 		{ value: 'bankPayment', text: 'BankPayment' }
 	];
-	const namePay = 'payMent';
 	export let chosenPaymentMethod: string = '';
 
-	const deliveryMethods = [
+	const deliveryOptions = [
 		{ value: 'delivery_Home', text: 'Home Delivery' },
 		{ value: 'delivery_DHLBox', text: 'DHL Box' }
 	];
-	const nameDel = 'delivMeth';
 	export let chosenDeliveryMethod: string = '';
-
-	{
-		console.log(form?.error?.fieldErrors);
-	}
 </script>
 
 <svelte:head><title>Checkout</title></svelte:head>
@@ -58,16 +52,14 @@
 									<span class=" grid col-start-1 w-20"> Firstname </span>
 									<input
 										type="text"
-										name="firstName"
+										name="user_firstName"
 										class="rounded-xl h-8 w-56 grid col-start-2 mr-6"
-										
 									/>
 									<span class=" grid col-start-3 w-32"> Lastname </span>
 									<input
 										class="rounded-xl h-8 justify-self-end grid col-start-4 w-56"
 										type="text"
-										name="lastName"
-										
+										name="user_lastName"
 									/>
 								</div>
 								<div class="grid row-start-2 gap-x-8 p-2">
@@ -75,15 +67,13 @@
 									<input
 										class="rounded-xl h-8 w-56 grid col-start-2 mr-6"
 										type="text"
-										name="street"
-										
+										name="user_street"
 									/>
 									<span class=" grid col-start-3 w-32">House Number</span>
 									<input
 										class="rounded-xl h-8 justify-self-end w-56 grid col-start-4"
 										type="number"
-										name="houseNumber"
-										
+										name="user_houseNumber"
 									/>
 								</div>
 								<div class=" grid row-start-3 gap-x-8 p-2">
@@ -91,17 +81,15 @@
 									<input
 										class="rounded-xl h-8 w-56 grid col-start-2 mr-6"
 										type="text"
-										name="city"
-										
+										name="user_city"
 									/>
 									<span class=" grid col-start-3 w-32">Postcode</span>
 									<input
 										class="rounded-xl h-8 justify-self-end w-56 grid col-start-4"
 										type="number"
-										name="postcode"
+										name="user_postcode"
 										min="10000"
 										max="99999"
-										
 									/>
 								</div>
 								<div class="items-center grid row-start-4 gap-x-1 grid-flow-col p-2">
@@ -109,7 +97,7 @@
 									<span class="items-center text-sm grid col-start-2"
 										><input
 											type="date"
-											name="birthday"
+											name="user_birthday"
 											id="birthday"
 											min="1900-01-01"
 											class="rounded-xl h-8
@@ -127,13 +115,12 @@
 						<div class="p-2">
 							<div class="text-lg mb-8">Payment Methods:</div>
 							<div class="grid grid-flow-col">
-								{#each paymentMethods as { value, text }}
+								{#each paymentOptions as { value, text }}
 									<div>
 										<input
 											on:change={(e) => (chosenPaymentMethod = value)}
 											type="radio"
-											name={namePay}
-											
+											name="user_pref_payment"
 											{value}
 										/>
 										<span>{text}</span>
@@ -141,7 +128,7 @@
 								{/each}
 							</div>
 							<div class="mt-20">
-								{#if chosenPaymentMethod === 'creditcard'}
+								{#if chosenPaymentMethod === 'creditCard'}
 									<CreditCard />
 								{:else if chosenPaymentMethod === 'payPal'}
 									<PayPal />
@@ -157,13 +144,12 @@
 						<div class="p-2">
 							<div class="text-lg mb-8">Delivery Methods:</div>
 							<div class="grid grid-flow-col">
-								{#each deliveryMethods as { value, text }}
+								{#each deliveryOptions as { value, text }}
 									<div>
 										<input
 											on:change={(e) => (chosenDeliveryMethod = value)}
 											type="radio"
-											name={nameDel}
-											
+											name="user_pref_delivery"
 											{value}
 										/>
 										<span>{text}</span>

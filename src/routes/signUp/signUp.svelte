@@ -5,13 +5,13 @@
     let password :string = '';
     let confirmPassword :string= '';
 
-    let error;
 
     function validatePassword(password:any, confirmPassword:any) {
         return confirmPassword !== password 
     }
 </script>
-<form method="POST" action="/register"  class="space-y-5 {$$props.class}">
+
+<form  method="POST" action="?/register"  class="space-y-5 {$$props.class}">
     <Input label="Email" id="email" name="email" type="email" bind:value={email} />
     <Input label="Password" id="password" name="password" type="password" bind:value={password} />
     <Input
