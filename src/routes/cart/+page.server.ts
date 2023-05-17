@@ -1,15 +1,17 @@
-import type { Cookies } from '@sveltejs/kit';
+import { fail, type Cookies } from '@sveltejs/kit';
 import type { Product } from '../+page.server';
+import { zfd } from 'zod-form-data';
 
-export async function load({ cookies, fetch, locals: {supaBase}}) {
-
-	supaBase()
+export async function load({ cookies, fetch }) {
 	const hasUserCart: boolean = checkUserCart(cookies);
 	let userCart: number[] = [];
+
 	if (hasUserCart) {
 		userCart = getUserCart(cookies);
 	}
+
 	const prodArr: Product[] = [];
+
 	for (let indexUserCart = 0, indexProdArr = 0; indexUserCart < userCart.length; indexUserCart++) {
 		const id = indexUserCart;
 		if (userCart[id] != null) {
@@ -26,27 +28,80 @@ export async function load({ cookies, fetch, locals: {supaBase}}) {
 
 	return { userCart, productArray: prodArr, piecesSum, priceSum };
 }
-
+// TODO change userCart into map
 export const actions = {
-	addToCart: async ({ request, cookies }) => {
+	addToCart: async ({ request, cookies, locals }) => {
+		//TODO formValidation
 		const formData = await request.formData();
-		const hasUserCart: boolean = checkUserCart(cookies);
-		let userCart: number[];
-		if (hasUserCart) {
-			userCart = getUserCart(cookies);
-		} else {
-			userCart = [];
+
+		const validationAddToCart = zfd.formData({
+			prodId: zfd.numeric()
+		});
+		const result = await validationAddToCart.safeParseAsync(formData);
+
+		if (!result.success) {
+			// war wohl nix :(
+			return fail(400, { error: result.error.flatten() });
 		}
-		const prodId: number = parseInt(formData.get('prodId') as string);
-		const indexUserCart = prodId - 1;
-		if (userCart[indexUserCart] == null) {
-			userCart[indexUserCart] = 1;
-		} else {
-			userCart[indexUserCart] = userCart[indexUserCart] + 1;
-		}
-		cookies.set('cart', JSON.stringify(userCart));
+
+	
+
+		const userId = await getUserId(locals);
+		const prodId = result.data.prodId;
+		const prodQty = await getProdQty(locals, prodId);
+		const prodPrice = await getProdPrice(locals, prodId);
+
+		const { error } = await locals.supaBase
+			.from('user_Cart')
+			.insert({
+				user_id: userId,
+				prodId: prodId,
+				prodQty: prodQty,
+				prodPrice: prodPrice
+			});
+		console.log(error);
+		// const hasUserCart: boolean = checkUserCart(cookies);
+		// let userCart: number[];
+
+		// if (hasUserCart) {
+		// 	userCart = getUserCart(cookies);
+		// } else {
+		// 	userCart = [];
+		// }
+
+		// const prodId: number = parseInt(formData.get('prodId') as string);
+		// const indexUserCart = prodId - 1;
+
+		// if (userCart[indexUserCart] == null) {
+		// 	userCart[indexUserCart] = 1;
+		// } else {
+		// 	userCart[indexUserCart] = userCart[indexUserCart] + 1;
+		// }
+		// cookies.set('cart', JSON.stringify(userCart));
 	}
 };
+async function getUserId(locals: App.Locals) {
+	return await locals.supaBase.from('user_index').select('user_id');
+}
+
+
+async function getProdPrice(locals: App.Locals, prodId: number) {
+	return await locals.supaBase.from('products').select('price').eq('id', prodId);
+}
+
+async function getProdQty(locals: App.Locals, prodId: number) {
+	return await locals.supaBase.from('user_Cart').select('prodQty').eq('id', prodId);
+}
+
+async function inputCartProdPrice(locals: App.Locals, value: any) {
+	const { error } = await locals.supaBase.from('user_Cart').insert({ prod_price: value });
+
+}
+
+async function inputCartProdId(locals: App.Locals, value: any) {
+	const { error } = await locals.supaBase.from('user_Cart').insert({ prod_id: value });
+	console.log(error);
+}
 
 function getUserCart(cookies: Cookies): number[] {
 	const jSonObj = cookies.get('cart');

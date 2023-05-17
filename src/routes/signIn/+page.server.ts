@@ -21,12 +21,12 @@ export const actions = {
 			return fail(400, { error: valid_FormData.error.flatten() });
 		}
 
-		const { data, error } = await locals.supaBase().auth.signInWithPassword({
+		const { data, error } = await locals.supaBase.auth.signInWithPassword({
 			email: valid_FormData.data.email,
 			password: valid_FormData.data.password
+			
 		});
 
-		locals.user_email = valid_FormData.data.email;
 		return valid_FormData.data;
 	}
 	// logout:async ({request,cookies}) => {

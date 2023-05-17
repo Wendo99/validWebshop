@@ -7,10 +7,8 @@ declare global {
 	namespace App {
 		// interface Error {}
 		interface Locals {
-
-			user_email: string |undefined;
-			supaBase: () => ReturnType<typeof createClient<any, 'public', any>>;
-			session: Session|null;
+			supaBase: ReturnType<typeof createClient<any, 'public', any>>;
+			getSession: () => Promise<Session | null>;
 		}
 		// interface PageData {}
 		// interface Platform {}

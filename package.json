@@ -13,6 +13,7 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
+		"@supabase/auth-helpers-sveltekit": "^0.9.4",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.5.0",
 		"@types/uuid": "^9.0.1",
@@ -27,6 +28,7 @@
 		"postcss": "^8.4.23",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.8.1",
+		"supabase": "^1.61.1",
 		"svelte": "^3.54.0",
 		"svelte-check": "^3.0.1",
 		"svelte-routing": "^1.8.1",
@@ -39,7 +41,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@supabase/auth-helpers-sveltekit": "^0.9.4",
 		"@supabase/supabase-js": "^2.22.0",
 		"birthday-select": "^1.0.3",
 		"date-fns": "^2.30.0",

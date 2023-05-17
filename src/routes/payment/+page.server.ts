@@ -1,4 +1,4 @@
-import { fail, type Cookies} from '@sveltejs/kit';
+import { fail, type Cookies } from '@sveltejs/kit';
 import type { Product } from '../+page.server';
 import { zfd } from 'zod-form-data';
 import { z } from 'zod';
@@ -14,15 +14,18 @@ export async function load({ cookies, fetch }) {
 			const url = 'https://fakestoreapi.com/products/';
 			const urlString = url + (id + 1);
 			const result = await fetch(urlString).then((res) => res.json() as unknown as Product);
+			result.qty = userCart[result.id - 1];
 			prodArr[indexProdArr] = result;
 			indexProdArr++;
 		}
 	}
 	const piecesSum = getPiecesSum(userCart);
 	const priceSum = getPriceSum(prodArr, userCart);
+	cookies.set('cart', JSON.stringify(prodArr));
 
 	return { userCart, productArray: prodArr, piecesSum, priceSum };
 }
+
 export const actions = {
 	paymentProcessing: async ({ request }) => {
 		const form = await request.formData();
@@ -31,13 +34,15 @@ export const actions = {
 		return { priceSum, prodArr };
 	},
 
-	validateCheckout: async ({ request,locals }) => {
-		const form_Data = await request.formData();
+	validateCheckout: async ({ request, locals: { getSession }, locals, cookies }) => {
+		const prodCart = cookies.get('cart');
+		const session = await getSession();
+		const formData = await request.formData();
 		const minAge = 18;
 		const actualDate = new Date();
 		const minYear: number = actualDate.getFullYear() - minAge;
 
-		const paymentEnum = z.enum(['creditcard', 'payPal', 'bankPayment']);
+		const paymentEnum = z.enum(['creditCard', 'payPal', 'bankPayment']);
 		type paymentEnum = z.infer<typeof paymentEnum>;
 
 		const deliveryEnum = z.enum(['delivery_Home', 'delivery_DHLBox']);
@@ -68,16 +73,24 @@ export const actions = {
 			user_pref_delivery: deliveryEnum
 		});
 
-		const result = await validation_CheckoutModel.safeParseAsync(form_Data);
-
+		const result = await validation_CheckoutModel.safeParseAsync(formData);
 
 		if (!result.success) {
 			// war wohl nix :(
 			return fail(400, { error: result.error.flatten() });
 		}
 
-		const {error}= await locals.supaBase().from('userDatabase').update(result.data).eq('id',1);
+		async function setUserAdress(result: any) {
+			const { error } = await locals.supaBase
+				.from('user_Database')
+				.update(result.data)
+				.eq('user_eMail', session?.user.email);
+		}
+		setUserAdress(result);
 
+		async function setUserCart() {
+			const { error } = await locals.supaBase.from('userOrders').insert(prodCart);
+		}
 		return result.data;
 	}
 };

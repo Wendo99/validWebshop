@@ -1,9 +1,12 @@
 <script lang="ts">
+
 	import ProductCartBox from './productCartBox.svelte';
 	import BtnSubmit from '$lib/components/btn_submit.svelte';
+	
 	export let data;
 	let priceSum = data.priceSum;
 	let piecesSum = data.piecesSum;
+
 </script>
 
 <div class="grid auto-rows-min min-h-screen">
