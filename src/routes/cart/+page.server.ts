@@ -33,7 +33,6 @@ export const actions = {
 	addToCart: async ({ request, cookies, locals }) => {
 		//TODO formValidation
 		const formData = await request.formData();
-
 		const validationAddToCart = zfd.formData({
 			prodId: zfd.numeric()
 		});
@@ -44,63 +43,40 @@ export const actions = {
 			return fail(400, { error: result.error.flatten() });
 		}
 
-	
-
-		const userId = await getUserId(locals);
 		const prodId = result.data.prodId;
-		const prodQty = await getProdQty(locals, prodId);
-		const prodPrice = await getProdPrice(locals, prodId);
-
-		const { error } = await locals.supaBase
-			.from('user_Cart')
-			.insert({
-				user_id: userId,
-				prodId: prodId,
-				prodQty: prodQty,
-				prodPrice: prodPrice
-			});
-		console.log(error);
-		// const hasUserCart: boolean = checkUserCart(cookies);
-		// let userCart: number[];
-
-		// if (hasUserCart) {
-		// 	userCart = getUserCart(cookies);
-		// } else {
-		// 	userCart = [];
-		// }
-
-		// const prodId: number = parseInt(formData.get('prodId') as string);
-		// const indexUserCart = prodId - 1;
-
-		// if (userCart[indexUserCart] == null) {
-		// 	userCart[indexUserCart] = 1;
-		// } else {
-		// 	userCart[indexUserCart] = userCart[indexUserCart] + 1;
-		// }
-		// cookies.set('cart', JSON.stringify(userCart));
+		updateDatabase(locals, prodId);
 	}
 };
-async function getUserId(locals: App.Locals) {
-	return await locals.supaBase.from('user_index').select('user_id');
+
+async function updateDatabase(locals: App.Locals, prodId: number) {
+	const isProdInCart = await isProductInCart(locals, prodId);
+	if (isProdInCart) {
+		const { data } = await locals.supaBase.from('user_Cart').select('prodQty').eq('prodId', prodId);
+		const prodQty = data?.map((item) => item.prodQty) as unknown as number[];
+		{
+			const oldProdQty = prodQty[0] as unknown as number;
+			const newProdQty = oldProdQty + 1;
+			const { data, error } = await locals.supaBase
+				.from('user_Cart')
+				.update({ prodQty: newProdQty })
+				.eq('prodId', prodId);
+		}
+	} else {
+		const { data } = await locals.supaBase.from('products').select('price').eq('id', prodId);
+		const tempPrice = data?.map((item) => item.price);
+		const prodPrice = tempPrice as unknown as number[];
+		const { error } = await locals.supaBase
+			.from('user_Cart')
+			.insert([{ prodId: prodId, prodQty: 1, prodPrice: prodPrice[0] }]);
+		console.log(error);
+	}
 }
 
-
-async function getProdPrice(locals: App.Locals, prodId: number) {
-	return await locals.supaBase.from('products').select('price').eq('id', prodId);
-}
-
-async function getProdQty(locals: App.Locals, prodId: number) {
-	return await locals.supaBase.from('user_Cart').select('prodQty').eq('id', prodId);
-}
-
-async function inputCartProdPrice(locals: App.Locals, value: any) {
-	const { error } = await locals.supaBase.from('user_Cart').insert({ prod_price: value });
-
-}
-
-async function inputCartProdId(locals: App.Locals, value: any) {
-	const { error } = await locals.supaBase.from('user_Cart').insert({ prod_id: value });
-	console.log(error);
+async function isProductInCart(locals: App.Locals, prodId: number): Promise<boolean> {
+	const { data } = await locals.supaBase.from('user_Cart').select('prodId').eq('prodId', prodId);
+	const tempProdId = data?.map((item) => item.prodId) as any[];
+	const prodIdInCart = tempProdId[0];
+	return prodIdInCart == undefined ? false : true;
 }
 
 function getUserCart(cookies: Cookies): number[] {
