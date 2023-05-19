@@ -2,7 +2,7 @@
 	export let src: string;
 	export let title: string;
 	export let price: number;
-	export let qty: number;
+	export let qty: string;
 </script>
 
 <div class=" h-24 mb-7 scale-90">
@@ -21,10 +21,10 @@
 			</div>
 			<div class="  grid justify-end content-center font-bold text-gray-500">
 				{qty}
-				{#if qty > 1}
-					pieces
-				{:else}
+				{#if qty == "1"}
 					piece
+				{:else}
+					pieces
 				{/if}
 			</div>
 		</div>

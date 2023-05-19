@@ -1,29 +1,23 @@
 <script lang="ts">
-
 	import ProductCartBox from './productCartBox.svelte';
 	import BtnSubmit from '$lib/components/btn_submit.svelte';
-	
+
 	export let data;
+
 	let priceSum = data.priceSum;
 	let piecesSum = data.piecesSum;
-
 </script>
 
 <div class="grid auto-rows-min min-h-screen">
 	<div class=" grid row-start-1 max-h-min grid-cols-12">
 		<div class="grid col-span-6">
-			{#each data.productArray as p}
-				<ProductCartBox
-					src={p.image}
-					title={p.title}
-					price={p.price}
-					qty={data.userCart[p.id - 1]}
-				/>
+			{#each data.prodArr as p}
+				<ProductCartBox src={p[1]} title={p[3]} price={parseFloat(p[2])} qty={p[4]} />
 			{/each}
 		</div>
 		<div class="grid col-start-8 col-span-2 items-center">
 			<form action="/payment?/paymentProcessing" method="post">
-				<input type="hidden" name="productArr" value={data.productArray} />
+				<input type="hidden" name="productArr" value={data.prodArr} />
 				<BtnSubmit text="Proceed to Checkout" />
 			</form>
 		</div>
@@ -34,10 +28,10 @@
 		<div class="border grid col-start-9 text-sm font-bold text-gray-500">
 			{#if piecesSum != undefined}
 				{piecesSum}
-				{#if piecesSum > 1}
-					pieces
-				{:else}
+				{#if piecesSum == '1'}
 					piece
+				{:else}
+					pieces
 				{/if}
 			{/if}
 		</div>

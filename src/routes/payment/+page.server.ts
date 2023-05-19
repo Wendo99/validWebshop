@@ -2,20 +2,23 @@ import { fail, type Cookies } from '@sveltejs/kit';
 import type { Product } from '../+page.server';
 import { zfd } from 'zod-form-data';
 import { z } from 'zod';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { PageServerLoad } from './$types';
 
 //TODO MAYBE merge functionality of pieceSum,priceSum,productArray, usercart with load func of +page.server.ts
 export async function load({ cookies, fetch }) {
 	const userCart: number[] = getUserCart(cookies);
-	const prodArr: Product[] = [];
+	const prodArr = [];
 
 	for (let indexUserCart = 0, indexProdArr = 0; indexUserCart < userCart.length; indexUserCart++) {
 		const id = indexUserCart;
 		if (userCart[id] != null) {
 			const url = 'https://fakestoreapi.com/products/';
 			const urlString = url + (id + 1);
-			const result = await fetch(urlString).then((res) => res.json() as unknown as Product);
-			result.qty = userCart[result.id - 1];
-			prodArr[indexProdArr] = result;
+			const product = await fetch(urlString).then((res) => res.json() as unknown as Product);
+			product.qty = userCart[product.id - 1];
+			prodArr[indexProdArr] = product;
+			console.log(product.qty)
 			indexProdArr++;
 		}
 	}
