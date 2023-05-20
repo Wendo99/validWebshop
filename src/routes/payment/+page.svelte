@@ -7,7 +7,6 @@
 	import PayPal from './paymentOptions/payPal.svelte';
 
 	export let data;
-	export let form;
 
 	//TODO store payment- and deliveryOptions anywhere more safe
 	const paymentOptions = [
@@ -102,7 +101,7 @@
 											min="1900-01-01"
 											class="rounded-xl h-8
 										w-56 text-lg p-2"
-											required
+										
 										/>
 									</span>
 								</div>

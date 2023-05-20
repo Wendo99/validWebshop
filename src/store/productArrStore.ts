@@ -1,9 +1,20 @@
 import { readable } from 'svelte/store';
 import { prodDBInput } from './productDBInputStore';
 
-export async function getProductArray(locals: App.Locals, userCart: Map<string, string>) {
+let localProdArr: string[][];
+
+export async function productData(locals: App.Locals, userCart: Map<string, string>) {
 	const { subscribe } = readable(0);
 
+	return {
+		prodArr: await createPoductArray(locals, userCart),
+		piecesSum: getPiecesSum(localProdArr),
+		priceSum: getPriceSum(localProdArr),
+		subscribe
+	};
+}
+
+async function createPoductArray(locals: App.Locals, userCart: Map<string, string>) {
 	const prodArr: string[][] = [];
 
 	let index = 0;
@@ -18,5 +29,28 @@ export async function getProductArray(locals: App.Locals, userCart: Map<string, 
 		productData[4] = value;
 		prodArr[index++] = productData;
 	}
-	return { prodArr: prodArr, subscribe };
+	localProdArr = prodArr;
+	return prodArr;
+}
+
+function getPiecesSum(prodArr: string[][]): string {
+	let result = 0;
+	for (let index = 0; index < prodArr.length; index++) {
+		const arr: string[] = prodArr[index];
+		const qty = parseInt(arr[4]);
+		result += qty;
+	}
+	return result.toString();
+}
+
+// TODO check if reduce() is possible within multiDimensional Arrays
+function getPriceSum(prodArr: string[][]): string {
+	let result = 0;
+	for (let index = 0; index < prodArr.length; index++) {
+		const arr: string[] = prodArr[index];
+		const price = parseFloat(arr[2]);
+		const qty = parseInt(arr[4]);
+		result = result + price * qty;
+	}
+	return result.toString();
 }

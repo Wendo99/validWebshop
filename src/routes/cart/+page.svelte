@@ -16,10 +16,13 @@
 			{/each}
 		</div>
 		<div class="grid col-start-8 col-span-2 items-center">
-			<form action="/payment?/paymentProcessing" method="post">
-				<input type="hidden" name="productArr" value={data.prodArr} />
-				<BtnSubmit text="Proceed to Checkout" />
-			</form>
+			<a href="/payment">
+				{#if piecesSum == '0'}
+					<BtnSubmit text="Proceed to Checkout" disabled={true} />
+				{:else}
+					<BtnSubmit text="Proceed to Checkout" disabled={false} />
+				{/if}
+			</a>
 		</div>
 	</div>
 	<div
