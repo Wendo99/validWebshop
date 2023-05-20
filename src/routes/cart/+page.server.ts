@@ -3,50 +3,29 @@ import { zfd } from 'zod-form-data';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { PageServerLoad } from './$types';
 import invariant from 'tiny-invariant';
-import { map } from 'zod';
+import { getUserCart } from '../../store/cookieStore';
+import { get } from 'svelte/store';
 
-export async function load({ cookies, fetch, locals }) {
-	const hasUserCart: boolean = checkUserCart(cookies);
-	const prodDataArr: string[] = [];
-	let userCart: Map<string, string[]> = new Map();
-	const prodArr = [];
+export async function load({ cookies, locals }) {
+	const userCart: Map<string, string> = (await getUserCart(cookies)).userCart;
 
-	if (hasUserCart) {
-		userCart = getUserCart(cookies);
-	}
+	const prodArr: string[][] = [];
+
 	let index = 0;
-
 	for (const [key, value] of userCart) {
 		const prodId = key;
-		console.log(index);
-		prodDataArr[0] = prodId;
-		prodDataArr[1] = await getProdImgSrc(locals, parseInt(prodId));
-		prodDataArr[2] = await getProdPrice(locals, parseInt(prodId));
-		prodDataArr[3] = await getProdTitle(locals, parseInt(prodId));
-		prodDataArr[4] = value[1];
-		prodArr[index] = prodDataArr;
-		console.log(prodDataArr);
-		console.log(prodArr);
-		index++;
+		const productData: string[] = [];
+
+		productData[0] = prodId;
+		productData[1] = await getProdImgSrc(locals, parseInt(prodId));
+		productData[2] = await getProdPrice(locals, parseFloat(prodId));
+		productData[3] = await getProdTitle(locals, parseInt(prodId));
+		productData[4] = value;
+		prodArr[index++] = productData;
 	}
 
 	const piecesSum = getPiecesSum(prodArr);
 	const priceSum = getPriceSum(prodArr);
-
-	// console.log(userCart);
-	// console.log(prodMap);
-
-	// const pArr: string[][] = [];
-	// let index = 0;
-	// for (const key in prodMap) {
-	// 	if (Object.prototype.hasOwnProperty.call(prodMap, key)) {
-	// 		const element = prodMap.get(key);
-	// 		if (element != undefined) {
-	// 			pArr[index] = element;
-	// 		}
-	// 		index++;
-	// 	}
-	// }
 
 	return { prodArr, piecesSum, priceSum };
 }
@@ -98,37 +77,34 @@ export const actions = {
 			return fail(400, { error: result.error.flatten() });
 		}
 
-		const hasUserCart: boolean = checkUserCart(cookies);
-		let userCart: Map<string, string[]>;
+		// const hasUserCart: boolean = checkUserCart(cookies);
 
-		let prodData: string[] | undefined = ['0', '0'];
+		// if (hasUserCart) {
+		// 	userCart = getUserCart(cookies);
+		// } else {
+		// 	userCart = new Map();
+		// }
 
-		if (hasUserCart) {
-			userCart = getUserCart(cookies);
-		} else {
-			userCart = new Map();
-		}
+		const userCart: Map<string, string> = (await getUserCart(cookies)).userCart;
+
 		const prodId: string = result.data.prodId.toString();
-		if (userCart.has(prodId)) {
-			const data = userCart.get(prodId);
-			invariant(data != null, 'cart item exists but is null');
-			const temp = parseInt(data[1]);
-			if (prodData != undefined) {
 
-				console.log(1)
-				console.log(prodData)
-				prodData = userCart.get(prodId);
-				prodData[0] = prodId;
-				prodData[1] = (temp + 1).toString();
-			}
+		if (userCart.has(prodId)) {
+			const tmp = userCart.get(prodId);
+			invariant(tmp != undefined, 'tmp is undefined');
+			const newQty = (parseInt(tmp) + 1).toString();
+			userCart.set(prodId, newQty);
 		} else {
-			prodData[0] = prodId;
-			prodData[1] = '1';
+			userCart.set(prodId, '1');
 		}
-		userCart.set(prodId, prodData);
+
 		const x = Object.fromEntries(userCart);
 		cookies.set('cart', JSON.stringify(x));
 	}
+
+	// checkCartStatus: async ({ cookies }) => {
+	// 	const userCart = cookies.get('cart');
+	// }
 };
 
 // async function updateDatabase(locals: App.Locals, prodId: number) {
@@ -162,38 +138,37 @@ export const actions = {
 // 	return prodIdInCart == undefined ? false : true;
 // }
 
-function getUserCart(cookies: Cookies): Map<string, string[]> {
-	const jSonObj = cookies.get('cart');
-	let userCart: Map<string, string[]> = new Map();
-	if (jSonObj) {
-		const temp = JSON.parse(jSonObj);
-		userCart = new Map(Object.entries(temp));
-	}
-	return userCart;
-}
+// function getUserCart(cookies: Cookies): Map<string, string> {
+// 	const jSonObj = cookies.get('cart');
+// 	let userCart: Map<string, string> = new Map();
+// 	if (jSonObj) {
+// 		const temp = JSON.parse(jSonObj);
+// 		userCart = new Map(Object.entries(temp));
+// 	}
+// 	return userCart;
+// }
 
-function checkUserCart(cookies: Cookies): boolean {
-	return cookies.get('cart') ? true : false;
-}
+// function checkUserCart(cookies: Cookies): boolean {
+// 	return cookies.get('cart') ? true : false;
+// }
 
-function getPiecesSum(prodArr): string {
+function getPiecesSum(prodArr: string[][]): string {
 	let result = 0;
 	for (let index = 0; index < prodArr.length; index++) {
-		const element = prodArr[index];
-		const qty = parseInt(element[4]);
-		result = +qty;
+		const arr: string[] = prodArr[index];
+		const qty = parseInt(arr[4]);
+		result += qty;
 	}
 	return result.toString();
 }
 
 // TODO check if reduce() is possible within multiDimensional Arrays
-function getPriceSum(prodArr): string {
+function getPriceSum(prodArr: string[][]): string {
 	let result = 0;
-
 	for (let index = 0; index < prodArr.length; index++) {
-		const element = prodArr[index];
-		const price = parseInt(element[2]);
-		const qty = parseInt(element[4]);
+		const arr: string[] = prodArr[index];
+		const price = parseFloat(arr[2]);
+		const qty = parseInt(arr[4]);
 		result = result + price * qty;
 	}
 	return result.toString();

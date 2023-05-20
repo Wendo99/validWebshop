@@ -1,7 +1,10 @@
 import { fail } from '@sveltejs/kit';
-import { z, type SafeParseReturnType } from 'zod';
+import { z } from 'zod';
 import { zfd } from 'zod-form-data';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { PageServerLoad } from './$types';
 
+//TODO error handling
 export const actions = {
 	logout: async ({ locals }) => {
 		const { error } = await locals.supaBase.auth.signOut();
@@ -32,31 +35,28 @@ export const actions = {
 			password: valid_FormData.data.password
 		});
 
-		// async function test(valid_FormData: any) {
-		// 	const { data, error } = await locals.supaBase
-		// 		.from('user_Database')
-		// 		.insert({ user_eMail: valid_FormData.data.email })
-		// 		.select();
-		// 	return data;
-		// }
-		// test(valid_FormData);
-
 		const { error } = await locals.supaBase.from('user_index').insert({
 			user_eMail: valid_FormData.data.email
 		});
-
-		// async function temp() {
-		// 	const { data } = await locals.supaBase
-		// 		.from('user_Database')
-		// 		.select();
-
-		// 	const { error } = await locals.supaBase.from('user_index').insert({user_Database: data});
-		// }
-		// temp()
-		// console.log(error?.details);
+		createUserCart(locals);
 
 		if (valid_FormData.success) {
 			return valid_FormData.data;
 		}
+
+	
+
 	}
 };
+
+async function createUserCart(locals: App.Locals) {
+
+
+	const { data  } = await locals.supaBase.from('user_index').select('user_id').eq('user_eMail', await locals.getSession().then((session) => {
+		session?.user.email;
+	}));
+	const tempId = data?.map((item) => item.user_id) as unknown as number[];
+	const { error } = await locals.supaBase.from('user_Carts').insert({ user_Id: tempId[0] });
+	console.log(tempId[0]);
+	console.log(error?.message);
+}

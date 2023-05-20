@@ -7,7 +7,7 @@ import type { PageServerLoad } from './$types';
 
 //TODO MAYBE merge functionality of pieceSum,priceSum,productArray, usercart with load func of +page.server.ts
 export async function load({ cookies, fetch }) {
-	const userCart: number[] = getUserCart(cookies);
+	const userCart: Map<string,string> = getUserCart(cookies);
 	const prodArr = [];
 
 	for (let indexUserCart = 0, indexProdArr = 0; indexUserCart < userCart.length; indexUserCart++) {

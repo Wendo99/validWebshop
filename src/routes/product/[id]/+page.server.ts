@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { PageServerLoad } from './$types';
+
 export interface Product {
 	id: number;
 	title: string;

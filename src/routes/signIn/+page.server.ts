@@ -1,7 +1,11 @@
 import { fail } from '@sveltejs/kit';
 import { z } from 'zod';
 import { zfd } from 'zod-form-data';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { PageServerLoad } from './$types';
 
+
+//TODO error handling
 export const actions = {
 	login: async ({ request, locals }) => {
 		const form_Data = await request.formData();
