@@ -7,7 +7,7 @@
 	import PayPal from './paymentOptions/payPal.svelte';
 
 	export let data;
-
+	
 	//TODO store payment- and deliveryOptions anywhere more safe
 	const paymentOptions = [
 		{ value: 'creditCard', text: 'CreditCard' },
@@ -53,12 +53,14 @@
 										type="text"
 										name="user_firstName"
 										class="rounded-xl h-8 w-56 grid col-start-2 mr-6"
+										value={data.userAdress?.user_firstName}
 									/>
 									<span class=" grid col-start-3 w-32"> Lastname </span>
 									<input
 										class="rounded-xl h-8 justify-self-end grid col-start-4 w-56"
 										type="text"
 										name="user_lastName"
+										value={data.userAdress?.user_lastName}
 									/>
 								</div>
 								<div class="grid row-start-2 gap-x-8 p-2">
@@ -67,12 +69,14 @@
 										class="rounded-xl h-8 w-56 grid col-start-2 mr-6"
 										type="text"
 										name="user_street"
+										value={data.userAdress?.user_street}
 									/>
 									<span class=" grid col-start-3 w-32">House Number</span>
 									<input
 										class="rounded-xl h-8 justify-self-end w-56 grid col-start-4"
 										type="number"
 										name="user_houseNumber"
+										value={data.userAdress?.user_houseNumber}
 									/>
 								</div>
 								<div class=" grid row-start-3 gap-x-8 p-2">
@@ -81,6 +85,7 @@
 										class="rounded-xl h-8 w-56 grid col-start-2 mr-6"
 										type="text"
 										name="user_city"
+										value={data.userAdress?.user_city}
 									/>
 									<span class=" grid col-start-3 w-32">Postcode</span>
 									<input
@@ -89,6 +94,7 @@
 										name="user_postcode"
 										min="10000"
 										max="99999"
+										value={data.userAdress?.user_postcode}
 									/>
 								</div>
 								<div class="items-center grid row-start-4 gap-x-1 grid-flow-col p-2">
@@ -101,7 +107,7 @@
 											min="1900-01-01"
 											class="rounded-xl h-8
 										w-56 text-lg p-2"
-										
+											value={data.userAdress?.user_birthday}
 										/>
 									</span>
 								</div>

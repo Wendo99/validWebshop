@@ -1,23 +1,18 @@
 <script lang="ts">
 	// import prod_Count from '$lib/components/Prod_Count.svelte';
-	import StarRating from '$lib/components/prod_Rate.svelte';
-	import type { Rating } from './+page.server';
 	import AddToCartBtn from '../btn_addToCart.svelte';
 	import { enhance } from '$app/forms';
 	// import ProdCount from '$lib/components/prod_Count.svelte';
-	import ProdRate from '$lib/components/prod_Rate.svelte';
 
 	export let data;
-	let prop = data.product;
 
-	const id: number = prop.id;
-	const title: string = prop.title;
-	const price: number = prop.price;
-	const description: string = prop.description;
-	const image: string = prop.image;
-	const rating: Rating = prop.rating;
-	const count = rating.count;
-	const rate = rating.rate;
+	const id = data.product.id;
+	const title: string = data.product.title;
+	const price: number = data.product.price;
+	const description: string = data.product.description;
+	const image: string = data.product.image;
+	const count = data.product.count;
+	const rate = data.product.rate;
 </script>
 
 <svelte:head><title>Donkey Shopping</title></svelte:head>

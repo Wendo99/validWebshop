@@ -29,7 +29,7 @@
 			</div>
 			<div class="grid grid-flow-row-dense auto-rows-min relative top-3">
 				{#if user_eMail != undefined}
-					<form action="/signIp?/logout" method="post">
+					<form action="/signIn?/logout" method="post">
 						<button class="rounded-full border p-2 w-40 h-14" type="submit">LogOut</button>
 					</form>
 				{:else if user_eMail == undefined}

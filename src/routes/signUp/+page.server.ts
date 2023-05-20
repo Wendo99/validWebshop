@@ -3,12 +3,10 @@ import { z } from 'zod';
 import { zfd } from 'zod-form-data';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { PageServerLoad } from './$types';
+import SignIn from '../signIn/signIn.svelte';
 
 //TODO error handling
 export const actions = {
-	logout: async ({ locals }) => {
-		const { error } = await locals.supaBase.auth.signOut();
-	},
 	register: async ({ request, locals }) => {
 		const form_Data = await request.formData();
 

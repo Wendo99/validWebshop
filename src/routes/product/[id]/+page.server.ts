@@ -8,20 +8,14 @@ export interface Product {
 	description: string;
 	category: string;
 	image: string;
-	rating: Rating;
-}
-
-export interface Rating {
 	rate: number;
 	count: number;
 }
 
-export async function load({ params, fetch }) {
+//TODO error handling
+export async function load({ params, locals }) {
 	const id = params.id;
-	const url = 'https://fakestoreapi.com/products/';
-	const urlString = url + id;
-
-	const productResult = await fetch(urlString).then((res) => res.json() as unknown as Product);
-
-	return { product: productResult };
+	const { data, error } = await locals.supaBase.from('products').select().eq('id', id).single();
+	const result = data as unknown as Product;
+	return { product: result };
 }

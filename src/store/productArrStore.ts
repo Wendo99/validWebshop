@@ -43,7 +43,6 @@ function getPiecesSum(prodArr: string[][]): string {
 	return result.toString();
 }
 
-// TODO check if reduce() is possible within multiDimensional Arrays
 function getPriceSum(prodArr: string[][]): string {
 	let result = 0;
 	for (let index = 0; index < prodArr.length; index++) {

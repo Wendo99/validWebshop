@@ -15,7 +15,6 @@ export async function load({ cookies, locals }) {
 
 	const userCart: Map<string, string> = (await getUserCart(cookies, email)).userCart;
 	const pD = await productData(locals, userCart);
-	console.log(userCart);
 	const prodArr: string[][] = pD.prodArr;
 
 	const piecesSum = pD.piecesSum;
