@@ -4,24 +4,12 @@ import { zfd } from 'zod-form-data';
 import type { PageServerLoad } from './$types';
 import invariant from 'tiny-invariant';
 import { getUserCart } from '../../store/cookieStore';
+import { getProductArray } from '../../store/productArrStore';
 
 export async function load({ cookies, locals }) {
 	const userCart: Map<string, string> = (await getUserCart(cookies)).userCart;
 
-	const prodArr: string[][] = [];
-
-	let index = 0;
-	for (const [key, value] of userCart) {
-		const prodId = key;
-		const productData: string[] = [];
-
-		productData[0] = prodId;
-		productData[1] = await getProdImgSrc(locals, parseInt(prodId));
-		productData[2] = await getProdPrice(locals, parseFloat(prodId));
-		productData[3] = await getProdTitle(locals, parseInt(prodId));
-		productData[4] = value;
-		prodArr[index++] = productData;
-	}
+	const prodArr: string[][] = (await getProductArray(locals, userCart)).prodArr;
 
 	const piecesSum = getPiecesSum(prodArr);
 	const priceSum = getPriceSum(prodArr);
@@ -29,40 +17,8 @@ export async function load({ cookies, locals }) {
 	return { prodArr, piecesSum, priceSum };
 }
 
-async function getProdImgSrc(locals: App.Locals, prodId: number) {
-	try {
-		const { data, error } = await locals.supaBase.from('products').select('image').eq('id', prodId);
-		if (data) {
-			return data[0].image;
-		}
-	} catch (error) {
-		console.error(error);
-	}
-}
-async function getProdPrice(locals: App.Locals, prodId: number) {
-	try {
-		const { data, error } = await locals.supaBase.from('products').select('price').eq('id', prodId);
-		if (data) {
-			return data[0].price.toString();
-		}
-	} catch (error) {
-		console.error(error);
-	}
-}
-async function getProdTitle(locals: App.Locals, prodId: number) {
-	try {
-		const { data, error } = await locals.supaBase.from('products').select('title').eq('id', prodId);
-		if (data) {
-			return data[0].title.toString();
-		}
-	} catch (error) {
-		console.error(error);
-	}
-}
-
 export const actions = {
 	addToCart: async ({ request, cookies }) => {
-
 		//TODO formValidation
 		const formData = await request.formData();
 		const validationAddToCart = zfd.formData({
