@@ -4,7 +4,6 @@ import { zfd } from 'zod-form-data';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { PageServerLoad } from './$types';
 
-
 //TODO error handling
 export const actions = {
 	login: async ({ request, locals }) => {
@@ -28,12 +27,11 @@ export const actions = {
 		const { data, error } = await locals.supaBase.auth.signInWithPassword({
 			email: valid_FormData.data.email,
 			password: valid_FormData.data.password
-			
 		});
 
 		return valid_FormData.data;
+	},
+	logout: async ({ locals }) => {
+		const { error } = await locals.supaBase.auth.signOut();
 	}
-	// logout:async ({request,cookies}) => {
-	//
-	// },
 };

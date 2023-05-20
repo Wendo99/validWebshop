@@ -38,25 +38,10 @@ export const actions = {
 		const { error } = await locals.supaBase.from('user_index').insert({
 			user_eMail: valid_FormData.data.email
 		});
-		createUserCart(locals);
 
 		if (valid_FormData.success) {
 			return valid_FormData.data;
 		}
-
-	
-
 	}
 };
 
-async function createUserCart(locals: App.Locals) {
-
-
-	const { data  } = await locals.supaBase.from('user_index').select('user_id').eq('user_eMail', await locals.getSession().then((session) => {
-		session?.user.email;
-	}));
-	const tempId = data?.map((item) => item.user_id) as unknown as number[];
-	const { error } = await locals.supaBase.from('user_Carts').insert({ user_Id: tempId[0] });
-	console.log(tempId[0]);
-	console.log(error?.message);
-}

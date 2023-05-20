@@ -2,7 +2,6 @@
 	import ProductPreviewBox from './productPreviewBox.svelte';
 	let imageSrc = './mainImg_1920x724.jpg';
 	export let data;
-
 </script>
 
 <svelte:head><title>Donkey Fashion</title></svelte:head>
