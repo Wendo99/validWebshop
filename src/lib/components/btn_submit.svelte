@@ -4,7 +4,7 @@
 </script>
 
 <button
-	class="rounded-xl p-2 min-w-min max-w-fit text-1xl font-semibold bg-slate-300 shadow-1xl drop-shadow-md hover:ring-4 hover:ring-slate-300"
+	class="rounded-lg px-4 py-2 min-w-min max-w-fit text-lg   bg-blue-200 shadow-2xl drop-shadow-lg hover:ring-4 hover:ring-blue-200 active:bg-blue-200 active:ring-blue-300"
 	type="submit"
 	{disabled}
 	>{text}

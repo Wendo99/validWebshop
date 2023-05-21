@@ -7,7 +7,7 @@
 
 <div class=" h-24 mb-7 scale-90">
 	<div
-		class="grid bg-slate-200 grid-rows-2 grid-cols-12 border-6 rounded-xl p-2 shadow-2xl drop-shadow-md opacity-90 hover:ring-2 hover:ring-gray-50"
+		class="grid bg-blue-50 grid-rows-2 grid-cols-12 border-6 rounded-xl p-2 shadow-2xl drop-shadow-md opacity-90 hover:ring-2 hover:ring-gray-50"
 	>
 		<div class="grid row-span-2 col-start-1 w-24 items-center justify-items-center">
 			<img {src} alt="prodPic" class="w-16 h-auto" />
@@ -16,7 +16,7 @@
 			<div class="grid justify-center self-center text-base font-semibold">
 				{title}
 			</div>
-			<div class=" grid justify-end content-center font-bold text-gray-600">
+			<div class=" grid justify-end content-center font-bold text-gray-600 grid">
 				{price} €
 			</div>
 			<div class="  grid justify-end content-center font-bold text-gray-500">

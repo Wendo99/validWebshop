@@ -8,7 +8,7 @@
 	let linkContact = '/contact';
 </script>
 
-<footer class="rounded-lg">
+<footer class="rounded-lg m-2">
 	<div id="imprintLink" class=" inline-block mr-5">
 		<a href={linkImprint}>{imprint}</a>
 	</div>

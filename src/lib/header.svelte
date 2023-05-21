@@ -4,7 +4,7 @@
 	import ImgDefault from './components/imgDefault.svelte';
 	let linkLogin = '/signIn';
 	let compHeader = 'Donkey';
-	let loginButton:BtnDefault;
+	let loginButton: BtnDefault;
 
 	onMount(() => {
 		loginButton.changeButtonType('submit');
@@ -27,7 +27,7 @@
 			<div class="">
 				{#if user_eMail != undefined}
 					<form action="/signIn?/logout" method="post">
-						<BtnDefault bind:this={loginButton} style="grid grid-cols-2  items-center "
+						<BtnDefault  bind:this={loginButton} style="grid grid-cols-2  items-center "
 							><div class=" justify-self-start">Logout</div>
 							<ImgDefault
 								width="40"
@@ -40,7 +40,7 @@
 					</form>
 				{:else if user_eMail == undefined}
 					<a href={linkLogin}>
-						<BtnDefault style="grid grid-cols-2  items-center "
+						<BtnDefault bind:this={loginButton} style="grid grid-cols-2  items-center "
 							><div class=" justify-self-start">Login</div>
 							<ImgDefault
 								width="40"

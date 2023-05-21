@@ -8,27 +8,18 @@
 	let piecesSum = data.piecesSum;
 </script>
 
-<div class="grid auto-rows-min min-h-screen">
-	<div class=" grid row-start-1 max-h-min grid-cols-12">
-		<div class="grid col-span-6">
+<div class="grid grid-rows-2 mt-20 min-h-screen">
+	<div class=" grid row-start-1 max-w-3xl">
+		<div class="">
 			{#each data.prodArr as p}
 				<ProductCartBox src={p[1]} title={p[3]} price={parseFloat(p[2])} qty={p[4]} />
 			{/each}
 		</div>
-		<div class="grid col-start-8 col-span-2 items-center">
-			<a href="/payment">
-				{#if piecesSum == '0'}
-					<BtnSubmit text="Proceed to Checkout" disabled={true} />
-				{:else}
-					<BtnSubmit text="Proceed to Checkout" disabled={false} />
-				{/if}
-			</a>
-		</div>
 	</div>
 	<div
-		class="grid bg-slate-200 border rounded-xl p-2 shadow-2xl drop-shadow-md opacity-90 h-16 mb-7 ml-9 w-2/4 grid-cols-12 auto-cols-auto items-center justify-items-end"
+		class="grid bg-blue-50 rounded-lg p-2 shadow-2xl drop-shadow-md opacity-90 h-16 ml-9 max-w-5xl grid-cols-12 items-center justify-items-end row-start-2"
 	>
-		<div class="border grid col-start-9 text-sm font-bold text-gray-500">
+		<div class="grid text-sm font-bold text-gray-500 w-20 col-start-7 items-center">
 			{#if piecesSum != undefined}
 				{piecesSum}
 				{#if piecesSum == '1'}
@@ -38,10 +29,19 @@
 				{/if}
 			{/if}
 		</div>
-		<div class="border grid font-bold text-gray-600 col-start-11 min-w-fit">
+		<div class="text-lg grid font-bold text-gray-600 w-24 col-start-9 items-center">
 			{#if priceSum != undefined}
 				{priceSum} €
 			{/if}
+		</div>
+		<div class=" col-start-10 col-span-4 items-center">
+			<a href="/payment">
+				{#if piecesSum == '0'}
+					<BtnSubmit text="Proceed to Checkout" disabled={true} />
+				{:else}
+					<BtnSubmit text="Proceed to Checkout" disabled={false} />
+				{/if}
+			</a>
 		</div>
 	</div>
 </div>
