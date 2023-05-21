@@ -5,7 +5,7 @@
 	export let data;
 </script>
 
-<div class="p-2 font-sans-auto bg-slate-100 min-h-full min-w-full border">
+<div class="p-2 font-sans bg-baseWhite">
 	<Header user_eMail={data.user_eMail} />
 
 	<slot />

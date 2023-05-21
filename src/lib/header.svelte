@@ -1,4 +1,6 @@
 <script lang="ts">
+	import ImgDefault from './components/imgDefault.svelte';
+
 	let loginBtn = 'Login';
 	let accountBtn = 'Account';
 	let cartBtn = 'Cart';
@@ -30,11 +32,11 @@
 			<div class="grid grid-flow-row-dense auto-rows-min relative top-3">
 				{#if user_eMail != undefined}
 					<form action="/signIn?/logout" method="post">
-						<button class="rounded-full border p-2 w-40 h-14" type="submit">LogOut</button>
+						<button class="rounded-full border p-2 w-40 h-14" type="submit">Logout</button>
 					</form>
 				{:else if user_eMail == undefined}
 					<a href={linkLogin} class="p-2">
-						<button class="rounded-full border p-2 w-40 h-14" id="login">{loginBtn}</button>
+						<button class="rounded-full border p-2 w-40 h-14" id="login">Login</button>
 					</a>
 				{/if}
 
@@ -48,7 +50,7 @@
 			</div>
 			<div class="">
 				<a href="" class="p-2">
-					<button class="rounded-full border p-2 w-40 h-14" id="account">{accountBtn}</button>
+					<button class="rounded-full border p-2 w-40 h-14" id="account">Account</button>
 				</a>
 			</div>
 			<div class="  grid auto-rows-auto auto-cols-auto">
@@ -56,7 +58,7 @@
 					<button
 						class="grid grid-flow-col auto-cols-fr rounded-full border p-3 w-40 justify-items-center items-center text-2xl"
 						id="cart"
-						><span>{cartBtn}</span><img class="" src="cart.svg" alt="cart" />
+						><span>Basket</span><ImgDefault src="shoppingBasket.svg" alt="shopping basket" />
 					</button>
 				</a>
 			</div>

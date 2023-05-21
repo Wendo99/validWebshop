@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ImgDefault from '$lib/components/imgDefault.svelte';
 	import Prod_Count from '../lib/components/prod_Count.svelte';
 	import Prod_Star from '../lib/components/prod_Rate.svelte';
 
@@ -13,14 +14,10 @@
 <a href="/product/{id}">
 	<div
 		id="box"
-		class=" border-6 max-h-fit w-64 h-96 box-border p-2 rounded-xl bg-slate-200 shadow-2xl drop-shadow-md grid grid-row-2 gap-2 mb-16 opacity-90 hover:ring-2 hover:ring-gray-50"
+		class=" border-6 max-h-fit w-64 h-96 p-2 rounded-xl bg-baseWhite shadow-2xl drop-shadow-md grid grid-row-2 gap-2 mb-16 bg-opacity-50 hover:ring-2 hover:ring-gray-50"
 	>
 		<div id="prodImage" class="grid justify-center content-center">
-			<img
-				class=" max-w-full h-auto max-h-48 rounded-lg hover:opacity-50"
-				{src}
-				alt="jacket grey"
-			/>
+			<ImgDefault classStyle="w-2/3 max-h-60" {src} alt="jacket grey" />
 		</div>
 		<div id="productInfo" class=" grid grid-flow-row gap-3 text-base border-black">
 			<div id="prodTitle" aria-hidden="true" class="font-medium text-gray-700">{title}</div>

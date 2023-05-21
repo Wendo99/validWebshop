@@ -1,17 +1,20 @@
 <script lang="ts">
+	import ImgDefault from '$lib/components/imgDefault.svelte';
 	import ProductPreviewBox from './productPreviewBox.svelte';
-	let imageSrc = './mainImg_1920x724.jpg';
 	export let data;
-
 </script>
 
 <svelte:head><title>Donkey Fashion</title></svelte:head>
 
 <div class="relative">
 	<div class="absolute">
-		<img src={imageSrc} alt="woman young blonde fashion" />
+		<ImgDefault
+			classStyle="rounded-xl"
+			src="mainImg_1920x724.jpg"
+			alt="woman young blonde fashion"
+		/>
 	</div>
-	<div class="h-96" />
+	<div class="h-40" />
 	<div id="productpreviewArea" class="grid grid-cols-4 justify-items-center">
 		{#each data.productArr_All as p}
 			<ProductPreviewBox
