@@ -25,7 +25,7 @@
 			{required}
 			bind:value
 			bind:this={inputRef}
-			class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md py-3 outline-none"
+			class="shadow-1xl drop-shadow-lg block w-full sm:text-sm rounded-md p-2 outline-none bg-blue-50"
 		/>
 	</div>
 </div>

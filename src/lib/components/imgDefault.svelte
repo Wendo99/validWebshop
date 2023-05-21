@@ -2,6 +2,8 @@
 	export let src: string;
 	export let alt: string;
 	export let classStyle: string = '';
+	export let width: string = '';
+	export let height: string = '';
 </script>
 
-<img class="max-w-full h-auto {classStyle}" {src} {alt} />
+<img class="max-w-full h-auto {classStyle}" {src} {alt} {width} {height}/>

@@ -7,8 +7,8 @@
 </script>
 
 <form action="?/login" method="post" class="space-y-5 {$$props.class}">
-	<Input label="Email" id="email" name="email" type="email bind:value={email} " required />
-	<Input
+	<Input  label="Email" id="email" name="email" type="email bind:value={email} " required />
+	<Input  
 		label="Password"
 		id="password"
 		name="password"

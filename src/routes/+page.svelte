@@ -9,7 +9,7 @@
 <div class="relative">
 	<div class="absolute">
 		<ImgDefault
-			classStyle="rounded-xl"
+			classStyle="rounded-lg"
 			src="mainImg_1920x724.jpg"
 			alt="woman young blonde fashion"
 		/>
