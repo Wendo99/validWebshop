@@ -1,9 +1,8 @@
 <script lang="ts">
 	export let rate: number;
-
 </script>
 
-<div class="grid grid-cols-2  items-center">
-	<img src="star.svg" class="" alt="star rating"/>
-	<div id="rate" class="text-gray-500">{rate}</div>
+<div class="grid grid-cols-2 items-center gap-x-1">
+	<img src="star.svg"  alt="star rating" />
+	<div >{rate}</div>
 </div>

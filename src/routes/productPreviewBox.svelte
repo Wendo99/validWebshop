@@ -14,22 +14,23 @@
 <a href="/product/{id}">
 	<div
 		id="box"
-		class=" border-6 max-h-fit w-64 h-96 p-2 rounded-xl bg-baseWhite shadow-2xl drop-shadow-md grid grid-row-2 gap-2 mb-16 bg-opacity-50 hover:ring-2 hover:ring-gray-50"
+		class="grid grid-flow-row justify-items-center items-center border-6 max-h-fit w-64 h-96 p-3 rounded-xl bg-baseWhite shadow-2xl drop-shadow-md mb-16 bg-opacity-50 hover:ring-2 hover:ring-gray-50"
 	>
-		<div id="prodImage" class="grid justify-center content-center">
-			<ImgDefault classStyle="w-2/3 max-h-60" {src} alt="jacket grey" />
-		</div>
-		<div id="productInfo" class=" grid grid-flow-row gap-3 text-base border-black">
-			<div id="prodTitle" aria-hidden="true" class="font-medium text-gray-700">{title}</div>
-			<div class="grid grid-cols-2 grid-rows-1 items-center">
-				<div class="grid grid-cols-2">
-					<div id="price" class="text-gray-900 font-bold">{'€ ' + price}</div>
-					<div id="rating" class="grid grid-flow-col auto-cols-max gap-1">
-						<Prod_Count {count} />
-						<Prod_Star {rate} />
-					</div>
-				</div>
+		<div
+			class="bg-opacity-100 bg-baseWhite rounded-xl grid items-center justify-items-center w-48 h-48"
+		>
+			<div id="prodImage" class="grid items-center justify-items-center">
+				<ImgDefault classStyle=" max-w-48 max-h-48" {src} alt="product" />
 			</div>
+		</div>
+
+		<div id="prodTitle" class="grid font-semibold text-center">{title}</div>
+
+		<div id="price" class="font-extrabold">{'€ ' + price}</div>
+
+		<div id="rating" class="grid grid-flow-col auto-cols-fr gap-x-2 scale-75">
+			<Prod_Count {count} />
+			<Prod_Star {rate} />
 		</div>
 	</div></a
 >
