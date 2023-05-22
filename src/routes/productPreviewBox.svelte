@@ -1,7 +1,8 @@
 <script lang="ts">
-	import ImgDefault from '$lib/components/imgDefault.svelte';
+	import ImageDefault from '$lib/types/ImageDefault.svelte';
 	import ProdCount from '$lib/components/ProdCount.svelte';
-	import ProdRate from '../lib/components/ProdRate.svelte';
+	import ProdRate from '$lib/components/ProdRate.svelte';
+
 
 	export let src: string;
 	export let title: string;
@@ -20,7 +21,7 @@
 			class="bg-opacity-100 bg-white rounded-xl grid items-center justify-items-center w-48 h-48"
 		>
 			<div id="prodImage" class="grid items-center justify-items-center">
-				<ImgDefault classStyle=" max-w-48 max-h-48" {src} alt="product" />
+				<ImageDefault classStyle=" max-w-48 max-h-48" {src} alt="product" />
 			</div>
 		</div>
 

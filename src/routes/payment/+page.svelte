@@ -105,7 +105,7 @@
 											id="birthday"
 											min="1900-01-01"
 											class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 outline-none h-8
-										w-56 text-lg p-2"
+										w-56 text-lg "
 											value={data.userAdress?.user_birthday}
 										/>
 									</span>

@@ -32,6 +32,7 @@ export const actions = {
 		return valid_FormData.data;
 	},
 	logout: async ({ locals }) => {
+		console.log(1)
 		const { error } = await locals.supaBase.auth.signOut();
 	}
 };

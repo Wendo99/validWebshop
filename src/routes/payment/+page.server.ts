@@ -3,8 +3,8 @@ import { zfd } from 'zod-form-data';
 import { z } from 'zod';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { PageServerLoad } from './$types';
-import { getUserCart } from '../../store/cookieStore';
-import { productData } from '../../store/productArrStore';
+import { getUserCart } from '$lib/stores/cookieStore';
+import { productData } from '$lib/stores/productArrStore';
 
 //TODO MAYBE merge functionality of pieceSum,priceSum,productArray, usercart with load func of +page.server.ts
 export async function load({ cookies, locals }) {

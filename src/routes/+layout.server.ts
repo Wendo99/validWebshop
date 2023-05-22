@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { PageServerLoad } from './$types';
-import { getUserCart } from '../store/cookieStore';
+import { getUserCart } from '../lib/stores/cookieStore';
 
 export async function load({ locals: { getSession }, cookies }) {
 	const session = await getSession();

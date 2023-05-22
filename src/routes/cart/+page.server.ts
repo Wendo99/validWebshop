@@ -3,9 +3,9 @@ import { zfd } from 'zod-form-data';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { PageServerLoad } from './$types';
 import invariant from 'tiny-invariant';
-import { getUserCart } from '../../store/cookieStore';
-import { productData } from '../../store/productArrStore';
-import { userBasketStore } from '../../store/userBasketStore';
+import { getUserCart } from '$lib/stores/cookieStore';
+import { productData } from '$lib/stores/productArrStore';
+import { userBasketStore } from '$lib/stores/userBasketStore';
 
 export async function load({ cookies, locals }) {
 	const tmp = await locals.getSession().then((res) => res?.user.email);

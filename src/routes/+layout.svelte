@@ -1,10 +1,10 @@
 <script lang="ts">
 	import '../app.css';
-	import Header from '$lib/Header.svelte';
-	import Footer from '$lib/Footer.svelte';
-	import { userBasketStore } from '../store/userBasketStore';
+	import Header from '$lib/components/Header.svelte';
+	import Footer from '$lib/components/Footer.svelte';
+	import { userBasketStore } from '$lib/stores/userBasketStore';
 	import { setContext } from 'svelte';
-	import { itemsQty } from '../store/itemsQty';
+	import { itemsQty } from '$lib/stores/itemsQty';
 	export let data;
 
 	$: userBasketStore.set(data.userCart);

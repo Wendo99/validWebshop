@@ -1,14 +1,8 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import BtnDefault from './components/btn_default.svelte';
-	import ImgDefault from './components/imgDefault.svelte';
-	import BasketBtn from './ToBasketBtn.svelte';
+	import ButtonSubmit from '../types/ButtonDefault.svelte';
+	import ImageDefault from '../types/ImageDefault.svelte';
+	import BasketBtn from './ButtonBasket.svelte';
 	let linkLogin = '/signIn';
-	let loginButton: BtnDefault;
-
-	onMount(() => {
-		loginButton.changeButtonType('submit');
-	});
 
 	export let user_eMail: string | undefined;
 </script>
@@ -26,29 +20,29 @@
 		>
 			<div class="">
 				{#if user_eMail != undefined}
-					<form action="/signIn?/logout" method="post">
-						<BtnDefault bind:this={loginButton} style="grid grid-cols-2  items-center "
+					<form action="/logging/signIn?/logout" method="post">
+						<ButtonSubmit classStyle="grid grid-cols-2  items-center "
 							><div class=" justify-self-start">Logout</div>
-							<ImgDefault
+							<ImageDefault
 								width="80"
 								height="80"
 								classStyle=" justify-self-end"
 								src="login.svg"
 								alt="login button"
-							/></BtnDefault
+							/></ButtonSubmit
 						>
 					</form>
 				{:else if user_eMail == undefined}
 					<a href={linkLogin}>
-						<BtnDefault bind:this={loginButton} style="grid grid-cols-2  items-center "
+						<ButtonSubmit classStyle="grid grid-cols-2  items-center "
 							><div class=" justify-self-start">Login</div>
-							<ImgDefault
+							<ImageDefault
 								width="80"
 								height="80"
 								classStyle=" justify-self-end"
 								src="login.svg"
 								alt="login button"
-							/></BtnDefault
+							/></ButtonSubmit
 						>
 					</a>
 				{/if}

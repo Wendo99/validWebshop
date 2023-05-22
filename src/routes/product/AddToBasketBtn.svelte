@@ -1,15 +1,15 @@
 <script lang="ts">
-	import BtnDefault from '$lib/components/btn_default.svelte';
-	import ImgDefault from '$lib/components/imgDefault.svelte';
+	import ButtonDefault from '$lib/types/ButtonDefault.svelte';
+	import ImageDefault from '$lib/types/ImageDefault.svelte';
 	import { getContext, onMount } from 'svelte';
 	import type { Writable } from 'svelte/store';
-	let addToBasketBtn: BtnDefault;
-	let userBasketStore: Writable<Map<string, string>> = getContext('userBasket');
-	
+
+	let addToBasketBtn: ButtonDefault;
 	onMount(() => {
 		addToBasketBtn.changeButtonType('submit');
 	});
-	
+
+	let userBasketStore: Writable<Map<string, string>> = getContext('userBasket');
 	export let id: number = 0;
 	let prodqty: string | undefined = '';
 	$: if ($userBasketStore.has(id.toString())) {
@@ -19,10 +19,10 @@
 	}
 </script>
 
-<BtnDefault bind:this={addToBasketBtn} style="items-center"
+<ButtonDefault bind:this={addToBasketBtn} classStyle="items-center"
 	><div class="text-1xl">Add to Basket</div>
 	<div>
-		<ImgDefault src="/shoppingBag.svg" alt="shopping" width="80" height="80" />
+		<ImageDefault src="/shoppingBag.svg" alt="shopping" width="80" height="80" />
 		<div class="text-base font-bold absolute top-10 right-7">{prodqty}</div>
 	</div>
-</BtnDefault>
+</ButtonDefault>

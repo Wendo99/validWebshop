@@ -1,6 +1,6 @@
 <script lang="ts">
-	import ImgDefault from '$lib/components/imgDefault.svelte';
 	import ProductPreviewBox from './productPreviewBox.svelte';
+	import ImageDefault from '$lib/types/ImageDefault.svelte';
 	export let data;
 </script>
 
@@ -8,7 +8,7 @@
 
 <div class="relative">
 	<div class="absolute">
-		<ImgDefault
+		<ImageDefault
 			classStyle="rounded-lg"
 			src="mainImg_1920x724.jpg"
 			alt="woman young blonde fashion"

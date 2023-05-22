@@ -1,7 +1,6 @@
 <script lang="ts">
 	import ProductCartBox from './productCartBox.svelte';
-	import BtnSubmit from '$lib/components/btn_submit.svelte';
-
+	import ButtonSubmit from '$lib/types/ButtonSubmit.svelte';
 	export let data;
 
 	let priceSum = data.priceSum;
@@ -36,7 +35,7 @@
 		</div>
 		<div class=" col-start-10 col-span-4 items-center">
 			<a href="/payment">
-				<BtnSubmit text="Proceed to Checkout" disabled={piecesSum == '0'} />
+				<ButtonSubmit>Proceed to Checkout</ButtonSubmit>
 			</a>
 		</div>
 	</div>
