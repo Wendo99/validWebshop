@@ -13,7 +13,7 @@ export const actions = {
 		const emailSchema = z.coerce.string().email({ message: 'Invalid email adress' });
 		const stringSchema = z.coerce
 			.string()
-			.min(8, { message: 'Length needs to be at least 8 character' });
+			.min(1, { message: 'Length needs to be at least 8 character' });
 
 		const register_DataModel = zfd.formData({
 			email: emailSchema,

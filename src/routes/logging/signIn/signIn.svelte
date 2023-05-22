@@ -16,5 +16,5 @@
 		bind:value={password}
 		required
 	/>
-	<ButtonLogging type="submit">Sign In</ButtonLogging>
+	<ButtonLogging >Sign In</ButtonLogging>
 </form>

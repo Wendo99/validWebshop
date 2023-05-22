@@ -2,7 +2,7 @@
 	import ButtonSubmit from '../types/ButtonDefault.svelte';
 	import ImageDefault from '../types/ImageDefault.svelte';
 	import BasketBtn from './ButtonBasket.svelte';
-	let linkLogin = '/signIn';
+	let linkLogin = '/logging/signIn';
 
 	export let user_eMail: string | undefined;
 </script>

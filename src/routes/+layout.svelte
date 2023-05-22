@@ -12,7 +12,7 @@
 	$: setContext('qty', itemsQty);
 </script>
 
-<div class="p-2 font-sans bg-baseWhite">
+<div class="p-2 font-sans bg-white">
 	<Header user_eMail={data.user_eMail} />
 
 	<slot />

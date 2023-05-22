@@ -2,6 +2,7 @@
 	import ButtonLogging from '../ButtonLogging.svelte';
 	import InputLogging from '../InputLogging.svelte';
 
+	//XXX how to handle the email, password and confirmpassword vars ?
 	let email = '';
 	let password: string = '';
 	let confirmPassword: string = '';
@@ -30,7 +31,5 @@
 	{#if confirmPassword !== '' && confirmPassword !== password}
 		<p class="text-red-600 text-sm font-semibold">Password not match</p>
 	{/if}
-	<ButtonLogging type="submit" disabled={validatePassword(password, confirmPassword)}
-		>Sign Up</ButtonLogging
-	>
+	<ButtonLogging disabled={validatePassword(password, confirmPassword)}>Sign Up</ButtonLogging>
 </form>
