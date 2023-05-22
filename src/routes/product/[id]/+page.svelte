@@ -1,5 +1,5 @@
 <script lang="ts">
-	import AddToCartBtn from '../ProdAddToBasketBtn.svelte';
+	import AddToCartBtn from '../AddToBasketBtn.svelte';
 	import { enhance } from '$app/forms';
 
 	import ProdRate from '$lib/components/ProdRate.svelte';
@@ -36,7 +36,7 @@
 
 					<form action="/cart?/addToCart" method="post" use:enhance>
 						<input type="hidden" name="prodId" value={id} />
-						<AddToCartBtn />
+						<AddToCartBtn {id} />
 					</form>
 				</div>
 				<div class="grid grid-cols-2 max-w-max">

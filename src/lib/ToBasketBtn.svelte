@@ -2,7 +2,7 @@
 	import ImgDefault from './components/imgDefault.svelte';
 	import BtnDefault from './components/btn_default.svelte';
 	import { getContext } from 'svelte';
-	import type { Readable, Writable } from 'svelte/store';
+	import type { Readable } from 'svelte/store';
 
 	const itemsQty: Readable<number> = getContext('qty');
 </script>

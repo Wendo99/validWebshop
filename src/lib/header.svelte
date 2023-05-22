@@ -4,7 +4,6 @@
 	import ImgDefault from './components/imgDefault.svelte';
 	import BasketBtn from './ToBasketBtn.svelte';
 	let linkLogin = '/signIn';
-	let compHeader = 'Donkey';
 	let loginButton: BtnDefault;
 
 	onMount(() => {
