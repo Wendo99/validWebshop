@@ -5,6 +5,7 @@ import type { PageServerLoad } from './$types';
 import invariant from 'tiny-invariant';
 import { getUserCart } from '../../store/cookieStore';
 import { productData } from '../../store/productArrStore';
+import { userBasketStore } from '../../store/userBasketStore';
 
 export async function load({ cookies, locals }) {
 	const tmp = await locals.getSession().then((res) => res?.user.email);
@@ -43,6 +44,7 @@ export const actions = {
 		}
 
 		const prodId: string = result.data.prodId.toString();
+
 		putItemInCart(cookies, prodId, email);
 	}
 };
@@ -57,6 +59,7 @@ async function putItemInCart(cookies: Cookies, prodId: string, email: string) {
 	} else {
 		userCart.set(prodId, '1');
 	}
+	userBasketStore.update((userCart) => userCart);
 	const x = Object.fromEntries(userCart);
 	cookies.set(email, JSON.stringify(x));
 }

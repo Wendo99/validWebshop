@@ -36,11 +36,7 @@
 		</div>
 		<div class=" col-start-10 col-span-4 items-center">
 			<a href="/payment">
-				{#if piecesSum == '0'}
-					<BtnSubmit text="Proceed to Checkout" disabled={true} />
-				{:else}
-					<BtnSubmit text="Proceed to Checkout" disabled={false} />
-				{/if}
+				<BtnSubmit text="Proceed to Checkout" disabled={piecesSum == '0'} />
 			</a>
 		</div>
 	</div>

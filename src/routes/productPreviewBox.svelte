@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ImgDefault from '$lib/components/imgDefault.svelte';
-	import Prod_Count from '../lib/components/prod_Count.svelte';
-	import Prod_Star from '../lib/components/prod_Rate.svelte';
+	import ProdCount from '$lib/components/ProdCount.svelte';
+	import ProdRate from '../lib/components/ProdRate.svelte';
 
 	export let src: string;
 	export let title: string;
@@ -29,8 +29,8 @@
 		<div id="price" class="font-extrabold">{'€ ' + price}</div>
 
 		<div id="rating" class="grid grid-flow-col auto-cols-fr gap-x-2 scale-75">
-			<Prod_Count {count} />
-			<Prod_Star {rate} />
+			<ProdCount {count} />
+			<ProdRate {rate} />
 		</div>
 	</div></a
 >

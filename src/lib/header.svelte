@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import BtnDefault from './components/btn_default.svelte';
 	import ImgDefault from './components/imgDefault.svelte';
+	import BasketBtn from './ToBasketBtn.svelte';
 	let linkLogin = '/signIn';
 	let compHeader = 'Donkey';
 	let loginButton: BtnDefault;
@@ -27,11 +28,11 @@
 			<div class="">
 				{#if user_eMail != undefined}
 					<form action="/signIn?/logout" method="post">
-						<BtnDefault  bind:this={loginButton} style="grid grid-cols-2  items-center "
+						<BtnDefault bind:this={loginButton} style="grid grid-cols-2  items-center "
 							><div class=" justify-self-start">Logout</div>
 							<ImgDefault
-								width="40"
-								height="40"
+								width="80"
+								height="80"
 								classStyle=" justify-self-end"
 								src="login.svg"
 								alt="login button"
@@ -43,8 +44,8 @@
 						<BtnDefault bind:this={loginButton} style="grid grid-cols-2  items-center "
 							><div class=" justify-self-start">Login</div>
 							<ImgDefault
-								width="40"
-								height="40"
+								width="80"
+								height="80"
 								classStyle=" justify-self-end"
 								src="login.svg"
 								alt="login button"
@@ -59,18 +60,7 @@
 			</a>
 		</div> -->
 
-			<a href="/cart">
-				<BtnDefault style="grid grid-cols-2   items-center">
-					<div class=" justify-self-start">Basket</div>
-					<ImgDefault
-						width="40"
-						height="40"
-						classStyle=" justify-self-end"
-						src="shoppingBasket.svg"
-						alt="shopping basket"
-					/>
-				</BtnDefault>
-			</a>
+			<BasketBtn />
 		</div>
 		<div class=" row-start-5 col-span-4 col-start-4 text-center">
 			{#if user_eMail == undefined}

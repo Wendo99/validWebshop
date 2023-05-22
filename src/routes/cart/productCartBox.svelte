@@ -16,12 +16,12 @@
 			<div class="grid justify-center self-center text-base font-semibold">
 				{title}
 			</div>
-			<div class=" grid justify-end content-center font-bold text-gray-600 grid">
+			<div class=" grid justify-end content-center font-bold text-gray-600">
 				{price} €
 			</div>
 			<div class="  grid justify-end content-center font-bold text-gray-500">
 				{qty}
-				{#if qty == "1"}
+				{#if qty == '1'}
 					piece
 				{:else}
 					pieces

@@ -1,8 +1,10 @@
 <script lang="ts">
-	// import prod_Count from '$lib/components/Prod_Count.svelte';
-	import AddToCartBtn from '../btn_addToCart.svelte';
+	import AddToCartBtn from '../ProdAddToBasketBtn.svelte';
 	import { enhance } from '$app/forms';
-	// import ProdCount from '$lib/components/prod_Count.svelte';
+
+	import ProdRate from '$lib/components/ProdRate.svelte';
+	import ProdCount from '$lib/components/ProdCount.svelte';
+
 
 	export let data;
 
@@ -38,8 +40,8 @@
 					</form>
 				</div>
 				<div class="grid grid-cols-2 max-w-max">
-					<!-- <ProdCount {count} /> -->
-					<!-- <ProdRate {rate} /> -->
+					<ProdCount {count} />
+					<ProdRate {rate} />
 				</div>
 			</div>
 		</div>
