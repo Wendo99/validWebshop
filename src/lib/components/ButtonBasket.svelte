@@ -8,17 +8,17 @@
 </script>
 
 <a href="/cart">
-	<ButtonButton classStyle="grid grid-cols-2 items-center">
-		<div class=" justify-self-start">Basket</div>
+	<ButtonButton class="items-center">
+		<div>Basket</div>
 		<div>
 			<ImageDefault
-				width="80"
-				height="80"
-				classStyle=" justify-self-end"
+				width="50"
+				height="50"
 				src="/shoppingBasket.svg"
 				alt="shopping basket"
 			/>
-			<div class="absolute top-6 right-6 text-base font-bold">{$itemsQty}</div>
+			<!-- TODO adjust the right-Pos value to center the num even with 2 or 3 digits  -->
+			<div class="absolute top-4 right-8 text-base font-bold">{$itemsQty}</div>
 		</div>
 	</ButtonButton>
 </a>

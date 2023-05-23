@@ -20,7 +20,6 @@ export async function load({ params, locals }) {
 
 	if (error != null) {
 		console.log(error);
-			}
-		
+	}
 	return { product: result };
 }

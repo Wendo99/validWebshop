@@ -5,7 +5,7 @@
 	export let userEmail: string | undefined;
 </script>
 
-<header class="rounded-lg grid grid-cols-2 items-start">
+<header class="rounded-lg grid grid-cols-2 items-start mb-8">
 	<div class=" grid grid-flow-col justify-start gap-3 items-center py-2">
 		<a href="/"
 			><img src="/logo_872x872.png" width="96" height="96" alt="company logo black donkey" /></a

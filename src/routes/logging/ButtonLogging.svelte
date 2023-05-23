@@ -3,6 +3,6 @@
 	export let disabled = false;
 </script>
 
-<ButtonDefault type="submit" {disabled} addClassProps="h-12">
+<ButtonDefault type="submit" {disabled} class="h-12">
 	<slot />
 </ButtonDefault>

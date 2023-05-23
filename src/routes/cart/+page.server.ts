@@ -1,4 +1,4 @@
-import { fail, type Cookies, redirect } from '@sveltejs/kit';
+import { fail, type Cookies } from '@sveltejs/kit';
 import { zfd } from 'zod-form-data';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { PageServerLoad } from './$types';

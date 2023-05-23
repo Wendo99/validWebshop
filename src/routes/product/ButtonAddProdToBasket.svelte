@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ButtonDefault from '$lib/types/ButtonDefault.svelte';
 	import ImageDefault from '$lib/types/ImageDefault.svelte';
-	import { getContext, onMount } from 'svelte';
+	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 
 	let userBasketStore: Writable<Map<string, string>> = getContext('userBasket');
@@ -13,14 +13,14 @@
 	$: if ($userBasketStore.has(id.toString())) {
 		prodqty = $userBasketStore.get(id.toString());
 	} else {
-		prodqty = '';
+		prodqty = '0';
 	}
 </script>
 
-<ButtonDefault type="submit"
-	><div class="text-1xl">Add to Basket</div>
+<ButtonDefault {...$$restProps} type="submit" class="items-center {$$restProps.class}"
+	><div>Add to Basket</div>
 	<div>
 		<ImageDefault src="/shoppingBag.svg" alt="shopping" width="80" height="80" />
-		<div class="text-base font-bold absolute top-10 right-7">{prodqty}</div>
+		<div class="text-base font-bold absolute top-7 right-4">{prodqty}</div>
 	</div>
 </ButtonDefault>
