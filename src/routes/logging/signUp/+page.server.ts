@@ -3,43 +3,65 @@ import { z } from 'zod';
 import { zfd } from 'zod-form-data';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { PageServerLoad } from './$types';
-import SignIn from '../signIn/signIn.svelte';
+
+interface RegisterData {
+	email: string;
+	password: string;
+	confirm_password: string;
+}
 
 //TODO error handling
 export const actions = {
 	register: async ({ request, locals }) => {
-		const form_Data = await request.formData();
+		const formData = await request.formData();
 
+		//  Zod model
 		const emailSchema = z.coerce.string().email({ message: 'Invalid email adress' });
 		const stringSchema = z.coerce
 			.string()
-			.min(1, { message: 'Length needs to be at least 8 character' });
-
-		const register_DataModel = zfd.formData({
+			.min(6, { message: 'Length needs to be at least 6 character' });
+		const registerModel = zfd.formData({
 			email: emailSchema,
 			password: stringSchema,
 			confirm_password: stringSchema
 		});
 
-		const valid_FormData = await register_DataModel.safeParseAsync(form_Data);
+		const validateRegisterModel = await registerModel.safeParseAsync(formData);
 
-		if (!valid_FormData.success) {
+		if (!validateRegisterModel.success) {
 			// war wohl nix :(
-			return fail(400, { error: valid_FormData.error.flatten() });
+			return fail(400, { error: validateRegisterModel.error.flatten() });
 		}
+		const registerData: RegisterData = validateRegisterModel.data;
 
-		const { data } = await locals.supaBase.auth.signUp({
-			email: valid_FormData.data.email,
-			password: valid_FormData.data.password
-		});
+		await signUpUserInSupaBase(locals, registerData);
 
-		const { error } = await locals.supaBase.from('user_index').insert({
-			user_eMail: valid_FormData.data.email
-		});
+		await addUserToDB(locals, registerData);
 
-		if (valid_FormData.success) {
-			return valid_FormData.data;
+		//XXX return userdata really good idea ??
+		if (validateRegisterModel.success) {
+			return registerData;
 		}
 	}
 };
 
+//TODO error handling
+async function signUpUserInSupaBase(locals: App.Locals, registerData: RegisterData) {
+	const { data, error } = await locals.supaBase.auth.signUp({
+		email: registerData.email,
+		password: registerData.password
+	});
+	if (error != null) {
+		console.log(error);
+	}
+}
+
+//TODO error handling
+async function addUserToDB(locals: App.Locals, registerData: RegisterData) {
+	const { error } = await locals.supaBase.from('user_index').insert({
+		user_eMail: registerData.email
+	});
+	if (error != null) {
+		console.log(error);
+	}
+}

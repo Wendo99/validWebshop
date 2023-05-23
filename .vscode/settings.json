@@ -1,3 +1,8 @@
 {
-    "html.format.wrapLineLength": 80
+	"html.format.wrapLineLength": 100,
+	"prettier.bracketSameLine": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
 }

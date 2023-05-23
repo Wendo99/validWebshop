@@ -1,6 +1,6 @@
 <script lang="ts">
-	import BoxDiv from '$lib/components/box_div.svelte';
-	import BtnSubmit from '$lib/components/btn_submit.svelte';
+	import BoxDiv from '$lib/types/DivDefault.svelte';
+	import ButtonFinalizePayment from '$lib/types/ButtonDefault.svelte';
 	import DhlBox from './deliveryOptions/dhlBox.svelte';
 	import BankPayment from './paymentOptions/bankPayment.svelte';
 	import CreditCard from './paymentOptions/creditCard.svelte';
@@ -36,7 +36,7 @@
 								{data.priceSum} €
 							</div>
 							<div class=" row-start-2 grid items-center justify-end">
-								<BtnSubmit text={'Continue'} />
+								<ButtonFinalizePayment type="submit">Finalize Payment</ButtonFinalizePayment>
 							</div>
 						</div>
 					</BoxDiv>
@@ -105,7 +105,7 @@
 											id="birthday"
 											min="1900-01-01"
 											class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 outline-none h-8
-										w-56 text-lg "
+										w-56 text-lg"
 											value={data.userAdress?.user_birthday}
 										/>
 									</span>

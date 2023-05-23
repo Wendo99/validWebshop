@@ -17,5 +17,10 @@ export async function load({ params, locals }) {
 	const id = params.id;
 	const { data, error } = await locals.supaBase.from('products').select().eq('id', id).single();
 	const result = data as unknown as Product;
+
+	if (error != null) {
+		console.log(error);
+			}
+		
 	return { product: result };
 }

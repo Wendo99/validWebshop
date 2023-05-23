@@ -1,10 +1,10 @@
 <script lang="ts">
 	import ProductCartBox from './productCartBox.svelte';
-	import ButtonSubmit from '$lib/types/ButtonSubmit.svelte';
+	import ButtonDefault from '$lib/types/ButtonSubmit.svelte';
 	export let data;
 
-	let priceSum = data.priceSum;
-	let piecesSum = data.piecesSum;
+	let priceSum: string = parseFloat(data.priceSum).toPrecision(5);
+	let piecesSum: string = data.piecesSum;
 </script>
 
 <div class="grid grid-rows-2 mt-20 min-h-screen">
@@ -35,7 +35,7 @@
 		</div>
 		<div class=" col-start-10 col-span-4 items-center">
 			<a href="/payment">
-				<ButtonSubmit>Proceed to Checkout</ButtonSubmit>
+				<ButtonDefault>Proceed to Checkout</ButtonDefault>
 			</a>
 		</div>
 	</div>

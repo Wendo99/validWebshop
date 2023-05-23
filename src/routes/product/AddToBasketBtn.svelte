@@ -4,14 +4,12 @@
 	import { getContext, onMount } from 'svelte';
 	import type { Writable } from 'svelte/store';
 
-	let addToBasketBtn: ButtonDefault;
-	onMount(() => {
-		addToBasketBtn.changeButtonType('submit');
-	});
-
 	let userBasketStore: Writable<Map<string, string>> = getContext('userBasket');
+
 	export let id: number = 0;
+
 	let prodqty: string | undefined = '';
+
 	$: if ($userBasketStore.has(id.toString())) {
 		prodqty = $userBasketStore.get(id.toString());
 	} else {
@@ -19,7 +17,7 @@
 	}
 </script>
 
-<ButtonDefault bind:this={addToBasketBtn} classStyle="items-center"
+<ButtonDefault type="submit"
 	><div class="text-1xl">Add to Basket</div>
 	<div>
 		<ImageDefault src="/shoppingBag.svg" alt="shopping" width="80" height="80" />

@@ -6,6 +6,7 @@ export async function load({ locals: { getSession }, cookies }) {
 	const session = await getSession();
 	const email = session?.user.email;
 	let userCart: Map<string, string> = new Map();
+
 	if (email) {
 		const tmp = (await getUserCart(cookies, email)).userCart;
 		if (tmp != undefined) {

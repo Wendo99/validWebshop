@@ -17,5 +17,9 @@ export interface Product {
 export async function load({ locals }) {
 	const { data, error } = await locals.supaBase.from('products').select();
 	const result = data as Product[];
+
+		if (error != null) {
+			console.log(error);
+		}
 	return { productArr_All: result };
 }

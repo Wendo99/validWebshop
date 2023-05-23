@@ -13,7 +13,7 @@
 </script>
 
 <div class="p-2 font-sans bg-white">
-	<Header user_eMail={data.user_eMail} />
+	<Header userEmail={data.user_eMail} />
 
 	<slot />
 

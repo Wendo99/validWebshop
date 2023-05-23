@@ -7,7 +7,7 @@
 				name="creditCard_Provider"
 				id="visa"
 				value="visa"
-				
+				required
 			/><span>Visa</span>
 		</div>
 		<div class="h-8">
@@ -17,7 +17,7 @@
 				name="creditCard_Provider"
 				id="mastercard"
 				value="mastercard"
-				
+				required
 			/>
 			<span>Mastercard</span>
 		</div>
@@ -28,18 +28,18 @@
 				name="creditCard_Provider"
 				id="americanExpress"
 				value="americanExpress"
-				
+				required
 			/><span>American Express</span>
 		</div>
 	</div>
 	<div class="grid row-start-2 grid-cols-4 gap-y-4">
 		<span class="grid col-start-1 justify-items-start">Account holder name</span>
 		<div class="w-40 justify-items-end grid col-start-2">
-			<input id="account_Holder" type="text" class="p-2 w-80 max-h-7 rounded-xl h-8"  name="account_Holder_CC"/>
+			<input id="account_Holder" type="text" class="p-2 w-80 max-h-7 rounded-xl h-8"  name="account_Holder_CC"required/>
 		</div>
 		<span class="grid col-start-1 justify-items-start">Creditcard number</span>
 		<div class="w-40 justify-items-end grid col-start-2">
-			<input type="number" id="creditcardNumber" class="p-2 w-80 max-h-7 rounded-xl h-8"  min="1111111111111111" max="9999999999999999" name="creditcardNumber"/>
+			<input type="number" id="creditcardNumber" class="p-2 w-80 max-h-7 rounded-xl h-8"  min="1111111111111111" max="9999999999999999" name="creditcardNumber"required/>
 		</div>
 	</div>
 </div>

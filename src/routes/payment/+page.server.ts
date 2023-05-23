@@ -38,7 +38,7 @@ export const actions = {
 		const x = z.coerce.date();
 
 		//TODO validation error messages
-		const validation_CheckoutModel = zfd.formData({
+		const validateCheckoutModel = zfd.formData({
 			user_firstName: zfd.text(),
 			user_lastName: zfd.text(),
 			user_street: zfd.text(),
@@ -61,11 +61,11 @@ export const actions = {
 			user_pref_delivery: deliveryEnum
 		});
 
-		const result = await validation_CheckoutModel.safeParseAsync(formData);
+		const checkOutData = await validateCheckoutModel.safeParseAsync(formData);
 
-		if (!result.success) {
+		if (!checkOutData.success) {
 			// war wohl nix :(
-			return fail(400, { error: result.error.flatten() });
+			return fail(400, { error: checkOutData.error.flatten() });
 		}
 
 		const session = await getSession();
@@ -86,11 +86,16 @@ export const actions = {
 				.eq('user_id', userId);
 		}
 
-		sendUserData(result, locals);
+		sendUserData(checkOutData, locals);
 
-		return result.data;
+		return checkOutData.data;
 	}
 };
+
+
+
+
+
 
 async function getUserId(locals: any, session: any) {
 	const { data, error } = await locals.supaBase
@@ -98,6 +103,9 @@ async function getUserId(locals: any, session: any) {
 		.select('user_id')
 		.eq('user_eMail', session?.user.email)
 		.single();
+	if (error != null) {
+		console.error(error);
+	}
 	return { data };
 }
 
@@ -107,5 +115,8 @@ async function getUserAdress(locals: App.Locals, userId: number) {
 		.select()
 		.eq('user_id', userId)
 		.single();
-	return { data: data };
+	if (error != null) {
+		console.error(error);
+	}
+	return { data };
 }

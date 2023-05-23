@@ -1,6 +1,9 @@
 <script lang="ts">
-	export let type: string = 'text';
-	export let style: string;
+	export let addClassProps = '';
 </script>
 
-<input type={type} class="rounded-xl h-8 {style} p-2 shadow-1xl drop-shadow-lg sm:text-sm rounded-md" />
+<input
+	type="text"
+	class="h-8 p-2 shadow-1xl drop-shadow-lg sm:text-sm rounded-md {addClassProps}"
+	{...$$restProps}
+/>
