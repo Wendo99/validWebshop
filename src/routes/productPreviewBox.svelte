@@ -2,6 +2,7 @@
 	import ImageDefault from '$lib/types/ImageDefault.svelte';
 	import ProdCount from '$lib/components/ProdCount.svelte';
 	import ProdRate from '$lib/components/ProdRate.svelte';
+	import { getCurrencyString } from '$lib/utils/currencyUtils';
 
 	export let src: string;
 	export let title: string;
@@ -9,6 +10,7 @@
 	export let count: number;
 	export let rate: number;
 	export let id: number;
+
 </script>
 
 <a href="/product/{id}">
@@ -25,7 +27,7 @@
 
 		<div class="grid font-semibold text-center">{title}</div>
 
-		<div class="font-bold">{'€ ' + price}</div>
+		<div class="font-bold">{getCurrencyString(price)}</div>
 
 		<div class="grid grid-flow-col auto-cols-fr gap-x-2 scale-75">
 			<ProdCount {count} />

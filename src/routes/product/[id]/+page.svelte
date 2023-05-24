@@ -4,6 +4,7 @@
 	import ProdRate from '$lib/components/ProdRate.svelte';
 	import ProdCount from '$lib/components/ProdCount.svelte';
 	import ImageDefault from '$lib/types/ImageDefault.svelte';
+	import { getCurrencyString } from '$lib/utils/currencyUtils';
 
 	export let data;
 
@@ -18,8 +19,8 @@
 
 <svelte:head><title>Donkey Shopping - {title}</title></svelte:head>
 
-<main class="grid  justify-items-center">
-	<div class="grid grid-rows-2 max-w-4xl gap-y-6 border">
+<main class="grid justify-items-center min-h-screen">
+	<div class="grid grid-rows-2 max-w-4xl">
 		<div class="row-start-1 grid grid-col-12 gap-x-11">
 			<div class="col-start-1 grid place-items-center">
 				<ImageDefault src={image} width="300" height="300" alt="productpic" />
@@ -30,21 +31,23 @@
 				<!-- <div id="category" class="">{category}</div> -->
 				<div class="grid grid-cols-2 row-start-2 items-center">
 					<div id="price" class=" text-xl text-gray-900 font-bold">
-						{price} €
+						{getCurrencyString(price)}
 					</div>
 
-					<form action="/cart?/addToCart" method="post" use:enhance class=" justify-self-end">
+					<form action="/cart?/addToCart" method="post" use:enhance>
 						<input type="hidden" name="prodId" value={id} />
-						<AddToCartBtn {id} class="" />
+						<AddToCartBtn {id}  />
 					</form>
 				</div>
-				<div class="grid grid-cols-2 max-w-max row-start-3 items-end gap-x-6">
-					<ProdCount {count} />
-					<ProdRate {rate} />
+				<div class="grid grid-cols-2 max-w-max row-start-3 items-center gap-x-6">
+					<ProdCount {count} width="20" height="20" />
+					<ProdRate {rate} width="20" height="20" />
 				</div>
 			</div>
 		</div>
 
-		<div id="description" class="row-start-2 text-lg text-gray-700 border text-justify">{description}</div>
+		<div id="description" class="row-start-2 text-lg text-gray-700 text-justify">
+			{description}
+		</div>
 	</div>
 </main>

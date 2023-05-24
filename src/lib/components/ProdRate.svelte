@@ -5,6 +5,7 @@
 </script>
 
 <div class="grid grid-cols-2 items-center">
-	<ImageDefault src="/star.svg" alt="star rating" width="30" height="30"/>
+	<ImageDefault width="30" height="30" {...$$restProps} src="/star.svg" alt="star rating" />
+
 	<div>{rate}</div>
 </div>

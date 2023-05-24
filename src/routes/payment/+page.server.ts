@@ -141,6 +141,7 @@ async function getUserAdress(locals: App.Locals, userId: number) {
 		console.error(error);
 	}
 	if (data) {
+
 		return data;
 	}
 }

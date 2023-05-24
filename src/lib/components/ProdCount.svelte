@@ -6,11 +6,11 @@
 
 <div class="grid grid-cols-2 items-center">
 	<ImageDefault
+		width="30"
+		height="30"
 		{...$$restProps}
 		src="/userGroup.svg"
 		alt="user rating counter"
-		width="30"
-		height="30"
 	/>
 	<div>{count}</div>
 </div>

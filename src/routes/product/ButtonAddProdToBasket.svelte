@@ -8,19 +8,34 @@
 
 	export let id: number = 0;
 
-	let prodqty: string | undefined = '';
+	let qty: string | undefined = '';
+	let qtyNumberLenght: number;
+	let offsetQty: string = 'right-10';
 
 	$: if ($userBasketStore.has(id.toString())) {
-		prodqty = $userBasketStore.get(id.toString());
+		qty = $userBasketStore.get(id.toString());
+		if (qty != undefined) {
+			qtyNumberLenght = qty.length;
+			if (qtyNumberLenght == 2) {
+				offsetQty = 'right-9';
+			} else if (qtyNumberLenght == 3) {
+				offsetQty = 'right-8';
+			}
+		}
 	} else {
-		prodqty = '0';
+		qty = '0';
 	}
+
 </script>
 
-<ButtonDefault {...$$restProps} type="submit" class="items-center {$$restProps.class}"
-	><div>Add to Basket</div>
+<ButtonDefault type="submit" class="items-center {$$restProps.class}"
+	><div>Add</div>
 	<div>
-		<ImageDefault src="/shoppingBag.svg" alt="shopping" width="80" height="80" />
-		<div class="text-base font-bold absolute top-7 right-4">{prodqty}</div>
+		<ImageDefault src="/shoppingBag.svg" alt="shopping" width="50" height="50" />
+
+			<div class="text-base font-bold absolute top-7 {offsetQty}">
+				{qty}
+			</div>
+
 	</div>
 </ButtonDefault>
