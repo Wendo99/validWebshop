@@ -4,8 +4,17 @@ export default {
 
 	theme: {
 		fontFamily: {
-			headline: ['Pacifico'],
+			headline: ['Pacifico']
 		},
+		colors: {
+			transparent: 'transparent',
+			current: 'currentColor',
+			white: '#FFFFFF',
+			black: '#000000',
+			green: '#D5EDE2',
+			brown: '#F0C5C0',
+			orange: '#F84F39'
+		}
 	},
 
 	plugins: []
