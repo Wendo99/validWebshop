@@ -9,7 +9,10 @@
 	<p class=" mt-3 text-red-500 text-center font-semibold" />
 	<SignIn class="max-w-xl mx-auto mt-16" />
 	<!-- TODO make up the account link -->
-	<a href="/logging/signUp">
-		<div class="text-sm font-medium text-gray-500 text-center">Don't have an Account yet ?</div>
+	<a
+		href="/logging/signUp"
+		class="hover:underline hover: underline-offset-2 hover:decoration-gray-500"
+	>
+		<div class="text-xs font-medium text-gray-500 text-center">Don't have an Account yet ?</div>
 	</a>
 </div>

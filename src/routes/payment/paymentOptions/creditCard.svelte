@@ -13,7 +13,7 @@
 				id="visa"
 				value="visa"
 				required
-			/><span>Visa</span>
+			/><span class=" ml-2 text-xs font-medium tracking-widest text-gray-600">Visa</span>
 		</div>
 		<div class="h-8">
 			<input
@@ -24,7 +24,7 @@
 				value="mastercard"
 				required
 			/>
-			<span>Mastercard</span>
+			<span class="ml-2 text-xs font-medium tracking-widest text-gray-600">Mastercard</span>
 		</div>
 		<div class="h-8">
 			<input
@@ -34,11 +34,14 @@
 				id="americanExpress"
 				value="americanExpress"
 				required
-			/><span>American Express</span>
+			/><span class=" ml-2 text-xs font-medium tracking-widest text-gray-600">American Express</span
+			>
 		</div>
 	</div>
-	<div class="grid row-start-2 grid-cols-4 gap-y-4">
-		<span class=" col-start-1 justify-items-start">Account holder name<RequieredStar /></span>
+	<div class="grid row-start-2 grid-cols-4 gap-y-4 items-center">
+		<span class=" col-start-1 justify-items-start text-xs font-medium tracking-widest text-gray-600"
+			>Account holder name<RequieredStar /></span
+		>
 		<div class="w-40 justify-items-end grid col-start-2">
 			<InputDefault
 				id="account_Holder"
@@ -48,7 +51,9 @@
 				required
 			/>
 		</div>
-		<span class=" col-start-1 justify-items-start">Creditcard number<RequieredStar /></span>
+		<span class=" col-start-1 justify-items-start text-xs font-medium tracking-widest text-gray-600"
+			>Creditcard number<RequieredStar /></span
+		>
 		<div class="w-40 justify-items-end grid col-start-2">
 			<InputDefault
 				type="number"

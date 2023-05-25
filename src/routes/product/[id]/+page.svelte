@@ -27,10 +27,10 @@
 			</div>
 
 			<div class="col-start-2 col-span-11 grid grid-rows-3 text-lg">
-				<div class="text-3xl font-medium text-gray-700 row-start-1">{title}</div>
+				<div class="text-3xl font-medium text-gray-700 row-start-1 ">{title}</div>
 				<!-- <div id="category" class="">{category}</div> -->
 				<div class="grid grid-cols-2 row-start-2 items-center">
-					<div id="price" class=" text-xl text-gray-900 font-bold">
+					<div id="price" class=" text-xl font-bold tracking-widest text-gray-600">
 						{getCurrencyString(price)}
 					</div>
 
@@ -46,7 +46,7 @@
 			</div>
 		</div>
 
-		<div id="description" class="row-start-2 text-lg text-gray-700 text-justify">
+		<div id="description" class="row-start-2 font-medium tracking-widest text-gray-600 text-justify">
 			{description}
 		</div>
 	</div>

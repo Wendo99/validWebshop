@@ -48,8 +48,10 @@
 						><div class="">
 							<div class="text-lg mb-8">Postadress:</div>
 							<div class="grid grid-flow-row gap-y-10">
-								<div class="grid row-start-1 gap-x-8">
-									<span class="  col-start-1 w-20"> Firstname<RequieredStar /></span>
+								<div class="grid row-start-1 gap-x-8 items-center">
+									<span class=" text-xs font-medium tracking-widest text-gray-600 col-start-1 w-20">
+										Firstname<RequieredStar /></span
+									>
 									<input
 										type="text"
 										name="user_firstName"
@@ -57,7 +59,9 @@
 										value={checkIfStringIsUndefined(data.userAdress?.user_firstName, 'text')}
 										required
 									/>
-									<span class="  col-start-4 w-32"> Lastname<RequieredStar /></span>
+									<span class="text-xs font-medium tracking-widest text-gray-600 col-start-4 w-32">
+										Lastname<RequieredStar /></span
+									>
 									<input
 										class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 outline-none h-8 justify-self-end grid col-start-6 w-56"
 										type="text"
@@ -66,8 +70,10 @@
 										required
 									/>
 								</div>
-								<div class="grid row-start-2 gap-x-8">
-									<span class="  col-start-1 w-20">Street<RequieredStar /></span>
+								<div class=" grid row-start-2 gap-x-8 items-center">
+									<span class="text-xs font-medium tracking-widest text-gray-600 col-start-1 w-20"
+										>Street<RequieredStar /></span
+									>
 									<input
 										class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 outline-none h-8 w-56 grid col-start-3 mr-6"
 										type="text"
@@ -75,7 +81,9 @@
 										value={checkIfStringIsUndefined(data.userAdress?.user_street, 'text')}
 										required
 									/>
-									<span class="  col-start-4 w-32">House Number<RequieredStar /></span>
+									<span class="text-xs font-medium tracking-widest text-gray-600 col-start-4 w-32"
+										>House Number<RequieredStar /></span
+									>
 									<input
 										class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 outline-none h-8 justify-self-end w-56 grid col-start-6"
 										type="number"
@@ -84,8 +92,10 @@
 										required
 									/>
 								</div>
-								<div class=" grid row-start-3 gap-x-8">
-									<span class="  col-start-1 w-20">City<RequieredStar /></span>
+								<div class="  grid row-start-3 gap-x-8 items-center">
+									<span class="text-xs font-medium tracking-widest text-gray-600 col-start-1 w-20"
+										>City<RequieredStar /></span
+									>
 									<input
 										class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 outline-none h-8 w-56 grid col-start-3 mr-6"
 										type="text"
@@ -93,7 +103,9 @@
 										value={checkIfStringIsUndefined(data.userAdress?.user_city, 'text')}
 										required
 									/>
-									<span class="  col-start-4 w-32">Postcode <RequieredStar /></span>
+									<span class="text-xs font-medium tracking-widest text-gray-600 col-start-4 w-32"
+										>Postcode <RequieredStar /></span
+									>
 									<input
 										class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 outline-none h-8 justify-self-end w-56 grid col-start-6"
 										type="number"
@@ -105,7 +117,10 @@
 									/>
 								</div>
 								<div class="items-center grid row-start-4 gap-x-1 grid-flow-col">
-									<span class="items-center col-start-1">Birthday <RequieredStar /></span>
+									<span
+										class="items-center text-xs font-medium tracking-widest text-gray-600 col-start-1"
+										>Birthday <RequieredStar /></span
+									>
 									<span class="items-center text-sm grid col-start-2"
 										><input
 											type="date"
@@ -129,7 +144,7 @@
 							<div class="text-lg mb-8">Payment Methods:</div>
 							<div class="grid grid-flow-col">
 								{#each paymentOptions as { value, text }}
-									<div>
+									<div class="text-xs font-medium tracking-widest text-gray-600">
 										<input
 											on:change={(e) => (chosenPaymentMethod = value)}
 											type="radio"
@@ -137,7 +152,7 @@
 											{value}
 											required
 										/>
-										<span>{text}</span>
+										<span class="ml-2">{text}</span>
 									</div>
 								{/each}
 							</div>
@@ -159,15 +174,15 @@
 							<div class="text-lg mb-8">Delivery Methods:</div>
 							<div class="grid grid-flow-col">
 								{#each deliveryOptions as { value, text }}
-									<div>
-										<input
+									<div class="text-xs font-medium tracking-widest text-gray-600">
+										<input 
 											on:change={(e) => (chosenDeliveryMethod = value)}
 											type="radio"
 											name="user_pref_delivery"
 											{value}
 											required
 										/>
-										<span>{text}</span>
+										<span class="ml-2">{text}</span>
 									</div>
 								{/each}
 							</div>

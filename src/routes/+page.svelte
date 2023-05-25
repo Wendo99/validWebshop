@@ -32,11 +32,7 @@
 				Welcome please spend a lot of money !
 			</h1>
 		{/if}
-		<ImageDefault
-			class="rounded-md"
-			src="/mainImg_1920x724.jpg"
-			alt="woman young blonde fashion"
-		/>
+		<ImageDefault class="rounded-md" src="/mainImg_1920x724.jpg" alt="woman young blonde fashion" />
 	</div>
 	<div class="h-24" />
 	<div id="productpreviewArea" class="grid grid-cols-4 justify-items-center">

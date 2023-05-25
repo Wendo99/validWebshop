@@ -8,7 +8,8 @@
 
 <form action="?/login" method="post" class="space-y-5 {$$props.class}">
 	<InputLogging label="Email" id="email" name="email" type="email bind:value={email} " required />
-	<InputLogging
+	<InputLogging 
+	class="tracking-widest"
 		label="Password"
 		id="password"
 		name="password"
@@ -16,5 +17,5 @@
 		bind:value={password}
 		required
 	/>
-	<ButtonLogging >Sign In</ButtonLogging>
+	<ButtonLogging>Sign In</ButtonLogging>
 </form>

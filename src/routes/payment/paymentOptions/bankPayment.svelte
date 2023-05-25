@@ -5,9 +5,9 @@
 
 <div class="grid grid-cols-2 grid-rows-2 gap-y-8">
 	<div class="grid row-start-1 items-center">
-		<span class="grid col-start-1 justify-items-start items-center">IBAN</span>
+		<span class="items-center grid col-start-1 justify-items-start  text-xs font-medium tracking-widest text-gray-600">IBAN</span>
 		<div class=" justify-items-end grid col-start-2 items-center">
-			<span class=" row-start-1">DE-<RequieredStar /></span>
+			<span class="text-xs font-medium tracking-widest text-gray-600 row-start-1">DE-<RequieredStar /></span>
 			<InputDefault
 				name="account_IBAN"
 				id="account_IBAN"
@@ -19,8 +19,8 @@
 			/>
 		</div>
 	</div>
-	<div class="grid row-start-2">
-		<span class=" col-start-1 justify-items-start items-center">Account Holder<RequieredStar /></span>
+	<div class="grid row-start-2 items-center">
+		<span class="text-xs font-medium tracking-widest text-gray-600 col-start-1 justify-items-start items-center">Account Holder<RequieredStar /></span>
 		<div class=" justify-items-end items-center grid col-start-2">
 			<InputDefault
 				class=" h-8 w-60"
