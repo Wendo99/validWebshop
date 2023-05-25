@@ -9,7 +9,7 @@
 	let piecesSum: string = data.piecesSum;
 </script>
 
-<main class="min-h-screen">
+<main class="min-h-screen p-2">
 	<div class="grid grid-rows-2 grid-cols-12">
 		<div class="row-start-1 max-w-3xl col-span-12">
 			{#each data.prodArr as p}
@@ -17,9 +17,9 @@
 			{/each}
 		</div>
 		<div
-			class="  bg-blue-50 rounded-lg p-2 shadow-2xl drop-shadow-md max-w-5xl justify-items-end row-start-2 col-span-12 grid grid-cols-12 grid-rows-2 h-fit"
+			class="border-6 bg-white rounded-md p-2 shadow-md drop-shadow-lg max-w-5xl justify-items-end row-start-2 col-span-12 grid grid-cols-12 grid-rows-2 h-fit"
 		>
-			<div class="  text-sm font-bold text-gray-500 row-start-2 col-start-9 self-center">
+			<div class="  text-sm font-bold row-start-2 col-start-9 self-center">
 				{#if piecesSum != undefined}
 					{piecesSum}
 					{#if piecesSum == '1'}
@@ -29,7 +29,7 @@
 					{/if}
 				{/if}
 			</div>
-			<div class=" text-lg font-bold text-gray-600 col-start-9 self-end">
+			<div class=" text-lg font-bold col-start-9 self-end">
 				{#if priceSum != undefined}
 					{priceSum}
 				{/if}

@@ -4,7 +4,7 @@
 </script>
 
 <a href="">
-	<ButtonDefault class="items-center">
+	<ButtonDefault >
 		<div>Account</div>
 		<div>
 			<ImageDefault width="50" height="50" src="/account.svg" alt="account" />

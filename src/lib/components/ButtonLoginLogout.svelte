@@ -7,14 +7,14 @@
 
 {#if userEmail != undefined}
 	<form action="/logging/signIn?/logout" method="POST">
-		<ButtonDefault type="submit" class="items-center">
+		<ButtonDefault type="submit">
 			<div>Logout</div>
 			<ImageDefault width="50" height="50" src="/login.svg" alt="logout button" />
 		</ButtonDefault>
 	</form>
 {:else if userEmail == undefined}
 	<a href="/logging/signIn">
-		<ButtonDefault type="button" class="items-center"
+		<ButtonDefault type="button"
 			><div>Login</div>
 			<ImageDefault width="50" height="50" src="/login.svg" alt="login button" />
 		</ButtonDefault>

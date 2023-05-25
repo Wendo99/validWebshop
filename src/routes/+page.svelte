@@ -2,7 +2,7 @@
 	import ProductPreviewBox from './productPreviewBox.svelte';
 	import ImageDefault from '$lib/types/ImageDefault.svelte';
 	import { onMount } from 'svelte';
-	import { fly } from 'svelte/transition';
+	import { fade, fly } from 'svelte/transition';
 	import { hasPlayed } from '$lib/stores/mainPageHeadlinePlayedStore';
 
 	export let data;
@@ -19,22 +19,26 @@
 <svelte:head><title>Donkey Store &#8226; Where the wild things are</title></svelte:head>
 
 <main class="">
-	<div>
+	<div class="p-2">
 		{#if headlineVisibility == true}
 			<h1
-				in:fly|once={{ x: -1000, duration: 3000 }}
-				class="text-red-600 text-5xl absolute text-center w-full font-headline"
+				in:fly|once={{ x: -1000, duration: 1500 }}
+				class="absolute right-0 text-orange text-6xl top-2/3 text-center w-screen font-headline"
+				on:introend={() => {
+					headlineVisibility = false;
+				}}
+				out:fade={{ delay: 2000, duration: 1500 }}
 			>
-				Welcome
+				Welcome please spend a lot of money !
 			</h1>
 		{/if}
 		<ImageDefault
-			classStyle="rounded-lg"
+			class="rounded-md"
 			src="/mainImg_1920x724.jpg"
 			alt="woman young blonde fashion"
 		/>
 	</div>
-	<div class="h-40" />
+	<div class="h-24" />
 	<div id="productpreviewArea" class="grid grid-cols-4 justify-items-center">
 		{#each data.productArr_All as p}
 			<ProductPreviewBox

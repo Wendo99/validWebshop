@@ -12,8 +12,8 @@
 	$: setContext('qty', itemsQty);
 </script>
 
-<main class="bg-white max-w-full">
-	<Header userEmail={data.user_eMail} class="border p-2"/>
+<main class="bg-white">
+	<Header userEmail={data.user_eMail} />
 
 	<slot />
 

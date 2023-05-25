@@ -19,7 +19,7 @@
 
 <svelte:head><title>Donkey Shopping - {title}</title></svelte:head>
 
-<main class="grid justify-items-center min-h-screen">
+<main class="grid justify-items-center min-h-screen my-9">
 	<div class="grid grid-rows-2 max-w-4xl">
 		<div class="row-start-1 grid grid-col-12 gap-x-11">
 			<div class="col-start-1 grid place-items-center">

@@ -4,7 +4,8 @@ export default {
 
 	theme: {
 		fontFamily: {
-			headline: ['Pacifico']
+			headline: ['Pacifico'],
+			standard: ['Arvo']
 		},
 		colors: {
 			transparent: 'transparent',
