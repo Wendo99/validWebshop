@@ -23,7 +23,7 @@
 		{#if headlineVisibility == true}
 			<h1
 				in:fly|once={{ x: -1000, duration: 3000 }}
-				class="text-red-600 text-5xl absolute text-center w-full"
+				class="text-red-600 text-5xl absolute text-center w-full font-headline"
 			>
 				Welcome
 			</h1>

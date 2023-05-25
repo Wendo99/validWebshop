@@ -7,7 +7,7 @@
 	<ButtonDefault class="items-center">
 		<div>Account</div>
 		<div>
-			<ImageDefault width="60" height="60" src="/account.svg" alt="account" />
+			<ImageDefault width="50" height="50" src="/account.svg" alt="account" />
 		</div>
 	</ButtonDefault>
 </a>
