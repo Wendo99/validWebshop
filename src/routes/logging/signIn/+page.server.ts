@@ -28,11 +28,16 @@ export const actions = {
 			email: valid_FormData.data.email,
 			password: valid_FormData.data.password
 		});
+		if (error) {
+			console.error(error);
+		}
 
 		return valid_FormData.data;
 	},
-	logout: async ( {locals} ) => {
-		console.log(1)
+	logout: async ({ locals }) => {
 		const { error } = await locals.supaBase.auth.signOut();
+		if (error) {
+			console.error(error);
+		}
 	}
 };

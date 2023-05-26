@@ -21,6 +21,7 @@
 	} else {
 		qty = '0';
 	}
+	
 </script>
 
 <a href="/cart">

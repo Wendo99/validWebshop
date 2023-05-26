@@ -27,15 +27,15 @@ interface CheckoutData {
 //TODO MAYBE merge functionality of pieceSum,priceSum,productArray, usercart with load func of +page.server.ts
 export async function load({ cookies, locals }) {
 	const session = await locals.getSession();
-	let userEmail = '';
+	let uuid = '';
 	if (session && session.user.email) {
-		userEmail = session.user.email;
+		uuid = session.user.id;
 	}
-	const userId = await getUserId(locals, userEmail).then((res) => res);
+	const userId = await getUserId(locals, uuid).then((res) => res);
 
 	const userAdress = await getUserAdress(locals, userId).then((res) => res);
 
-	const userCart: Map<string, string> = (await getUserCart(cookies, userEmail)).userCart;
+	const userCart: Map<string, string> = (await getUserCart(cookies, uuid)).userCart;
 
 	const priceSum = (await productData(locals, userCart)).priceSum;
 
@@ -84,17 +84,17 @@ export const actions = {
 		const checkoutData: CheckoutData = validateCheckOutData.data;
 
 		const session = await getSession();
-		let userEmail = '';
-		if (session && session.user.email) {
-			userEmail = session.user.email;
+		let uuid = '';
+		if (session && session.user.id) {
+			uuid = session.user.id;
 		}
 
-		const userId: number = await getUserId(locals, userEmail).then((res) => res);
+		const userId: number = await getUserId(locals, uuid).then((res) => res);
 
 		createUserAdressRow(locals, userId);
 		sendUserData(checkoutData, locals, userId);
 
-		cookies.delete(userEmail);
+		cookies.delete(uuid);
 		throw redirect(303, '/payment/paymentSuccess/');
 	}
 };
@@ -141,7 +141,6 @@ async function getUserAdress(locals: App.Locals, userId: number) {
 		console.error(error);
 	}
 	if (data) {
-
 		return data;
 	}
 }

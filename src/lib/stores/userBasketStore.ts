@@ -3,7 +3,7 @@ import { writable } from 'svelte/store';
 const map: Map<string, string> = new Map();
 
 function createUserCartStore() {
-    const { subscribe, set, update } = writable(map); 
+	const { subscribe, set, update } = writable(map);
 	return { subscribe, update, set };
 }
 

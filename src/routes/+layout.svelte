@@ -5,6 +5,9 @@
 	import { userBasketStore } from '$lib/stores/userBasketStore';
 	import { setContext } from 'svelte';
 	import { itemsQty } from '$lib/stores/itemsQty';
+	import '@fontsource/pacifico/latin.css';
+	import '@fontsource/arvo/latin.css';
+
 	export let data;
 
 	$: userBasketStore.set(data.userCart);

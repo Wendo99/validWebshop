@@ -6,18 +6,17 @@ import invariant from 'tiny-invariant';
 import { getUserCart } from '$lib/stores/cookieStore';
 import { productData } from '$lib/stores/productArrStore';
 import { userBasketStore } from '$lib/stores/userBasketStore';
+import { userUIDStore } from '$lib/stores/userStore';
 
 export async function load({ cookies, locals }) {
-	const tmp = await locals.getSession().then((res) => res?.user.email);
-	let email = '';
+	const tmp = await locals.getSession().then((res) => res?.user.id);
+	let uuid = '';
 	if (tmp != undefined) {
-		email = tmp;
+		uuid = tmp;
 	}
-
-	const userCart: Map<string, string> = (await getUserCart(cookies, email)).userCart;
+	const userCart: Map<string, string> = (await getUserCart(cookies, uuid)).userCart;
 	const pD = await productData(locals, userCart);
 	const prodArr: string[][] = pD.prodArr;
-
 	const piecesSum = pD.piecesSum;
 	const priceSum = pD.priceSum;
 
@@ -26,12 +25,12 @@ export async function load({ cookies, locals }) {
 
 export const actions = {
 	addToCart: async ({ request, cookies, locals }) => {
-		const tmp = await locals.getSession().then((res) => res?.user.email);
-		let email = '';
+		const tmp = await locals.getSession().then((res) => res?.user.id);
+		let id = '';
 		if (tmp != undefined) {
-			email = tmp;
+			id = tmp;
 		}
-
+		console.log(id);
 		//TODO formValidation
 		const formData = await request.formData();
 		const validationAddToCart = zfd.formData({
@@ -45,12 +44,16 @@ export const actions = {
 
 		const prodId: string = result.data.prodId.toString();
 
-		putItemInCart(cookies, prodId, email);
+		putItemInCart(cookies, prodId);
 	}
 };
 
-async function putItemInCart(cookies: Cookies, prodId: string, email: string) {
-	const userCart: Map<string, string> = (await getUserCart(cookies, email)).userCart;
+async function putItemInCart(cookies: Cookies, prodId: string) {
+	let uuid = '';
+	const tmp = userUIDStore.subscribe((value) => {
+		uuid = value;
+	});
+	const userCart: Map<string, string> = (await getUserCart(cookies, uuid)).userCart;
 	if (userCart.has(prodId)) {
 		const tmp = userCart.get(prodId);
 		invariant(tmp != undefined, 'tmp is undefined');
@@ -61,5 +64,5 @@ async function putItemInCart(cookies: Cookies, prodId: string, email: string) {
 	}
 	userBasketStore.update((userCart) => userCart);
 	const x = Object.fromEntries(userCart);
-	cookies.set(email, JSON.stringify(x));
+	cookies.set(uuid, JSON.stringify(x));
 }

@@ -34,7 +34,7 @@
 	<div>
 		<ImageDefault src="/shoppingBag.svg" alt="shopping" width="50" height="50" />
 
-		<div class="text-base font-bold absolute top-9 text-orange  end-14 {offsetQty}">
+		<div class="text-base font-bold absolute top-9 text-orange end-14 {offsetQty}">
 			{qty}
 		</div>
 	</div>

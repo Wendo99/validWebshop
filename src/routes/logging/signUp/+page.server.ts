@@ -1,8 +1,11 @@
-import { fail } from '@sveltejs/kit';
+import { fail, type Cookies } from '@sveltejs/kit';
 import { z } from 'zod';
 import { zfd } from 'zod-form-data';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { PageServerLoad } from './$types';
+import type { PageServerData } from './$types';
+import { userUIDStore } from '$lib/stores/userStore';
+import { getUserCart } from '$lib/stores/cookieStore';
+import invariant from 'tiny-invariant';
 
 interface RegisterData {
 	email: string;
@@ -12,7 +15,7 @@ interface RegisterData {
 
 //TODO error handling
 export const actions = {
-	register: async ({ request, locals }) => {
+	register: async ({ request, locals, cookies }) => {
 		const formData = await request.formData();
 
 		//  Zod model
@@ -34,7 +37,7 @@ export const actions = {
 		}
 		const registerData: RegisterData = validateRegisterModel.data;
 
-		await signUpUserInSupaBase(locals, registerData);
+		await signUpUserInSupaBase(locals, registerData, cookies);
 
 		await addUserToDB(locals, registerData);
 
@@ -46,7 +49,17 @@ export const actions = {
 };
 
 //TODO error handling
-async function signUpUserInSupaBase(locals: App.Locals, registerData: RegisterData) {
+async function signUpUserInSupaBase(
+	locals: App.Locals,
+	registerData: RegisterData,
+	cookies: Cookies
+) {
+	let uuid = '';
+	const tmp = userUIDStore.subscribe((value) => {
+		uuid = value;
+	});
+	const userCart = (await getUserCart(cookies, uuid)).userCart;
+	cookies.delete(uuid);
 	const { data, error } = await locals.supaBase.auth.signUp({
 		email: registerData.email,
 		password: registerData.password
@@ -54,6 +67,10 @@ async function signUpUserInSupaBase(locals: App.Locals, registerData: RegisterDa
 	if (error != null) {
 		console.log(error);
 	}
+	const x = Object.fromEntries(userCart);
+	invariant(data.user?.id, 'no user id');
+	cookies.set(data.user?.id, JSON.stringify(x));
+	userUIDStore.set(data.user.id);
 }
 
 //TODO error handling
