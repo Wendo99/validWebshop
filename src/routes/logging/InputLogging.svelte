@@ -28,7 +28,7 @@
 			{required}
 			bind:value
 			bind:this={inputRef}
-			class="shadow-md drop-shadow-md block w-full sm:text-sm rounded-md p-2 outline-none {$$props.class}"
+			class="border border-gray-200 shadow-md drop-shadow-md block w-full sm:text-sm rounded-md p-2 outline-green {$$props.class}"
 		/>
 	</div>
 </div>

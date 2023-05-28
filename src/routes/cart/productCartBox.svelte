@@ -7,7 +7,7 @@
 	export let qty: string;
 </script>
 
-<div class="bg-white h-24 mb-7 border-6 rounded-md p-2 shadow-md drop-shadow-lg">
+<div class="bg-white h-24 mb-7 border-6 rounded-md p-2 shadow-md drop-shadow-lg border border-gray-200" >
 	<div class="grid grid-rows-2 grid-cols-12">
 		<div class="grid row-span-2 col-start-1 w-24 items-center justify-items-center">
 			<img {src} alt="prodPic" class="w-16 h-auto" />
@@ -19,7 +19,7 @@
 			<div class=" grid justify-end content-center font-bold">
 				{getCurrencyString(price)}
 			</div>
-			<div class="  grid justify-end content-center font-bold">
+			<div class="  grid justify-end content-center font-bold ">
 				{qty}
 				{#if qty == '1'}
 					piece

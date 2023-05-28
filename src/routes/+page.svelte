@@ -16,7 +16,7 @@
 	}
 </script>
 
-<svelte:head><title>Donkey Store &#8226; Where the wild things are</title></svelte:head>
+<svelte:head><title>Juvenile &#8226; Welcome and enjoy!</title></svelte:head>
 
 <main class="">
 	<div class="p-2">

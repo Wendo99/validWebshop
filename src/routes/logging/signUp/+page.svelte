@@ -5,6 +5,7 @@
 </script>
 
 <!-- // TODO refactor error messages -->
+<svelte:head><title>Juvenile &#8226; Sign Up</title></svelte:head>
 
 <div class="min-h-screen">
 	<h1 class="text-2xl font-semibold text-center">Sign Up</h1>

@@ -2,7 +2,7 @@
 	import SignIn from './signIn.svelte';
 </script>
 
-<svelte:head><title>Sign In</title></svelte:head>
+<svelte:head><title>Juvenile &#8226; Sign In</title></svelte:head>
 <!-- //TODO error messges -->
 <div class="min-h-screen">
 	<h1 class="text-2xl font-semibold text-center">Sign In</h1>

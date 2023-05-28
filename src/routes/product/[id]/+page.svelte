@@ -17,7 +17,7 @@
 	const rate = data.product.rate;
 </script>
 
-<svelte:head><title>Donkey Shopping - {title}</title></svelte:head>
+<svelte:head><title>Juvenile &#8226; {title}</title></svelte:head>
 
 <main class="grid justify-items-center min-h-screen my-9">
 	<div class="grid grid-rows-2 max-w-4xl">

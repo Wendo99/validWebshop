@@ -1,6 +1,6 @@
 <script>
 	// Text String
-	let imprint = 'Imprint';
+	let Imprint = 'Imprint';
 	let contact = 'Contact';
 
 	// PageLink String
@@ -8,11 +8,11 @@
 	let linkContact = '/contact';
 </script>
 
-<footer class="p-2 bg-black text-white">
-	<div id="imprintLink" class=" inline-block mr-5">
-		<a href={linkImprint}>{imprint}</a>
+<footer class="p-2 bg-black text-white h-20 grid items-center grid-flow-col gap-x-12 auto-cols-max">
+	<div id="imprintLink">
+		<a href={linkImprint}>{Imprint}</a>
 	</div>
-	<div id="contactLink" class=" inline-block">
+	<div id="contactLink">
 		<a href={linkContact}>{contact}</a>
 	</div>
 </footer>

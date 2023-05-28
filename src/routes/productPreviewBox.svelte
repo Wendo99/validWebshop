@@ -14,7 +14,7 @@
 
 <a href="/product/{id}">
 	<div
-		class="grid grid-flow-row justify-items-center items-center border-6 w-64 h-96 p-3 rounded-md bg-white shadow-md drop-shadow-md mb-16 hover:drop-shadow-2xl hover:shadow-2xl"
+		class="grid grid-flow-row justify-items-center items-center border-6 w-64 h-96 p-3 rounded-md bg-white shadow-md drop-shadow-md mb-16 hover:drop-shadow-2xl hover:shadow-2xl border border-gray-200"
 	>
 		<div class="bg-white rounded-md grid items-center justify-items-center w-48 h-48">
 			<div class="items-center justify-items-center">

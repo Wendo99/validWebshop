@@ -26,7 +26,7 @@
 	export let chosenDeliveryMethod: string = '';
 </script>
 
-<svelte:head><title>Checkout</title></svelte:head>
+<svelte:head><title>Juvenile &#8226; Checkout</title></svelte:head>
 
 <main class="min-h-screen p-2 max-w-full">
 	<form action="?/validateCheckout" method="post">
@@ -55,7 +55,7 @@
 									<input
 										type="text"
 										name="user_firstName"
-										class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 outline-none h-8 w-56 grid col-start-3 mr-6"
+										class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 h-8 w-56 grid col-start-3 mr-6 outline-green border border-gray-200"
 										value={checkIfStringIsUndefined(data.userAdress?.user_firstName, 'text')}
 										required
 									/>
@@ -63,7 +63,7 @@
 										Lastname<RequieredStar /></span
 									>
 									<input
-										class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 outline-none h-8 justify-self-end grid col-start-6 w-56"
+										class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 outline-green h-8 justify-self-end grid col-start-6 w-56 border border-gray-200"
 										type="text"
 										name="user_lastName"
 										value={checkIfStringIsUndefined(data.userAdress?.user_lastName, 'text')}
@@ -75,7 +75,7 @@
 										>Street<RequieredStar /></span
 									>
 									<input
-										class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 outline-none h-8 w-56 grid col-start-3 mr-6"
+										class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 outline-green h-8 w-56 grid col-start-3 mr-6 border border-gray-200"
 										type="text"
 										name="user_street"
 										value={checkIfStringIsUndefined(data.userAdress?.user_street, 'text')}
@@ -85,7 +85,7 @@
 										>House Number<RequieredStar /></span
 									>
 									<input
-										class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 outline-none h-8 justify-self-end w-56 grid col-start-6"
+										class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 outline-green h-8 justify-self-end w-56 grid col-start-6 border border-gray-200"
 										type="number"
 										name="user_houseNumber"
 										value={checkIfStringIsUndefined(data.userAdress?.user_houseNumber, 'number')}
@@ -97,7 +97,7 @@
 										>City<RequieredStar /></span
 									>
 									<input
-										class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 outline-none h-8 w-56 grid col-start-3 mr-6"
+										class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 outline-green h-8 w-56 grid col-start-3 mr-6 border border-gray-200"
 										type="text"
 										name="user_city"
 										value={checkIfStringIsUndefined(data.userAdress?.user_city, 'text')}
@@ -107,7 +107,7 @@
 										>Postcode <RequieredStar /></span
 									>
 									<input
-										class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 outline-none h-8 justify-self-end w-56 grid col-start-6"
+										class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 outline-green h-8 justify-self-end w-56 grid col-start-6 border border-gray-200"
 										type="number"
 										name="user_postcode"
 										min="10000"
@@ -117,8 +117,7 @@
 									/>
 								</div>
 								<div class="items-center grid row-start-4 gap-x-1 grid-flow-col">
-									<span
-										class="items-center text-xs font-medium tracking-widest text-gray-600 col-start-1"
+									<span class="items-center text-xs font-medium tracking-widest text-gray-600 col-start-1"
 										>Birthday <RequieredStar /></span
 									>
 									<span class="items-center text-sm grid col-start-2"
@@ -127,8 +126,8 @@
 											name="user_birthday"
 											id="birthday"
 											min="1900-01-01"
-											class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 outline-none h-8
-										w-56 text-lg"
+											class="shadow-1xl drop-shadow-lg sm:text-sm rounded-md p-2 outline-green h-8
+										w-56 text-lg border border-gray-200"
 											value={data.userAdress?.user_birthday}
 											required
 										/>
@@ -175,7 +174,7 @@
 							<div class="grid grid-flow-col">
 								{#each deliveryOptions as { value, text }}
 									<div class="text-xs font-medium tracking-widest text-gray-600">
-										<input 
+										<input
 											on:change={(e) => (chosenDeliveryMethod = value)}
 											type="radio"
 											name="user_pref_delivery"
