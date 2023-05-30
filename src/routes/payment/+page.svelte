@@ -29,24 +29,27 @@
 <svelte:head><title>Juvenile &#8226; Checkout</title></svelte:head>
 
 <main class="min-h-screen p-2 max-w-full">
+	<h1 class="text-3xl font-bold mb-12">Checkout</h1>
 	<form action="?/validateCheckout" method="post">
+		<h2 class="text-lg font-semibold mb-4">Please enter your data</h2>
 		<div class="grid grid-cols-2">
 			<div class="grid grid-cols-5 gap-y-5 min-w-max auto-rows-min gap-x-5">
-				<BoxDiv class="row-start-1 grid grid-rows-2 col-start-2 h-fit w-72">
-					<div class="text-lg">Overview:</div>
-					<div class="text-lg font-bold row-start-2 self-center">
+				<BoxDiv class="row-start-1 grid grid-rows-3 col-start-2  w-72">
+					<div class="text-lg">Overview</div>
+					<div class="text-xl font-bold row-start-2 justify-self-center">
 						{getCurrencyString(data.priceSum)}
 					</div>
 
-					<ButtonFinalizePayment class="row-start-2 justify-self-end" type="submit"
-						>Finalize Payment</ButtonFinalizePayment
+					<ButtonFinalizePayment
+						class="row-start-3 justify-self-center place-self-end"
+						type="submit">Finalize Payment</ButtonFinalizePayment
 					>
 				</BoxDiv>
 
 				<div class="grid row-start-1">
 					<BoxDiv
 						><div class="">
-							<div class="text-lg mb-8">Postadress:</div>
+							<div class="text-lg mb-8">Postadress</div>
 							<div class="grid grid-flow-row gap-y-10">
 								<div class="grid row-start-1 gap-x-8 items-center">
 									<span class=" text-xs font-medium tracking-widest text-gray-600 col-start-1 w-20">
@@ -117,7 +120,8 @@
 									/>
 								</div>
 								<div class="items-center grid row-start-4 gap-x-1 grid-flow-col">
-									<span class="items-center text-xs font-medium tracking-widest text-gray-600 col-start-1"
+									<span
+										class="items-center text-xs font-medium tracking-widest text-gray-600 col-start-1"
 										>Birthday <RequieredStar /></span
 									>
 									<span class="items-center text-sm grid col-start-2"
@@ -140,7 +144,7 @@
 				<div class="grid row-start-2 auto-rows-min relative">
 					<BoxDiv>
 						<div class="">
-							<div class="text-lg mb-8">Payment Methods:</div>
+							<div class="text-lg mb-8">Payment Methods</div>
 							<div class="grid grid-flow-col">
 								{#each paymentOptions as { value, text }}
 									<div class="text-xs font-medium tracking-widest text-gray-600">
@@ -170,7 +174,7 @@
 				<div class="grid row-start-3 auto-rows-min relative">
 					<BoxDiv>
 						<div class="">
-							<div class="text-lg mb-8">Delivery Methods:</div>
+							<div class="text-lg mb-8">Delivery Methods</div>
 							<div class="grid grid-flow-col">
 								{#each deliveryOptions as { value, text }}
 									<div class="text-xs font-medium tracking-widest text-gray-600">

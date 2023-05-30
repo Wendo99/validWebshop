@@ -16,10 +16,10 @@
 			<div class="grid justify-center self-center text-base font-semibold">
 				{title}
 			</div>
-			<div class=" grid justify-end content-center font-bold">
+			<div class=" grid justify-end content-center font-bold text-lg">
 				{getCurrencyString(price)}
 			</div>
-			<div class="  grid justify-end content-center font-bold ">
+			<div class="  grid justify-end content-center text-gray-500">
 				{qty}
 				{#if qty == '1'}
 					piece

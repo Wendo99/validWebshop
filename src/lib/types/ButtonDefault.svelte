@@ -9,5 +9,5 @@
 	ring-orange
 	hover:ring-4
 	hover:border
-		 {$$restProps.class}"><slot /></button
+		 {$$restProps.class}" ><slot /></button
 >

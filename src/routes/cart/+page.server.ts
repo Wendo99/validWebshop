@@ -1,4 +1,4 @@
-import { fail, type Cookies } from '@sveltejs/kit';
+import { fail, type Cookies, redirect } from '@sveltejs/kit';
 import { zfd } from 'zod-form-data';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { PageServerLoad } from './$types';
@@ -9,11 +9,10 @@ import { userBasketStore } from '$lib/stores/userBasketStore';
 import { userUIDStore } from '$lib/stores/userStore';
 
 export async function load({ cookies, locals }) {
-	const tmp = await locals.getSession().then((res) => res?.user.id);
 	let uuid = '';
-	if (tmp != undefined) {
-		uuid = tmp;
-	}
+	const tmp = userUIDStore.subscribe((value) => {
+		uuid = value;
+	});
 	const userCart: Map<string, string> = (await getUserCart(cookies, uuid)).userCart;
 	const pD = await productData(locals, userCart);
 	const prodArr: string[][] = pD.prodArr;
@@ -45,6 +44,14 @@ export const actions = {
 		const prodId: string = result.data.prodId.toString();
 
 		putItemInCart(cookies, prodId);
+	},
+
+	isLoggedIn: async ({ locals }) => {
+		console.log(1);
+		const user = await locals.getSession().then((res) => res?.user);
+		if (user) {
+			throw redirect(303, '/payment');
+		}
 	}
 };
 

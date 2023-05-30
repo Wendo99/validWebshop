@@ -5,6 +5,7 @@ import { z } from 'zod';
 import type { PageServerLoad } from './$types';
 import { getUserCart } from '$lib/stores/cookieStore';
 import { productData } from '$lib/stores/productArrStore';
+import { userUIDStore } from '$lib/stores/userStore';
 
 const paymentEnum = z.enum(['creditCard', 'payPal', 'bankPayment']);
 type paymentEnum = z.infer<typeof paymentEnum>;
@@ -26,11 +27,10 @@ interface CheckoutData {
 
 //TODO MAYBE merge functionality of pieceSum,priceSum,productArray, usercart with load func of +page.server.ts
 export async function load({ cookies, locals }) {
-	const session = await locals.getSession();
 	let uuid = '';
-	if (session && session.user.email) {
-		uuid = session.user.id;
-	}
+	const tmp = userUIDStore.subscribe((value) => {
+		uuid = value;
+	});
 	const userId = await getUserId(locals, uuid).then((res) => res);
 
 	const userAdress = await getUserAdress(locals, userId).then((res) => res);
