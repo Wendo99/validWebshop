@@ -16,7 +16,7 @@
 		>
 		<h2 id="compHeader" class="text-5xl font-headline">Juvenile</h2>
 	</div>
-	<div class=" grid col-start-2 grid-flow-col items-center text-sm">
+	<div class=" grid col-start-2 grid-flow-col items-center text-sm justify-end gap-8">
 		{#if userEmail == undefined}
 			{''}
 		{:else}
