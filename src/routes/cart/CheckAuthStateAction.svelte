@@ -1,7 +1,5 @@
 <script lang="ts">
-	export let dialog: HTMLDialogElement | null = null;
-
-
+	
 </script>
 
 <button
@@ -11,11 +9,6 @@ rounded-md
 ring-orange
 hover:ring-4
 hover:border"
-	on:click|preventDefault={() => dialog?.showModal()}>Proceed to Checkout</button
+	on:click|preventDefault={() => }>Proceed to Checkout</button
 >
-<dialog class="shadow p-4 border w-72 h-32" bind:this={dialog}>
-	<p>You need to be logged in to proceed to Checkout!</p>
-	<form method="dialog">
-		<button>isok</button>
-	</form>
-</dialog>
+

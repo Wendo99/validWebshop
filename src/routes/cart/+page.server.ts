@@ -13,13 +13,16 @@ export async function load({ cookies, locals }) {
 	const tmp = userUIDStore.subscribe((value) => {
 		uuid = value;
 	});
+
+	const isUserLoggedIn = await locals.getSession().then((res) => (res?.user != undefined ? true : false));
+
 	const userCart: Map<string, string> = (await getUserCart(cookies, uuid)).userCart;
 	const pD = await productData(locals, userCart);
 	const prodArr: string[][] = pD.prodArr;
 	const piecesSum = pD.piecesSum;
 	const priceSum = pD.priceSum;
 
-	return { prodArr, piecesSum, priceSum };
+	return { prodArr, piecesSum, priceSum, isUserLoggedIn };
 }
 
 export const actions = {
@@ -44,14 +47,6 @@ export const actions = {
 		const prodId: string = result.data.prodId.toString();
 
 		putItemInCart(cookies, prodId);
-	},
-
-	isLoggedIn: async ({ locals }) => {
-		console.log(1);
-		const user = await locals.getSession().then((res) => res?.user);
-		if (user) {
-			throw redirect(303, '/payment');
-		}
 	}
 };
 

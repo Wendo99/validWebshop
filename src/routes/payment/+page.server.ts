@@ -108,10 +108,7 @@ async function createUserAdressRow(locals: App.Locals, userId: number) {
 }
 
 async function sendUserData(checkoutData: CheckoutData, locals: App.Locals, userId: number) {
-	const { error } = await locals.supaBase
-		.from('user_Adress')
-		.update(checkoutData)
-		.eq('user_id', userId);
+	const { error } = await locals.supaBase.from('user_Adress').update(checkoutData).eq('user_id', userId);
 	if (error != null) {
 		console.error(error);
 	}
@@ -132,11 +129,7 @@ async function getUserId(locals: App.Locals, userEmail: string) {
 }
 
 async function getUserAdress(locals: App.Locals, userId: number) {
-	const { data, error } = await locals.supaBase
-		.from('user_Adress')
-		.select()
-		.eq('user_id', userId)
-		.single();
+	const { data, error } = await locals.supaBase.from('user_Adress').select().eq('user_id', userId).single();
 	if (error != null) {
 		console.error(error);
 	}
