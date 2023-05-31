@@ -1,4 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { error, fail, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 export interface Product {
@@ -15,11 +16,12 @@ export interface Product {
 //TODO error handling
 export async function load({ params, locals }) {
 	const id = params.id;
-	const { data, error } = await locals.supaBase.from('products').select().eq('id', id).single();
-	const result = data as unknown as Product;
+	const { data } = await locals.supaBase.from('products').select().eq('id', id).single();
+	const result = data as unknown as Product | null;
 
-	if (error != null) {
-		console.log(error);
+	if (result == null) {
+		throw error(404, { message: 'Product not found' });
 	}
+
 	return { product: result };
 }

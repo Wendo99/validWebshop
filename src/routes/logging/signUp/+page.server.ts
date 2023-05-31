@@ -3,8 +3,8 @@ import { z } from 'zod';
 import { zfd } from 'zod-form-data';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { PageServerData } from './$types';
-import { userUIDStore } from '$lib/stores/userStore';
-import { getUserCart } from '$lib/stores/cookieStore';
+import { userUIDStore } from '$lib/stores/userUIDStore';
+import { getUserCart } from '$lib/utils/cookieUtils';
 import invariant from 'tiny-invariant';
 
 interface RegisterData {
@@ -20,9 +20,7 @@ export const actions = {
 
 		//  Zod model
 		const emailSchema = z.coerce.string().email({ message: 'Invalid email adress' });
-		const stringSchema = z.coerce
-			.string()
-			.min(6, { message: 'Length needs to be at least 6 character' });
+		const stringSchema = z.coerce.string().min(6, { message: 'Length needs to be at least 6 character' });
 		const registerModel = zfd.formData({
 			email: emailSchema,
 			password: stringSchema,
@@ -49,11 +47,7 @@ export const actions = {
 };
 
 //TODO error handling
-async function signUpUserInSupaBase(
-	locals: App.Locals,
-	registerData: RegisterData,
-	cookies: Cookies
-) {
+async function signUpUserInSupaBase(locals: App.Locals, registerData: RegisterData, cookies: Cookies) {
 	let uuid = '';
 	const tmp = userUIDStore.subscribe((value) => {
 		uuid = value;

@@ -20,6 +20,7 @@
 	}
 </script>
 
+//TODO fix cart count 
 <svelte:head>
 	<title>Juvenile &#8226; Your Basket</title></svelte:head
 >

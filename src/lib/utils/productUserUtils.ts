@@ -1,5 +1,5 @@
 import { readable } from 'svelte/store';
-import { prodDBInput } from './productDBInputStore';
+import { prodDBInput } from './productDataUtils';
 
 let localProdArr: string[][];
 

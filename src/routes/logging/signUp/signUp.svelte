@@ -13,9 +13,14 @@
 </script>
 
 <form method="POST" action="?/register" class="space-y-5 {$$props.class}">
+	{#if confirmPassword !== '' && confirmPassword !== password}
+		<p class="text-red-500 text-center">Password is not matching</p>
+	{:else}
+		<br />
+	{/if}
 	<InputLogging label="Email" id="email" name="email" type="email" bind:value={email} required />
 	<InputLogging
-	class="tracking-widest"
+		class="tracking-widest"
 		label="Password"
 		id="password"
 		name="password"
@@ -24,7 +29,7 @@
 		required
 	/>
 	<InputLogging
-	class="tracking-widest"
+		class="tracking-widest"
 		label="Confirm Password"
 		id="confirm-password"
 		name="confirm-password"
@@ -32,8 +37,5 @@
 		bind:value={confirmPassword}
 		required
 	/>
-	{#if confirmPassword !== '' && confirmPassword !== password}
-		<p class="text-red-600 text-sm font-semibold">Password not match</p>
-	{/if}
 	<ButtonLogging disabled={validatePassword(password, confirmPassword)}>Sign Up</ButtonLogging>
 </form>

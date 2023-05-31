@@ -3,17 +3,17 @@
 	import ImageDefault from '$lib/types/ImageDefault.svelte';
 	import { onMount } from 'svelte';
 	import { fade, fly } from 'svelte/transition';
-	import { hasPlayed } from '$lib/stores/mainPageHeadlinePlayedStore';
+	import { hasPlayed } from '$lib/stores/headlinePlayedStore';
 
 	export let data;
 
 	let headlineVisibility = false;
 
-	if ($hasPlayed === false) {
-		onMount(() => {
+	onMount(() => {
+		if ($hasPlayed === false) {
 			(headlineVisibility = true), hasPlayed.set(true);
-		});
-	}
+		}
+	});
 </script>
 
 <svelte:head><title>Juvenile &#8226; Welcome and enjoy!</title></svelte:head>
@@ -34,17 +34,10 @@
 		{/if}
 		<ImageDefault class="rounded-md" src="/mainImg_1920x724.jpg" alt="woman young blonde fashion" />
 	</div>
-	<div class="h-24" />
-	<div id="productpreviewArea" class="grid grid-cols-4 justify-items-center">
+
+	<div id="productpreviewArea" class="grid grid-cols-4 justify-items-center pt-24">
 		{#each data.productArr_All as p}
-			<ProductPreviewBox
-				src={p.image}
-				id={p.id}
-				price={p.price}
-				title={p.title}
-				count={p.count}
-				rate={p.rate}
-			/>
+			<ProductPreviewBox product={p} />
 		{/each}
 	</div>
 </main>

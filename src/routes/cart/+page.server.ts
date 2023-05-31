@@ -3,10 +3,10 @@ import { zfd } from 'zod-form-data';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { PageServerLoad } from './$types';
 import invariant from 'tiny-invariant';
-import { getUserCart } from '$lib/stores/cookieStore';
-import { productData } from '$lib/stores/productArrStore';
+import { getUserCart } from '$lib/utils/cookieUtils';
+import { productData } from '$lib/utils/productUserUtils';
 import { userBasketStore } from '$lib/stores/userBasketStore';
-import { userUIDStore } from '$lib/stores/userStore';
+import { userUIDStore } from '$lib/stores/userUIDStore';
 
 export async function load({ cookies, locals }) {
 	let uuid = '';

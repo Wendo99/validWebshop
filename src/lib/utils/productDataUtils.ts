@@ -22,6 +22,7 @@ export async function getProdImgSrc(locals: App.Locals, prodId: number) {
 		console.error(error);
 	}
 }
+
 export async function getProdPrice(locals: App.Locals, prodId: number) {
 	try {
 		const { data, error } = await locals.supaBase.from('products').select('price').eq('id', prodId);
@@ -32,6 +33,7 @@ export async function getProdPrice(locals: App.Locals, prodId: number) {
 		console.error(error);
 	}
 }
+
 export async function getProdTitle(locals: App.Locals, prodId: number) {
 	try {
 		const { data, error } = await locals.supaBase.from('products').select('title').eq('id', prodId);

@@ -4,7 +4,7 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import { userBasketStore } from '$lib/stores/userBasketStore';
 	import { setContext } from 'svelte';
-	import { itemsQty } from '$lib/stores/itemsQty';
+	import { itemsQty } from '$lib/stores/itemsOvrStore';
 	import '@fontsource/pacifico/latin.css';
 	import '@fontsource/arvo/latin.css';
 
@@ -13,12 +13,15 @@
 	$: userBasketStore.set(data.userCart);
 	$: setContext('userBasket', userBasketStore);
 	$: setContext('qty', itemsQty);
+
 </script>
 
 <main class="bg-white">
+
 	<Header userEmail={data.user_eMail} />
 
 	<slot />
 
 	<Footer />
+
 </main>

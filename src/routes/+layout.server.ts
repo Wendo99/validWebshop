@@ -1,8 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { PageServerLoad } from './$types';
-import { getUserCart } from '../lib/stores/cookieStore';
+import { getUserCart } from '../lib/utils/cookieUtils';
 import { v4 as uuidv4 } from 'uuid';
-import { userUIDStore } from '$lib/stores/userStore';
+import { userUIDStore } from '$lib/stores/userUIDStore';
 
 export async function load({ locals, cookies }) {
 	const user = await locals.getSession().then((res) => res?.user);
@@ -13,7 +13,7 @@ export async function load({ locals, cookies }) {
 	} else {
 		uuid = setupUserUUID();
 	}
-	
+
 	let userCart: Map<string, string> = new Map();
 
 	const tmp = (await getUserCart(cookies, uuid)).userCart;

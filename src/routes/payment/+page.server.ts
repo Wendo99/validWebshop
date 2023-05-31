@@ -3,9 +3,9 @@ import { zfd } from 'zod-form-data';
 import { z } from 'zod';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { PageServerLoad } from './$types';
-import { getUserCart } from '$lib/stores/cookieStore';
-import { productData } from '$lib/stores/productArrStore';
-import { userUIDStore } from '$lib/stores/userStore';
+import { getUserCart } from '$lib/utils/cookieUtils';
+import { productData } from '$lib/utils/productUserUtils';
+import { userUIDStore } from '$lib/stores/userUIDStore';
 
 const paymentEnum = z.enum(['creditCard', 'payPal', 'bankPayment']);
 type paymentEnum = z.infer<typeof paymentEnum>;
@@ -91,8 +91,8 @@ export const actions = {
 
 		const userId: number = await getUserId(locals, uuid).then((res) => res);
 
-		createUserAdressRow(locals, userId);
-		sendUserData(checkoutData, locals, userId);
+		await createUserAdressRow(locals, userId);
+		await sendUserData(checkoutData, locals, userId);
 
 		cookies.delete(uuid);
 		throw redirect(303, '/payment/paymentSuccess/');

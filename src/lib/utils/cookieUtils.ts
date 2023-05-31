@@ -28,6 +28,5 @@ async function importUserCookie(cookies: Cookies, uuid: string): Promise<Map<str
 		const temp = JSON.parse(jSonObj);
 		userCart = new Map(Object.entries(temp));
 	}
-	
 	return userCart;
 }
