@@ -3,8 +3,8 @@
 	import { enhance } from '$app/forms';
 	import ProdRate from '$lib/components/ProdRate.svelte';
 	import ProdCount from '$lib/components/ProdCount.svelte';
-	import ImageDefault from '$lib/elements/ImageDefault.svelte';
 	import { getCurrencyString } from '$lib/utils/currencyUtils';
+	import ImageDefault from '$lib/types/ImageDefault.svelte';
 
 	export let data;
 
@@ -15,7 +15,7 @@
 	const image: string = data.product.image;
 	const count = data.product.count;
 	const rate = data.product.rate;
-	
+
 </script>
 
 <svelte:head><title>Juvenile &#8226; {title}</title></svelte:head>

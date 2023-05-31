@@ -20,11 +20,12 @@
 	}
 </script>
 
-//TODO fix cart count 
+//TODO fix cart count
 <svelte:head>
 	<title>Juvenile &#8226; Your Basket</title></svelte:head
 >
 <main class="min-h-screen p-2">
+	
 	<dialog
 		class="-top-28 border-6 border bg-white rounded-md p-2 shadow-2-xl drop-shadow-2xl border-gray-200 min-w-min h-36"
 		bind:this={dialog}

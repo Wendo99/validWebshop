@@ -5,6 +5,7 @@ import type { PageServerLoad } from './$types';
 
 //TODO error handling
 export async function load({ params, locals }) {
+	
 	const id = params.id;
 	const { data } = await locals.supaBase.from('products').select().eq('id', id).single();
 	const result = data as unknown as Product | null;
