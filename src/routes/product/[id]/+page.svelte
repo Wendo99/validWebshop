@@ -3,7 +3,7 @@
 	import { enhance } from '$app/forms';
 	import ProdRate from '$lib/components/ProdRate.svelte';
 	import ProdCount from '$lib/components/ProdCount.svelte';
-	import ImageDefault from '$lib/types/ImageDefault.svelte';
+	import ImageDefault from '$lib/elements/ImageDefault.svelte';
 	import { getCurrencyString } from '$lib/utils/currencyUtils';
 
 	export let data;

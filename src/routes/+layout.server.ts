@@ -1,10 +1,9 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { PageServerLoad } from './$types';
 import { getUserCart } from '../lib/utils/cookieUtils';
 import { v4 as uuidv4 } from 'uuid';
 import { userUIDStore } from '$lib/stores/userUIDStore';
+import type { Cookies } from '@sveltejs/kit';
 
-export async function load({ locals, cookies }) {
+export async function load({ locals, cookies }: { locals: App.Locals; cookies: Cookies }) {
 	const user = await locals.getSession().then((res) => res?.user);
 	let uuid;
 	if (user) {
