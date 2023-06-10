@@ -34,7 +34,6 @@ export const actions = {
 			console.error(error);
 			return { errorMessage: error.message };
 		}
-		console.log(url);
 		throw redirect(303, valid_FormData.data.returnTo || '/');
 	},
 	logout: async ({ locals }) => {

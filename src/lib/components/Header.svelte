@@ -3,7 +3,7 @@
 	import ButtonBasket from './ButtonBasket.svelte';
 	import ButtonLoginLogout from './ButtonLoginLogout.svelte';
 
-	export let userEmail: string | undefined;
+	export let userEmail: string | null;
 </script>
 
 <header
@@ -17,7 +17,7 @@
 		<h2 id="compHeader" class="text-5xl font-headline">Juvenile</h2>
 	</div>
 	<div class=" grid col-start-2 grid-flow-col items-center text-sm justify-end gap-8">
-		{#if userEmail == undefined}
+		{#if userEmail == null}
 			{''}
 		{:else}
 			{userEmail}

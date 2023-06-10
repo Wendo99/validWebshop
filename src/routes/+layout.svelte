@@ -10,7 +10,7 @@
 
 	export let data;
 
-	$: userBasketStore.set(data.userCart);
+	$: userBasketStore.set(data.userBasket);
 	$: setContext('userBasket', userBasketStore);
 	$: setContext('qty', itemsQty);
 
@@ -18,7 +18,7 @@
 
 <main class="bg-white">
 
-	<Header userEmail={data.user_eMail} />
+	<Header userEmail={data.userEmail} />
 
 	<slot />
 

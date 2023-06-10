@@ -12,7 +12,7 @@
 	let piecesSum: string = data.piecesSum;
 
 	export function checkLogInStatus() {
-		if (data.isUserLoggedIn) {
+		if (data.isAuthentificated) {
 			goto('/payment');
 		} else {
 			dialog?.showModal();
@@ -25,7 +25,6 @@
 	<title>Juvenile &#8226; Your Basket</title></svelte:head
 >
 <main class="min-h-screen p-2">
-	
 	<dialog
 		class="-top-28 border-6 border bg-white rounded-md p-2 shadow-2-xl drop-shadow-2xl border-gray-200 min-w-min h-36"
 		bind:this={dialog}

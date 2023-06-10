@@ -14,11 +14,14 @@ export interface Product {
 }
 
 //TODO error handling
-export async function load({ locals }) {
+export const load: PageServerLoad = async ({ locals }) => {
+
 	const { data, error } = await locals.supaBase.from('products').select();
 	const result = data as Product[];
-		if (error != null) {
-			console.log(error);
-		}
-	return { productArr_All: result };
-}
+
+	if (error != null) {
+		throw new Error("Couldn't load products from database");
+	}
+
+	return { products: result };
+};

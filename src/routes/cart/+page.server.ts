@@ -1,38 +1,27 @@
-import { fail, type Cookies, redirect } from '@sveltejs/kit';
+import { fail, type Cookies } from '@sveltejs/kit';
 import { zfd } from 'zod-form-data';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { PageServerLoad } from './$types';
 import invariant from 'tiny-invariant';
-import { getUserCart } from '$lib/utils/cookieUtils';
 import { productData } from '$lib/utils/productUserUtils';
 import { userBasketStore } from '$lib/stores/userBasketStore';
-import { userUIDStore } from '$lib/stores/userUIDStore';
+import { checkAuthentification } from '$lib/server/authService';
+import { getBasket, updateCookie } from '$lib/server/cookieService';
+import { getUuid } from '$lib/server/userDataService';
 
 export async function load({ cookies, locals }) {
-	let uuid = '';
-	const tmp = userUIDStore.subscribe((value) => {
-		uuid = value;
-	});
+	const isAuthentificated: boolean = checkAuthentification(locals);
 
-	const isUserLoggedIn = await locals.getSession().then((res) => (res?.user != undefined ? true : false));
+	const prodData = await productData(locals, getBasket(locals, cookies));
+	const prodArr: string[][] = prodData.prodArr;
+	const piecesSum = prodData.piecesSum;
+	const priceSum = prodData.priceSum;
 
-	const userCart: Map<string, string> = (await getUserCart(cookies, uuid)).userCart;
-	const pD = await productData(locals, userCart);
-	const prodArr: string[][] = pD.prodArr;
-	const piecesSum = pD.piecesSum;
-	const priceSum = pD.priceSum;
-
-	return { prodArr, piecesSum, priceSum, isUserLoggedIn };
+	return { prodArr, piecesSum, priceSum, isAuthentificated };
 }
 
 export const actions = {
 	addToCart: async ({ request, cookies, locals }) => {
-		const tmp = await locals.getSession().then((res) => res?.user.id);
-		let id = '';
-		if (tmp != undefined) {
-			id = tmp;
-		}
-		console.log(id);
 		//TODO formValidation
 		const formData = await request.formData();
 		const validationAddToCart = zfd.formData({
@@ -43,28 +32,30 @@ export const actions = {
 			// war wohl nix :(
 			return fail(400, { error: result.error.flatten() });
 		}
-
 		const prodId: string = result.data.prodId.toString();
 
-		putItemInCart(cookies, prodId);
+		putItemInCart(cookies, prodId, locals);
 	}
 };
 
-async function putItemInCart(cookies: Cookies, prodId: string) {
-	let uuid = '';
-	const tmp = userUIDStore.subscribe((value) => {
-		uuid = value;
-	});
-	const userCart: Map<string, string> = (await getUserCart(cookies, uuid)).userCart;
-	if (userCart.has(prodId)) {
-		const tmp = userCart.get(prodId);
+async function putItemInCart(cookies: Cookies, prodId: string, locals: App.Locals) {
+	const userBasket: Map<string, string> = getBasket(locals, cookies);
+	if (userBasket.has(prodId)) {
+		const tmp = userBasket.get(prodId);
 		invariant(tmp != undefined, 'tmp is undefined');
 		const newQty = (parseInt(tmp) + 1).toString();
-		userCart.set(prodId, newQty);
+		userBasket.set(prodId, newQty);
 	} else {
-		userCart.set(prodId, '1');
+		userBasket.set(prodId, '1');
 	}
 	userBasketStore.update((userCart) => userCart);
-	const x = Object.fromEntries(userCart);
-	cookies.set(uuid, JSON.stringify(x));
+	let uuid = '';
+
+	if (locals.userData) {
+		uuid = getUuid(locals);
+	} else {
+		uuid = 'guest';
+	}
+
+	updateCookie(cookies, uuid, userBasket);
 }

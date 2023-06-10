@@ -3,9 +3,9 @@ import { zfd } from 'zod-form-data';
 import { z } from 'zod';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { PageServerLoad } from './$types';
-import { getUserCart } from '$lib/utils/cookieUtils';
+import { getUserCart } from '$lib/server/cookieUtils';
 import { productData } from '$lib/utils/productUserUtils';
-import { userUIDStore } from '$lib/stores/userUIDStore';
+import { userDataStore } from '$lib/stores/userDataStore';
 
 const paymentEnum = z.enum(['creditCard', 'payPal', 'bankPayment']);
 type paymentEnum = z.infer<typeof paymentEnum>;
@@ -28,7 +28,7 @@ interface CheckoutData {
 //TODO MAYBE merge functionality of pieceSum,priceSum,productArray, usercart with load func of +page.server.ts
 export async function load({ cookies, locals }) {
 	let uuid = '';
-	const tmp = userUIDStore.subscribe((value) => {
+	const tmp = userDataStore.subscribe((value) => {
 		uuid = value;
 	});
 	const userId = await getUserId(locals, uuid).then((res) => res);

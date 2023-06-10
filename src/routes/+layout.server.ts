@@ -1,41 +1,14 @@
-import { getUserCart } from '../lib/utils/cookieUtils';
-import { v4 as uuidv4 } from 'uuid';
-import { userUIDStore } from '$lib/stores/userUIDStore';
-import type { Cookies } from '@sveltejs/kit';
+import { checkAuthentification } from '$lib/server/authService';
+import { getBasket } from '$lib/server/cookieService';
+import { getUserEmail } from '$lib/server/userDataService';
+import type { LayoutServerLoad } from './$types';
 
-export async function load({ locals, cookies }: { locals: App.Locals; cookies: Cookies }) {
-	const user = await locals.getSession().then((res) => res?.user);
-	let uuid;
-	if (user) {
-		userUIDStore.set(user.id);
-		uuid = user.id;
+export const load: LayoutServerLoad = async ({ locals, cookies }) => {
+	const userBasket = getBasket(locals, cookies);
+
+	if (checkAuthentification(locals)) {
+		return { userEmail: getUserEmail(locals), userBasket };
 	} else {
-		uuid = setupUserUUID();
+		return { userEmail: null, userBasket };
 	}
-
-	let userCart: Map<string, string> = new Map();
-
-	const tmp = (await getUserCart(cookies, uuid)).userCart;
-	if (tmp != undefined) {
-		userCart = tmp;
-	}
-
-	const email = user?.email;
-
-	return { user_eMail: email, userCart };
-}
-
-function setupUserUUID() {
-	let result: string | undefined;
-	const temp = userUIDStore.subscribe((value) => (result = value));
-	if (result == undefined) {
-		result = getGuestUserUID();
-		userUIDStore.set(result);
-	}
-	return result;
-}
-
-function getGuestUserUID(): string {
-	const userUID: string = uuidv4();
-	return userUID;
-}
+};

@@ -21,6 +21,7 @@
 <main class="">
 	<div class="p-2">
 		{#if headlineVisibility == true}
+		<!-- TODO change main headline -->
 			<h1
 				in:fly|once={{ x: -1000, duration: 1500 }}
 				class="absolute right-0 text-orange text-6xl top-2/3 text-center w-screen font-headline"
@@ -36,7 +37,7 @@
 	</div>
 
 	<div id="productpreviewArea" class="grid grid-cols-4 justify-items-center pt-24">
-		{#each data.productArr_All as p}
+		{#each data.products as p}
 			<ProductPreviewBox product={p} />
 		{/each}
 	</div>
